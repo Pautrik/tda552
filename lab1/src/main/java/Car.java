@@ -1,21 +1,11 @@
 import java.awt.*;
 
-public class Volvo240 {
-
-  public static final double trimFactor = 1.25;
-  public int nrDoors; // Number of doors on the car
-  public double enginePower; // Engine power of the car
-  public double currentSpeed; // The current speed of the car
-  public Color color; // Color of the car
-  public String modelName; // The car model name
-
-  public Volvo240() {
-    nrDoors = 4;
-    color = Color.black;
-    enginePower = 100;
-    modelName = "Volvo240";
-    stopEngine();
-  }
+public abstract class Car {
+  public int nrDoors;
+  public double enginePower;
+  public double currentSpeed;
+  public Color color;
+  public String modelName;
 
   public int getNrDoors() {
     return nrDoors;
@@ -33,8 +23,8 @@ public class Volvo240 {
     return color;
   }
 
-  public void setColor(Color clr) {
-    color = clr;
+  public void setColor(final Color color) {
+    this.color = color;
   }
 
   public void startEngine() {
@@ -45,17 +35,15 @@ public class Volvo240 {
     currentSpeed = 0;
   }
 
-  public double speedFactor() {
-    return enginePower * 0.01 * trimFactor;
-  }
-
-  public void incrementSpeed(double amount) {
+  public void incrementSpeed(final double amount) {
     currentSpeed = getCurrentSpeed() + speedFactor() * amount;
   }
 
-  public void decrementSpeed(double amount) {
+  public void decrementSpeed(final double amount) {
     currentSpeed = getCurrentSpeed() - speedFactor() * amount;
   }
+
+  public abstract double speedFactor();
 
   // TODO fix this method according to lab pm
   public void gas(double amount) {
