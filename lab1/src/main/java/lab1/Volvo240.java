@@ -1,7 +1,8 @@
 package lab1;
 
-import java.awt.*;
+import java.awt.Color;
 
+/** The Volvo 240. */
 public class Volvo240 extends Car {
 
   private static final double TRIM_FACTOR = 1.25;

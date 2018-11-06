@@ -1,13 +1,14 @@
 package lab1;
 
-import java.awt.*;
+import java.awt.Color;
 
+/** The Saab 95. */
 public class Saab95 extends Car {
 
   private boolean turboOn;
 
   public Saab95() {
-    nrDoors = 2;
+    numberOfDoors = 2;
     color = Color.red;
     enginePower = 125;
     turboOn = false;
@@ -15,10 +16,12 @@ public class Saab95 extends Car {
     stopEngine();
   }
 
+  /** Activates the turbo unit. */
   public void setTurboOn() {
     turboOn = true;
   }
 
+  /** Deactivets the turbo unit. */
   public void setTurboOff() {
     turboOn = false;
   }
