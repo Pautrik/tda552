@@ -1,8 +1,10 @@
+package lab1;
+
 import java.awt.*;
 
 public class Volvo240 extends Car {
 
-  public static final double TRIM_FACTOR = 1.25;
+  private static final double TRIM_FACTOR = 1.25;
 
   public Volvo240() {
     nrDoors = 4;

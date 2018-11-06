@@ -1,8 +1,10 @@
+package lab1;
+
 import java.awt.*;
 
 public class Saab95 extends Car {
 
-  public boolean turboOn;
+  private boolean turboOn;
 
   public Saab95() {
     nrDoors = 2;

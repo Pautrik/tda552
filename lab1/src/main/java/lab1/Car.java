@@ -1,11 +1,13 @@
+package lab1;
+
 import java.awt.*;
 
 public abstract class Car {
-  public int nrDoors;
-  public double enginePower;
-  public double currentSpeed;
-  public Color color;
-  public String modelName;
+  protected int nrDoors;
+  protected double enginePower;
+  protected double currentSpeed;
+  protected Color color;
+  protected String modelName;
 
   public int getNrDoors() {
     return nrDoors;
