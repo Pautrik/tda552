@@ -7,7 +7,6 @@ public class Volvo240 extends Car {
   private static final double TRIM_FACTOR = 1.25;
 
   public Volvo240() {
-    nrDoors = 4;
     color = Color.black;
     enginePower = 100;
     modelName = "Volvo240";
