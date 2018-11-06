@@ -7,4 +7,28 @@ repositories {
 }
 
 apply plugin: 'java'
+apply plugin: 'pmd'
 
+sourceCompatibility = 10
+targetCompatibility = 10
+
+pmd {
+    sourceSets = [sourceSets.main]
+    ruleSets = [
+        "java-basic",
+        "java-braces",
+        "java-naming",
+        "java-clone",
+        "java-codesize",
+        "java-design",
+        "java-finalizers",
+        "java-imports",
+        "java-junit",
+        "java-optimizations",
+        "java-strictexception",
+        "java-strings",
+        "java-sunsecure",
+        "java-typeresolution",
+        "java-unusedcode"
+    ]
+}
