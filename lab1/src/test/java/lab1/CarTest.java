@@ -81,7 +81,7 @@ public class CarTest {
   }
 
   @Test
-  public void moveShouldMoveCarInCurrentDirection() {
+  public void moveUpShouldUpMoveCarUp() {
     this.car.incrementSpeed(10);
     assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
 
@@ -89,6 +89,44 @@ public class CarTest {
 
     assertEquals(10, this.car.y);
     assertEquals(0, this.car.x, "default direction is up, x should not be affected");
+  }
+
+  @Test
+  public void moveRightShouldpMoveCarRight() {
+    this.car.incrementSpeed(10);
+    assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
+
+    this.car.turnRight();
+    this.car.move();
+
+    assertEquals(0, this.car.y, "direction is right, y should not be affected");
+    assertEquals(10, this.car.x);
+  }
+
+  @Test
+  public void moveLeftShouldpMoveCarLeft() {
+    this.car.incrementSpeed(10);
+    assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
+
+    this.car.turnLeft();
+    this.car.move();
+
+    assertEquals(0, this.car.y, "direction is left, y should not be affected");
+    assertEquals(-10, this.car.x);
+  }
+
+  @Test
+  public void moveDownShouldpMoveCarDown() {
+    this.car.incrementSpeed(10);
+    assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
+
+    this.car.turnRight();
+    this.car.turnRight();
+
+    this.car.move();
+
+    assertEquals(0, this.car.x, "direction is down, x should not be affected");
+    assertEquals(-10, this.car.y);
   }
 
   @Test
