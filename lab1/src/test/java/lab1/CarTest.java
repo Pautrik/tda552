@@ -1,21 +1,10 @@
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.awt.*;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import java.awt.Color;
 
 public class CarTest {
 
-    @org.junit.Before
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.After
-    public void tearDown() throws Exception {
-    }
-
-    @org.junit.Test
+    @Test
     public void getNumberOfDoors() {
         Car saab = new Saab95();
         Car volvo = new Volvo240();
