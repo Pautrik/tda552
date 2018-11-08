@@ -142,6 +142,20 @@ public class CarTest {
   }
 
   @Test
+  public void turnLeftWhenFacingRightShouldWrapDirection() {
+    this.car.turnRight();
+    this.car.turnLeft();
+    assertEquals(Car.Direction.UP, this.car.direction);
+  }
+
+  @Test
+  public void turnRightWhenFacingLeftShouldWrapDirection() {
+    this.car.turnLeft();
+    this.car.turnRight();
+    assertEquals(Car.Direction.UP, this.car.direction);
+  }
+
+  @Test
   /** @todo Not yet implemented in Car */
   public void gas() {
     assertTrue(true);

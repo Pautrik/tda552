@@ -32,4 +32,13 @@ public class Saab95 extends Car {
 
     return enginePower * 0.01 * turbo;
   }
+
+  /**
+   * Returns true if turbo is on, false if it is off.
+   *
+   * @return Turbo is on
+   */
+  public boolean isTurboOn() {
+    return this.turboOn;
+  }
 }
