@@ -1,5 +1,3 @@
-package lab1;
-
 import java.awt.Color;
 
 /** The Saab 95. */
