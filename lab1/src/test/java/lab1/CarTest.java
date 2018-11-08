@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Color;
@@ -156,9 +157,30 @@ public class CarTest {
   }
 
   @Test
-  /** @todo Not yet implemented in Car */
-  public void gas() {
-    assertTrue(true);
+  public void gasShouldIncreaseSpeed() {
+    this.car.startEngine();
+    assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
+
+    this.car.gas(0.1);
+    assertEquals(0.2, this.car.getCurrentSpeed());
+  }
+
+  @Test
+  public void negativeGasShouldThrowException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          this.car.gas(-0.1);
+        });
+  }
+
+  @Test
+  public void exceedingGasShouldThrowException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          this.car.gas(5);
+        });
   }
 
   @Test

@@ -171,8 +171,25 @@ public abstract class Car implements Movable {
     this.direction = this.direction.getNext();
   };
 
-  /** @todo Implement according to lab PM. */
-  public void gas(final double amount) {
+  /**
+   * Accelerates the car.
+   *
+   * @param amount Amount of acceleration being applied, must be greater or equal to 0 and less or
+   *     equal to 1.
+   * @throws IllegalArgumentException If a negative amount is applied
+   * @throws IllegalArgumentException If an amount greater than 1 is applied
+   * @see break
+   */
+  public void gas(final double amount) throws IllegalArgumentException {
+    if (amount < 0) {
+      throw new IllegalArgumentException("Can not gas using a negative amount, use brake instead");
+    }
+
+    if (amount > 1) {
+      throw new IllegalArgumentException(
+          "Maximum amount of gas exceeded, must not be greater than 1");
+    }
+
     incrementSpeed(amount);
   }
 

@@ -14,6 +14,6 @@ public class Volvo240Test {
 
   @Test
   public void speedFactorShouldEqualZero() {
-    assertEquals(1, this.car.speedFactor());
+    assertEquals(1.25, this.car.speedFactor());
   }
 }

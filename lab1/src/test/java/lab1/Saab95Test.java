@@ -32,10 +32,10 @@ public class Saab95Test {
   @Test
   public void setTurboShouldAffectSpeedFactor() {
     assertFalse(this.car.isTurboOn(), "guard, turbo needs to be off");
-    assertEquals(1.0, this.car.speedFactor());
+    assertEquals(1.25, this.car.speedFactor());
 
     this.car.setTurboOn();
     assertTrue(this.car.isTurboOn(), "guard, turbo needs to be on");
-    assertEquals(1.25, this.car.speedFactor());
+    assertEquals(1.625, this.car.speedFactor());
   }
 }
