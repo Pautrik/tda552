@@ -15,8 +15,8 @@ public abstract class Car implements Movable {
   public enum Direction {
     UP,
     RIGHT,
-    LEFT,
-    DOWN;
+    DOWN,
+    LEFT;
 
     /**
      * Returns the next direction, going in a clockwise manner.
@@ -33,7 +33,7 @@ public abstract class Car implements Movable {
      * @return Previous direction, going in a counter clockwise manner.
      */
     public Direction getPrevious() {
-      return values()[(ordinal() - 1) % values().length];
+      return this.ordinal() > 0 ? values()[this.ordinal() - 1] : values()[values().length - 1];
     }
   };
 
