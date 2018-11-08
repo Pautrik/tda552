@@ -6,6 +6,7 @@ repositories {
   jcenter()
 }
 
+apply plugin: 'jacoco'
 apply plugin: 'java'
 apply plugin: 'pmd'
 
@@ -42,4 +43,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        html.destination "${buildDir}/reports/jacoco/html"
+    }
 }
