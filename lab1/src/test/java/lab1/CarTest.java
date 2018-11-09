@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
 
-  private Car car;
+  private CarStub car;
 
   @BeforeEach
   public void setUp() {
@@ -184,8 +184,34 @@ public class CarTest {
   }
 
   @Test
-  /** @todo Not yet implemented in Car */
-  public void brake() {
-    assertTrue(true);
+  public void brakeShouldDecrease() {
+    this.car.startEngine();
+    assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
+
+    this.car.brake(0.1);
+    assertEquals(0, this.car.getCurrentSpeed());
+  }
+
+  @Test
+  public void negativeBrakeShouldThrowException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          this.car.brake(-0.1);
+        });
+  }
+
+  @Test
+  public void exceedingBrakeShouldThrowException() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          this.car.brake(5);
+        });
+  }
+
+  @Test
+  public void enginePowerShouldEqualOne() {
+    assertEquals(1.0, this.car.getEnginePower());
   }
 }

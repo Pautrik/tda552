@@ -193,8 +193,25 @@ public abstract class Car implements Movable {
     incrementSpeed(amount);
   }
 
-  /** @todo Implement according to lab PM. */
+  /**
+   * Decelerates the car.
+   *
+   * @param amount Amount of deceleration being applied, must be greater or equal to 0 and less or
+   *     equal to 1.
+   * @throws IllegalArgumentException If a negative amount is applied
+   * @throws IllegalArgumentException If an amount greater than 1 is applied
+   * @see gas
+   */
   public void brake(final double amount) {
+    if (amount < 0) {
+      throw new IllegalArgumentException("Can not brake using a negative amount, use gas instead");
+    }
+
+    if (amount > 1) {
+      throw new IllegalArgumentException(
+          "Maximum amount of brake exceeded, must not be greater than 1");
+    }
+
     decrementSpeed(amount);
   }
 }
