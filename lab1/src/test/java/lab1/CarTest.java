@@ -58,8 +58,20 @@ public class CarTest {
     this.car.startEngine();
     assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
 
-    this.car.incrementSpeed(10);
-    assertEquals(10.1, this.car.currentSpeed);
+    this.car.incrementSpeed(5);
+    assertEquals(5.1, this.car.currentSpeed);
+  }
+
+  @Test
+  public void incrementSpeedCanNotExceedEnginePower() {
+    this.car.startEngine();
+    assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
+
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          this.car.incrementSpeed(10);
+        });
   }
 
   @Test
@@ -211,7 +223,7 @@ public class CarTest {
   }
 
   @Test
-  public void enginePowerShouldEqualOne() {
-    assertEquals(1.0, this.car.getEnginePower());
+  public void enginePowerShouldEqualFive() {
+    assertEquals(10.0, this.car.getEnginePower());
   }
 }

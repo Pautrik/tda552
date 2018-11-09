@@ -1,7 +1,7 @@
 public class CarStub extends Car {
 
   public CarStub() {
-    this.enginePower = 1;
+    this.enginePower = 10;
   }
 
   public double speedFactor() {

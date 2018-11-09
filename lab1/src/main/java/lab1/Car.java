@@ -97,8 +97,14 @@ public abstract class Car implements Movable {
    *
    * @param amount The speed to increase multiplied by the car's speed factor.
    */
-  public void incrementSpeed(final double amount) {
-    currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+  protected void incrementSpeed(final double amount) throws IllegalArgumentException {
+    double potentialNewSpeed = getCurrentSpeed() + speedFactor() * amount;
+
+    if (potentialNewSpeed > enginePower) {
+      throw new IllegalArgumentException("Speed may not exceed engine power");
+    }
+
+    currentSpeed = potentialNewSpeed;
   }
 
   /**
@@ -106,7 +112,7 @@ public abstract class Car implements Movable {
    *
    * @param amount The speed to decrese multiplied by the car's speed factor.
    */
-  public void decrementSpeed(final double amount) {
+  protected void decrementSpeed(final double amount) {
     currentSpeed = getCurrentSpeed() - speedFactor() * amount;
   }
 
