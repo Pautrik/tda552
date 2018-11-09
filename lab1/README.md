@@ -48,7 +48,8 @@ gas() och break() bara accepterar värden i intervallet [0, 1],
 currentSpeed alltid ligger i intervallet [0, enginePower],
 Anrop till gas() inte kan resultera i att farten sänks, och
 Anrop till break() inte kan resultera i att farten höjs.
-Extra uppgifter för mer utmaning
+
+## Extra uppgifter för mer utmaning
 
 Lägg till ytterligare bilar till er arvs-hierarki.
 Lägg till en enkel command line controller genom vilken ni kan skapa bilar; gasa och bromsa bilar; avgöra var bilarna befinner sig; etc.
