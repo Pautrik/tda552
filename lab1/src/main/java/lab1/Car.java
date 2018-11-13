@@ -1,4 +1,7 @@
+package src.main.java.lab1;
+
 import java.awt.Color;
+
 
 /** A movable car. */
 public abstract class Car implements Movable {
@@ -35,7 +38,7 @@ public abstract class Car implements Movable {
     public Direction getPrevious() {
       return this.ordinal() > 0 ? values()[this.ordinal() - 1] : values()[values().length - 1];
     }
-  };
+  }
 
   /**
    * Returns the amount of doors.
@@ -157,7 +160,7 @@ public abstract class Car implements Movable {
         this.x -= this.getCurrentSpeed();
         break;
     }
-  };
+  }
 
   /**
    * Turns the car left.
@@ -166,7 +169,7 @@ public abstract class Car implements Movable {
    */
   public void turnLeft() {
     this.direction = this.direction.getPrevious();
-  };
+  }
 
   /**
    * Turns the car right.
@@ -175,7 +178,7 @@ public abstract class Car implements Movable {
    */
   public void turnRight() {
     this.direction = this.direction.getNext();
-  };
+  }
 
   /**
    * Accelerates the car.
