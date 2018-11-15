@@ -4,8 +4,8 @@ import java.awt.Color;
 public abstract class Car implements Movable {
   private Color color;
   private double currentSpeed;
-  private double enginePower;
-  private String modelName;
+  private final double enginePower;
+  private final String modelName;
   private int numberOfDoors = 4;
   private int x;
   private int y;
@@ -113,7 +113,7 @@ public abstract class Car implements Movable {
    * @param amount The speed to increase multiplied by the car's speed factor.
    */
   private void incrementSpeed(final double amount) throws IllegalArgumentException {
-    double potentialNewSpeed = getCurrentSpeed() + speedFactor() * amount;
+    final double potentialNewSpeed = getCurrentSpeed() + speedFactor() * amount;
 
     if (potentialNewSpeed > enginePower) {
       throw new IllegalArgumentException("Speed may not exceed engine power");
