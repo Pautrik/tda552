@@ -1,6 +1,9 @@
-public class CarStub extends Car {
+package lab1;
 
-  public CarStub() {
+@SuppressWarnings("SameReturnValue")
+class CarStub extends Car {
+
+  CarStub() {
     this.enginePower = 10;
   }
 

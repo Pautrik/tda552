@@ -1,43 +1,46 @@
+package lab1;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.awt.Color;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.awt.Color;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-public class CarTest {
+class CarTest {
 
   private CarStub car;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     this.car = new CarStub();
   }
 
   @Test
-  public void numberOfDoorsShouldEqualFour() {
+  void numberOfDoorsShouldEqualFour() {
     assertEquals(4, this.car.getNumberOfDoors());
   }
 
   @Test
-  public void enginePowerShouldEqualZero() {
+  void enginePowerShouldEqualZero() {
     assertEquals(0, this.car.getCurrentSpeed());
   }
 
   @Test
-  public void currentSpeedShouldEqualZero() {
+  void currentSpeedShouldEqualZero() {
     assertEquals(0, this.car.getCurrentSpeed());
   }
 
   @Test
-  public void colorShouldBeSet() {
+  void colorShouldBeSet() {
     this.car.setColor(Color.BLUE);
     assertEquals(Color.BLUE, this.car.getColor());
   }
 
   @Test
-  public void startEngineShouldIncreaseSpeed() {
+  void startEngineShouldIncreaseSpeed() {
     assertEquals(0, this.car.currentSpeed, "guard, car should be at standstill");
 
     this.car.startEngine();
@@ -45,7 +48,7 @@ public class CarTest {
   }
 
   @Test
-  public void stopEngineShouldStopCar() {
+  void stopEngineShouldStopCar() {
     this.car.startEngine();
     assertTrue(0 < this.car.currentSpeed, "guard, car should not be at standstill");
 
@@ -54,7 +57,7 @@ public class CarTest {
   }
 
   @Test
-  public void incrementSpeedShouldIncreaseSpeed() {
+  void incrementSpeedShouldIncreaseSpeed() {
     this.car.startEngine();
     assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
 
@@ -63,19 +66,17 @@ public class CarTest {
   }
 
   @Test
-  public void incrementSpeedCanNotExceedEnginePower() {
+  void incrementSpeedCanNotExceedEnginePower() {
     this.car.startEngine();
     assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
 
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          this.car.incrementSpeed(10);
-        });
+        () -> this.car.incrementSpeed(10));
   }
 
   @Test
-  public void decrementSpeedShouldDecreaseSpeed() {
+  void decrementSpeedShouldDecreaseSpeed() {
     this.car.startEngine();
     assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
 
@@ -84,17 +85,17 @@ public class CarTest {
   }
 
   @Test
-  public void xCoordinateShouldBeZero() {
+  void xCoordinateShouldBeZero() {
     assertEquals(0, this.car.getX());
   }
 
   @Test
-  public void yCoordinateShouldBeZero() {
+  void yCoordinateShouldBeZero() {
     assertEquals(0, this.car.getY());
   }
 
   @Test
-  public void moveUpShouldUpMoveCarUp() {
+  void moveUpShouldUpMoveCarUp() {
     this.car.incrementSpeed(10);
     assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
 
@@ -105,7 +106,7 @@ public class CarTest {
   }
 
   @Test
-  public void moveRightShouldpMoveCarRight() {
+  void moveRightShouldMoveCarRight() {
     this.car.incrementSpeed(10);
     assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
 
@@ -117,7 +118,7 @@ public class CarTest {
   }
 
   @Test
-  public void moveLeftShouldpMoveCarLeft() {
+  void moveLeftShouldMoveCarLeft() {
     this.car.incrementSpeed(10);
     assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
 
@@ -129,7 +130,7 @@ public class CarTest {
   }
 
   @Test
-  public void moveDownShouldpMoveCarDown() {
+  void moveDownShouldMoveCarDown() {
     this.car.incrementSpeed(10);
     assertTrue(10 <= this.car.getCurrentSpeed(), "guard, car should not be at standstill");
 
@@ -143,33 +144,33 @@ public class CarTest {
   }
 
   @Test
-  public void turnLeftShouldTurnCarLeft() {
+  void turnLeftShouldTurnCarLeft() {
     this.car.turnLeft();
     assertEquals(Car.Direction.LEFT, this.car.direction);
   }
 
   @Test
-  public void turnRightShouldTurnCarRight() {
+  void turnRightShouldTurnCarRight() {
     this.car.turnRight();
     assertEquals(Car.Direction.RIGHT, this.car.direction);
   }
 
   @Test
-  public void turnLeftWhenFacingRightShouldWrapDirection() {
+  void turnLeftWhenFacingRightShouldWrapDirection() {
     this.car.turnRight();
     this.car.turnLeft();
     assertEquals(Car.Direction.UP, this.car.direction);
   }
 
   @Test
-  public void turnRightWhenFacingLeftShouldWrapDirection() {
+  void turnRightWhenFacingLeftShouldWrapDirection() {
     this.car.turnLeft();
     this.car.turnRight();
     assertEquals(Car.Direction.UP, this.car.direction);
   }
 
   @Test
-  public void gasShouldIncreaseSpeed() {
+  void gasShouldIncreaseSpeed() {
     this.car.startEngine();
     assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
 
@@ -178,25 +179,21 @@ public class CarTest {
   }
 
   @Test
-  public void negativeGasShouldThrowException() {
+  void negativeGasShouldThrowException() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          this.car.gas(-0.1);
-        });
+        () -> this.car.gas(-0.1));
   }
 
   @Test
-  public void exceedingGasShouldThrowException() {
+  void exceedingGasShouldThrowException() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          this.car.gas(5);
-        });
+        () -> this.car.gas(5));
   }
 
   @Test
-  public void brakeShouldDecrease() {
+  void brakeShouldDecrease() {
     this.car.startEngine();
     assertEquals(0.1, this.car.currentSpeed, "guard, car should not be at standstill");
 
@@ -205,25 +202,21 @@ public class CarTest {
   }
 
   @Test
-  public void negativeBrakeShouldThrowException() {
+  void negativeBrakeShouldThrowException() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          this.car.brake(-0.1);
-        });
+        () -> this.car.brake(-0.1));
   }
 
   @Test
-  public void exceedingBrakeShouldThrowException() {
+  void exceedingBrakeShouldThrowException() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          this.car.brake(5);
-        });
+        () -> this.car.brake(5));
   }
 
   @Test
-  public void enginePowerShouldEqualFive() {
+  void enginePowerShouldEqualFive() {
     assertEquals(10.0, this.car.getEnginePower());
   }
 }

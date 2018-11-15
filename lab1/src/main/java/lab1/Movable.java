@@ -1,9 +1,9 @@
-package src.main.java.lab1;
+package lab1;
 
 interface Movable {
-  public void move();
+  void move();
 
-  public void turnLeft();
+  void turnLeft();
 
-  public void turnRight();
+  void turnRight();
 }

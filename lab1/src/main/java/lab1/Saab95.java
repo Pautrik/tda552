@@ -1,4 +1,4 @@
-package src.main.java.lab1;
+package lab1;
 
 import java.awt.Color;
 
@@ -17,12 +17,14 @@ public class Saab95 extends Car {
   }
 
   /** Activates the turbo unit. */
-  public void setTurboOn() {
+
+  void setTurboOn() {
     turboOn = true;
   }
 
   /** Deactivets the turbo unit. */
-  public void setTurboOff() {
+
+  void setTurboOff() {
     turboOn = false;
   }
 
@@ -40,7 +42,7 @@ public class Saab95 extends Car {
    *
    * @return Turbo is on
    */
-  public boolean isTurboOn() {
+  boolean isTurboOn() {
     return this.turboOn;
   }
 }

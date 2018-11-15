@@ -1,18 +1,18 @@
-package src.main.java.lab1;
+package lab1;
 
 import java.awt.Color;
 
 
 /** A movable car. */
 public abstract class Car implements Movable {
-  protected Color color;
-  protected double currentSpeed;
-  protected double enginePower;
-  protected String modelName;
-  protected int numberOfDoors = 4;
-  protected int x;
-  protected int y;
-  protected Direction direction = Direction.UP;
+  Color color;
+  double currentSpeed;
+  double enginePower;
+  String modelName;
+  int numberOfDoors = 4;
+  int x;
+  int y;
+  Direction direction = Direction.UP;
 
   /** The car's current direction. */
   public enum Direction {
@@ -26,7 +26,7 @@ public abstract class Car implements Movable {
      *
      * @return Next direction, going in a clockwise manner.
      */
-    public Direction getNext() {
+    Direction getNext() {
       return values()[(ordinal() + 1) % values().length];
     }
 
@@ -35,7 +35,7 @@ public abstract class Car implements Movable {
      *
      * @return Previous direction, going in a counter clockwise manner.
      */
-    public Direction getPrevious() {
+    Direction getPrevious() {
       return this.ordinal() > 0 ? values()[this.ordinal() - 1] : values()[values().length - 1];
     }
   }
@@ -45,7 +45,7 @@ public abstract class Car implements Movable {
    *
    * @return Number of doors.
    */
-  public int getNumberOfDoors() {
+  int getNumberOfDoors() {
     return numberOfDoors;
   }
 
@@ -54,7 +54,7 @@ public abstract class Car implements Movable {
    *
    * @return Engine power.
    */
-  public double getEnginePower() {
+  double getEnginePower() {
     return enginePower;
   }
 
@@ -63,7 +63,7 @@ public abstract class Car implements Movable {
    *
    * @return Current speed.
    */
-  public double getCurrentSpeed() {
+  double getCurrentSpeed() {
     return currentSpeed;
   }
 
@@ -72,7 +72,7 @@ public abstract class Car implements Movable {
    *
    * @return Color of the car.
    */
-  public Color getColor() {
+  Color getColor() {
     return color;
   }
 
@@ -81,17 +81,17 @@ public abstract class Car implements Movable {
    *
    * @param color The new color of the car.
    */
-  public void setColor(final Color color) {
+  void setColor(final Color color) {
     this.color = color;
   }
 
   /** Starts the engine. */
-  public void startEngine() {
+  void startEngine() {
     currentSpeed = 0.1;
   }
 
   /** Stops the engine. */
-  public void stopEngine() {
+  void stopEngine() {
     currentSpeed = 0;
   }
 
@@ -100,7 +100,7 @@ public abstract class Car implements Movable {
    *
    * @param amount The speed to increase multiplied by the car's speed factor.
    */
-  protected void incrementSpeed(final double amount) throws IllegalArgumentException {
+  void incrementSpeed(final double amount) throws IllegalArgumentException {
     double potentialNewSpeed = getCurrentSpeed() + speedFactor() * amount;
 
     if (potentialNewSpeed > enginePower) {
@@ -115,7 +115,7 @@ public abstract class Car implements Movable {
    *
    * @param amount The speed to decrese multiplied by the car's speed factor.
    */
-  protected void decrementSpeed(final double amount) {
+  void decrementSpeed(final double amount) {
     currentSpeed = getCurrentSpeed() - speedFactor() * amount;
   }
 
@@ -124,14 +124,14 @@ public abstract class Car implements Movable {
    *
    * @return Speed factor.
    */
-  public abstract double speedFactor();
+  protected abstract double speedFactor();
 
   /**
    * Returns the current X position.
    *
    * @return Current X position.
    */
-  public int getX() {
+  int getX() {
     return x;
   }
 
@@ -140,7 +140,7 @@ public abstract class Car implements Movable {
    *
    * @return Current Y position.
    */
-  public int getY() {
+  int getY() {
     return y;
   }
 
@@ -189,7 +189,7 @@ public abstract class Car implements Movable {
    * @throws IllegalArgumentException If an amount greater than 1 is applied
    * @see break
    */
-  public void gas(final double amount) throws IllegalArgumentException {
+  void gas(final double amount) throws IllegalArgumentException {
     if (amount < 0) {
       throw new IllegalArgumentException("Can not gas using a negative amount, use brake instead");
     }
@@ -209,9 +209,9 @@ public abstract class Car implements Movable {
    *     equal to 1.
    * @throws IllegalArgumentException If a negative amount is applied
    * @throws IllegalArgumentException If an amount greater than 1 is applied
-   * @see gas
+   *
    */
-  public void brake(final double amount) {
+  void brake(final double amount) {
     if (amount < 0) {
       throw new IllegalArgumentException("Can not brake using a negative amount, use gas instead");
     }

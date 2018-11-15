@@ -1,19 +1,21 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package lab1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Volvo240Test {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class Volvo240Test {
 
   private Volvo240 car;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     this.car = new Volvo240();
   }
 
   @Test
-  public void speedFactorShouldEqualZero() {
+  void speedFactorShouldEqualZero() {
     assertEquals(1.25, this.car.speedFactor());
   }
 }

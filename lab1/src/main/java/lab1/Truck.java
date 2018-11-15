@@ -1,4 +1,4 @@
-package src.main.java.lab1;
+package lab1;
 
 import java.awt.*;
 import java.util.List;
@@ -7,7 +7,7 @@ public abstract class Truck extends Car implements Transporter{
 
   private List<Object> goods;
 
-  public Truck() {
+  Truck() {
     numberOfDoors = 2;
     color = Color.white;
     enginePower = 80;

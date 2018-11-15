@@ -1,4 +1,4 @@
-package src.main.java.lab1;
+package lab1;
 
 public class Scania extends Truck{
   @Override
