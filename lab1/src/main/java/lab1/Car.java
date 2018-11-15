@@ -112,14 +112,12 @@ public abstract class Car implements Movable {
    *
    * @param amount The speed to increase multiplied by the car's speed factor.
    */
-  private void incrementSpeed(final double amount) throws IllegalArgumentException {
+  private void incrementSpeed(final double amount) {
     final double potentialNewSpeed = getCurrentSpeed() + speedFactor() * amount;
 
-    if (potentialNewSpeed > enginePower) {
-      throw new IllegalArgumentException("Speed may not exceed engine power");
+    if (potentialNewSpeed <= enginePower) {
+      currentSpeed = potentialNewSpeed;
     }
-
-    currentSpeed = potentialNewSpeed;
   }
 
   /**
@@ -128,7 +126,11 @@ public abstract class Car implements Movable {
    * @param amount The speed to decrese multiplied by the car's speed factor.
    */
   private void decrementSpeed(final double amount) {
-    currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+    final double potentialNewSpeed = getCurrentSpeed() - speedFactor() * amount;
+
+    if (potentialNewSpeed >= 0) {
+      currentSpeed = potentialNewSpeed;
+    }
   }
 
   /**
@@ -136,7 +138,7 @@ public abstract class Car implements Movable {
    *
    * @return Speed factor.
    */
-  public abstract double speedFactor();
+  protected abstract double speedFactor();
 
   /**
    * Returns the current X position.
@@ -223,7 +225,7 @@ public abstract class Car implements Movable {
    * @throws IllegalArgumentException If an amount greater than 1 is applied
    * @see gas
    */
-  public void brake(final double amount) {
+  public void brake(final double amount) throws IllegalArgumentException {
     if (amount < 0) {
       throw new IllegalArgumentException("Can not brake using a negative amount, use gas instead");
     }

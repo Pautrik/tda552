@@ -5,6 +5,7 @@ public class Saab95 extends Car {
 
   private boolean turboOn;
 
+  /** Empty constructor for Saab 95. */
   public Saab95() {
     super(2, Color.red, 125, "Saab95");
     turboOn = false;
@@ -21,7 +22,13 @@ public class Saab95 extends Car {
     turboOn = false;
   }
 
-  public double speedFactor() {
+  /**
+   * Returns the car's speed factor.
+   *
+   * @return Speed factor.
+   */
+  @Override
+  protected double speedFactor() {
     double turbo = 1;
     if (turboOn) {
       turbo = 1.3;
