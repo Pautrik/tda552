@@ -1,3 +1,5 @@
+package lab1;
+
 import java.awt.Color;
 
 /** The Volvo 240. */

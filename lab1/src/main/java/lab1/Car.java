@@ -1,3 +1,5 @@
+package lab1;
+
 import java.awt.Color;
 
 /** A movable car. */
