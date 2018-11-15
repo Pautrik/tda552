@@ -1,7 +1,7 @@
 package lab1;
 
 /** Generic movable. */
-interface Movable {
+public interface Movable {
   /** Moves the car in the current direction. */
   public void move();
 

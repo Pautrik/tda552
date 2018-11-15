@@ -116,6 +116,8 @@ public abstract class Car implements Movable {
 
     if (potentialNewSpeed <= enginePower) {
       currentSpeed = potentialNewSpeed;
+    } else {
+      currentSpeed = enginePower;
     }
   }
 
@@ -129,6 +131,8 @@ public abstract class Car implements Movable {
 
     if (potentialNewSpeed >= 0) {
       currentSpeed = potentialNewSpeed;
+    } else {
+      currentSpeed = 0;
     }
   }
 
