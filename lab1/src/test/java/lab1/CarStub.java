@@ -1,7 +1,10 @@
+import java.awt.Color;
+
 public class CarStub extends Car {
 
   public CarStub() {
-    this.enginePower = 10;
+    super(4, Color.red, 10, "Test");
+    stopEngine();
   }
 
   public double speedFactor() {
