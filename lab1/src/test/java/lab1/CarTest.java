@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarTest {
 
-  private CarStub car;
+  private lab1.CarStub car;
 
   @BeforeEach
   void setUp() {

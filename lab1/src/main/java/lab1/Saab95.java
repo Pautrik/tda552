@@ -22,7 +22,7 @@ public class Saab95 extends Car {
     turboOn = true;
   }
 
-  /** Deactivets the turbo unit. */
+  /** Deactivates the turbo unit. */
 
   void setTurboOff() {
     turboOn = false;

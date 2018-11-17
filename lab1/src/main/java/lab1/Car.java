@@ -113,7 +113,7 @@ public abstract class Car implements Movable {
   /**
    * Decrements the car's speed, taking each car's speed factor into account.
    *
-   * @param amount The speed to decrese multiplied by the car's speed factor.
+   * @param amount The speed to decrease multiplied by the car's speed factor.
    */
   void decrementSpeed(final double amount) {
     currentSpeed = getCurrentSpeed() - speedFactor() * amount;
