@@ -8,11 +8,11 @@ public class Scania extends Car {
   private final double MAX_ANGLE = 70;
   private double platformAngle;
 
-  /** Scania constructor. */
-  public Scania(int numberOfDoors, Color color, double enginePower, String modelName) {
-    super(numberOfDoors, color, enginePower, modelName);
+  /** Empty constructor for Scania. */
+  public Scania() {
+    super(2, Color.blue, 730, "Scania");
 
-    this.platformAngle = 0.0;
+    this.platformAngle = MIN_ANGLE;
   }
 
   @Override
