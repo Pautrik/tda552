@@ -2,10 +2,16 @@ package lab2;
 
 import java.awt.*;
 
+/** Scania truck. */
 public class Scania extends Car {
 
+  /** Lowest angle for the trucks platform. */
   private final double MIN_ANGLE = 0;
+
+  /** Highest angle for the trucks platform. */
   private final double MAX_ANGLE = 70;
+
+  /** The platforms current angle. */
   private double platformAngle;
 
   /** Empty constructor for Scania. */
@@ -15,15 +21,25 @@ public class Scania extends Car {
     this.platformAngle = MIN_ANGLE;
   }
 
+
   @Override
   protected double speedFactor() {
     return getEnginePower() * 0.01;
   }
 
+  /**
+   * Returns the platforms current angle.
+   *
+   * @return Platform angle
+   */
   public double getPlatformAngle() {
     return this.platformAngle;
   }
 
+  /**
+   * Tries to raise platform with the parameter degrees
+   * @param degrees
+   */
   public void raisePlatform(double degrees) {
     double potentialNewAngle = this.platformAngle + degrees;
 
@@ -36,6 +52,10 @@ public class Scania extends Car {
     }
   }
 
+  /**
+   * Tries to lower platform with the parameter degrees
+   * @param degrees
+   */
   public void lowerPlatform(double degrees) {
     raisePlatform(-degrees);
   }

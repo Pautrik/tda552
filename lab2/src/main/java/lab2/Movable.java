@@ -2,12 +2,12 @@ package lab2;
 
 /** Generic movable. */
 public interface Movable {
-  /** Moves the car in the current direction. */
+  /** Moves the entity in the current direction. */
   public void move();
 
-  /** Turns the car left. */
+  /** Turns the entity left. */
   public void turnLeft();
 
-  /** Turns the car right. */
+  /** Turns the entity right. */
   public void turnRight();
 }
