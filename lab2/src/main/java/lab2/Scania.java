@@ -6,10 +6,10 @@ import java.awt.*;
 public class Scania extends Car {
 
   /** Lowest angle for the trucks platform. */
-  private final double MIN_ANGLE = 0;
+  private static final double MIN_ANGLE = 0;
 
   /** Highest angle for the trucks platform. */
-  private final double MAX_ANGLE = 70;
+  private static final double MAX_ANGLE = 70;
 
   /** The platforms current angle. */
   private double platformAngle;
@@ -48,10 +48,10 @@ public class Scania extends Car {
    * @see MAX_ANGLE
    * @param degrees Degrees to raise the platform. May be negative.
    */
-  public void raisePlatform(double degrees) {
+  public void raisePlatform(final double degrees) {
     this.stopEngine();
 
-    double potentialNewAngle = this.platformAngle + degrees;
+    final double potentialNewAngle = this.platformAngle + degrees;
 
     if (potentialNewAngle < MIN_ANGLE) {
       this.platformAngle = MIN_ANGLE;
@@ -70,7 +70,7 @@ public class Scania extends Car {
    * @see MAX_ANGLE
    * @param degrees Degrees to lower the platform. May be negative.
    */
-  public void lowerPlatform(double degrees) {
+  public void lowerPlatform(final double degrees) {
     raisePlatform(-degrees);
   }
 
