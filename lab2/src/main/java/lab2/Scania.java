@@ -22,6 +22,11 @@ public class Scania extends Car {
   }
 
 
+  /**
+   * Returns the trucks' speed factor.
+   *
+   * @return Speed factor.
+   */
   @Override
   protected double speedFactor() {
     return getEnginePower() * 0.01;
@@ -37,8 +42,12 @@ public class Scania extends Car {
   }
 
   /**
-   * Tries to raise platform with the parameter degrees
-   * @param degrees
+   * Tries to raise platform with the parameter degrees.
+   * The new platform angle value will never exceed MAX_ANGLE.
+   *
+   * @see MIN_ANGLE
+   * @see MAX_ANGLE
+   * @param degrees Degrees to raise the platform. May be negative.
    */
   public void raisePlatform(double degrees) {
     double potentialNewAngle = this.platformAngle + degrees;
@@ -54,24 +63,39 @@ public class Scania extends Car {
 
   /**
    * Tries to lower platform with the parameter degrees
-   * @param degrees
+   * The new platform angle value will never be less than MIN_ANGLE.
+   *
+   * @see MIN_ANGLE
+   * @see MAX_ANGLE
+   * @param degrees Degrees to lower the platform. May be negative.
    */
   public void lowerPlatform(double degrees) {
     raisePlatform(-degrees);
   }
 
+  /** Moves the truck in the current direction. Platform angle is reset before moving. */
   @Override
   public void move() {
     platformAngle = MIN_ANGLE;
     super.move();
   }
 
+  /**
+   * {@inheritDoc}
+   *
+   * Platform angle is reset before turning.
+   */
   @Override
   public void turnLeft() {
     platformAngle = MIN_ANGLE;
     super.turnLeft();
   }
 
+  /**
+   * {@inheritDoc}
+   *
+   * Platform angle is reset before turning.
+   */
   @Override
   public void turnRight() {
     platformAngle = MIN_ANGLE;
