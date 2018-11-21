@@ -21,7 +21,6 @@ public class Scania extends Car {
     this.platformAngle = MIN_ANGLE;
   }
 
-
   /**
    * Returns the trucks' speed factor.
    *
@@ -42,9 +41,8 @@ public class Scania extends Car {
   }
 
   /**
-   * Tries to raise platform with the parameter degrees.
-   * The new platform angle value will never exceed MAX_ANGLE.
-   * The truck will stop before the platform is raised.
+   * Tries to raise platform with the parameter degrees. The new platform angle value will never
+   * exceed MAX_ANGLE. The truck will stop before the platform is raised.
    *
    * @see MIN_ANGLE
    * @see MAX_ANGLE
@@ -65,9 +63,8 @@ public class Scania extends Car {
   }
 
   /**
-   * Tries to lower platform with the parameter degrees
-   * The new platform angle value will never be less than MIN_ANGLE.
-   * The truck will stop before the platform is lowered.
+   * Tries to lower platform with the parameter degrees The new platform angle value will never be
+   * less than MIN_ANGLE. The truck will stop before the platform is lowered.
    *
    * @see MIN_ANGLE
    * @see MAX_ANGLE
