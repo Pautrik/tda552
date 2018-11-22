@@ -3,7 +3,7 @@ package lab2;
 import java.awt.Color;
 
 /** A movable car. */
-public abstract class Car implements Movable {
+public abstract class Car implements Movable, Positionable {
   private Color color;
   private double currentSpeed;
   private final double enginePower;
