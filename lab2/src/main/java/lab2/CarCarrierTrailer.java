@@ -4,6 +4,8 @@ import java.util.List;
 
 /** A car carrier trailer for trucks. */
 public class CarCarrierTrailer implements Attachable {
+  private int x;
+  private int y;
 
   /** Lowest angle for the trucks platform. */
   private static final double MIN_ANGLE = 0;
@@ -23,7 +25,6 @@ public class CarCarrierTrailer implements Attachable {
   /** Empty constructor for CarCarrierTrailer. */
   public CarCarrierTrailer(final int maximumAmountOfCarsToStore) {
     this.carStorage = new CarStorage(maximumAmountOfCarsToStore);
-
     this.platform = new Platform(MIN_ANGLE, MAX_ANGLE);
   }
 
@@ -32,8 +33,21 @@ public class CarCarrierTrailer implements Attachable {
    *
    * @param car The car to add to the storage.
    */
-  public void addCar(final Car car) {
+  public void loadCar(final Car car) {
     this.carStorage.addCar(car);
+  }
+
+  /**
+   * Unloads a car from the storage, if any cars are loaded.
+   *
+   * @todo Set car coordinates
+   * @todo Check platform before unloading
+   * @param car The car to add to the storage.
+   */
+  public void unloadCar(final Car car) {
+    if (this.carStorage.hasCars()) {
+      Car lastLoadedCar = this.carStorage.unload();
+    }
   }
 
   /**
@@ -98,6 +112,9 @@ public class CarCarrierTrailer implements Attachable {
   @Override
   public void detach() {
     if (this.truck instanceof Truck) {
+      this.x = this.truck.getX();
+      this.y = this.truck.getY();
+
       this.truck.detachAttachment();
       this.truck = null;
     }
@@ -107,5 +124,31 @@ public class CarCarrierTrailer implements Attachable {
   @Override
   public void safetyProcedures() {
     this.platform.close();
+  }
+
+  /**
+   * Returns the current X position. Returns the trucks' position if attached.
+   *
+   * @return Current X position.
+   */
+  public int getX() {
+    if (this.truck instanceof Truck) {
+      return this.truck.getX();
+    }
+
+    return x;
+  }
+
+  /**
+   * Returns the current Y position. Returns the trucks' position if attached.
+   *
+   * @return Current Y position.
+   */
+  public int getY() {
+    if (this.truck instanceof Truck) {
+      return this.truck.getY();
+    }
+
+    return y;
   }
 }
