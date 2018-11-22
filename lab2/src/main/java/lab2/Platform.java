@@ -1,5 +1,6 @@
 package lab2;
 
+/** A platform which can be lowered or raised. */
 public class Platform {
   /** Lowest angle for the platform. */
   private final double minAngle;
