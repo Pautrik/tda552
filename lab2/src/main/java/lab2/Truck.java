@@ -33,7 +33,7 @@ public abstract class Truck extends Car {
    */
   @Override
   public void move() {
-    if (this.attachment instanceof Attachable) {
+    if (this.hasAttachment()) {
       this.attachment.safetyProcedures();
     }
     super.move();
@@ -46,7 +46,7 @@ public abstract class Truck extends Car {
    */
   @Override
   public void turnLeft() {
-    if (this.attachment instanceof Attachable) {
+    if (this.hasAttachment()) {
       this.attachment.safetyProcedures();
     }
     super.turnLeft();
@@ -59,28 +59,36 @@ public abstract class Truck extends Car {
    */
   @Override
   public void turnRight() {
-    if (this.attachment instanceof Attachable) {
+    if (this.hasAttachment()) {
       this.attachment.safetyProcedures();
     }
     super.turnRight();
   }
 
-  /** Returns any attachment. */
+  /**
+   * Returns true if an attachment is attached, false if not
+   *
+   * @return True if an attachment is attached, false if not
+   */
+  public boolean hasAttachment() {
+    return this.attachment instanceof Attachable;
+  }
+
+  /**
+   * Attachs an attachment.
+   *
+   * @param attachable The attachment to attach
+   */
+  public void setAttachment(final Attachable attachable) {
+    this.attachment = attachable;
+  }
+
+  /**
+   * Returns the attached attachable, if any.
+   *
+   * @return The attached attachable, if any
+   */
   public Attachable getAttachment() {
     return this.attachment;
-  }
-
-  /** Attaches an attachment. Detaches from any previous attachment before re-attaching. */
-  public void setAttachment(final Attachable attachment) {
-    attachment.detach();
-
-    this.attachment = attachment;
-  }
-
-  /** Removes an attachment. */
-  public void detachAttachment() {
-    if (this.attachment instanceof Attachable) {
-      this.attachment = attachment;
-    }
   }
 }

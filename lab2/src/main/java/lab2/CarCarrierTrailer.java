@@ -3,7 +3,7 @@ package lab2;
 import java.util.List;
 
 /** A car carrier trailer for trucks. */
-public class CarCarrierTrailer implements Attachable {
+public class CarCarrierTrailer implements Attachable, Positionable {
   private int x;
   private int y;
 
@@ -31,9 +31,16 @@ public class CarCarrierTrailer implements Attachable {
   /**
    * Adds a car to the storage.
    *
+   * @todo Check car position before loading
    * @param car The car to add to the storage.
    */
   public void loadCar(final Car car) {
+    if (this.truck instanceof Truck && this.truck == car) {
+      throw new IllegalArgumentException(
+          "Car carrier trailer can not load the truck it is attached to.");
+    }
+
+    this.lowerPlatform();
     this.carStorage.addCar(car);
   }
 
@@ -41,10 +48,10 @@ public class CarCarrierTrailer implements Attachable {
    * Unloads a car from the storage, if any cars are loaded.
    *
    * @todo Set car coordinates
-   * @todo Check platform before unloading
    * @param car The car to add to the storage.
    */
   public void unloadCar(final Car car) {
+    this.lowerPlatform();
     if (this.carStorage.hasCars()) {
       Car lastLoadedCar = this.carStorage.unload();
     }
@@ -59,31 +66,22 @@ public class CarCarrierTrailer implements Attachable {
     return this.carStorage.getCars();
   }
 
-  /**
-   * Tries to raise platform with the parameter degrees. The new platform angle value will never
-   * exceed MAX_ANGLE. The truck will stop before the platform is raised.
-   *
-   * @see minAngle
-   * @see maxAngle
-   * @param degrees Degrees to raise trucks' the platform. May be negative.
-   */
-  public void raisePlatform(final double degrees) {
+  /** Raises the platform. */
+  public void raisePlatform() {
     if (this.truck instanceof Truck) {
       this.truck.stopEngine();
     }
-    this.platform.raise(degrees);
+
+    this.platform.raise(MAX_ANGLE);
   }
 
-  /**
-   * Tries to lower platform with the parameter degrees The new platform angle value will never be
-   * less than MIN_ANGLE. Any attached truck will stop before the platform is lowered.
-   *
-   * @see minAngle
-   * @see maxAngle
-   * @param degrees Degrees to lower the trucks' platform. May be negative.
-   */
-  public void lowerPlatform(final double degrees) {
-    this.raisePlatform(-degrees);
+  /** Lowers the platform. */
+  public void lowerPlatform() {
+    if (this.truck instanceof Truck) {
+      this.truck.stopEngine();
+    }
+
+    this.platform.raise(-MAX_ANGLE);
   }
 
   /**
@@ -104,8 +102,8 @@ public class CarCarrierTrailer implements Attachable {
   public void attachTo(final Truck truck) {
     this.detach();
 
-    truck.setAttachment(this);
     this.truck = truck;
+    this.truck.setAttachment(this);
   }
 
   /** Detaches the trailer if attached to a truck. */
@@ -115,7 +113,6 @@ public class CarCarrierTrailer implements Attachable {
       this.x = this.truck.getX();
       this.y = this.truck.getY();
 
-      this.truck.detachAttachment();
       this.truck = null;
     }
   }
@@ -150,5 +147,14 @@ public class CarCarrierTrailer implements Attachable {
     }
 
     return y;
+  }
+
+  /**
+   * Returns true if an attachment is attached, false if not
+   *
+   * @return True if an attachment is attached, false if not
+   */
+  public boolean isAttached() {
+    return this.truck instanceof Truck;
   }
 }

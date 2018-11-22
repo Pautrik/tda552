@@ -23,7 +23,7 @@ public class CarCarrierTrailerTest {
     this.truck.startEngine();
     assertTrue(this.truck.getCurrentSpeed() > 0, "guard, truck must not be at standstill");
 
-    this.carCarrierTrailer.raisePlatform(10);
+    this.carCarrierTrailer.raisePlatform();
     assertEquals(0, this.truck.getCurrentSpeed());
   }
 
@@ -32,13 +32,13 @@ public class CarCarrierTrailerTest {
     this.truck.startEngine();
     assertTrue(this.truck.getCurrentSpeed() > 0, "guard, truck must not be at standstill");
 
-    this.carCarrierTrailer.lowerPlatform(10);
+    this.carCarrierTrailer.lowerPlatform();
     assertEquals(0, this.truck.getCurrentSpeed());
   }
 
   @Test
   public void platformShouldBeClosedBeforeMoving() {
-    this.carCarrierTrailer.raisePlatform(10);
+    this.carCarrierTrailer.raisePlatform();
 
     assertEquals(0, this.truck.getCurrentSpeed(), "guard, truck must be at standstill");
     assertTrue(
