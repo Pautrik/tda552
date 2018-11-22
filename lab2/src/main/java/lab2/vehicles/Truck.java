@@ -1,6 +1,7 @@
-package lab2;
+package lab2.vehicles;
 
 import java.awt.Color;
+import lab2.Attachable;
 
 /** A truck. */
 public abstract class Truck extends Car {
