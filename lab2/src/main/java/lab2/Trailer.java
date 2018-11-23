@@ -6,7 +6,7 @@ import java.util.List;
 import lab2.vehicles.Truck;
 
 /** A truck trailer with a generic container. */
-public class Trailer<T> implements Attachable<Truck>, Positionable {
+public class Trailer<T> implements Attachable<Truck>, Storing<T>, Positionable {
   private int x;
   private int y;
 
@@ -25,10 +25,14 @@ public class Trailer<T> implements Attachable<Truck>, Positionable {
   /** The storage. */
   private final List<T> storage;
 
+  /** Size of storage. */
+  private int storageSize;
+
   /** Empty constructor for Trailer<T>. */
-  public Trailer(final int sizeOfStorage) {
-    this.storage = new ArrayList<T>(sizeOfStorage);
+  public Trailer(final int storageSize) {
+    this.storage = new ArrayList<T>(storageSize);
     this.ramp = new Ramp(MIN_ANGLE, MAX_ANGLE);
+    this.storageSize = storageSize;
   }
 
   /**
@@ -43,22 +47,31 @@ public class Trailer<T> implements Attachable<Truck>, Positionable {
       throw new IllegalArgumentException("Trailer can not load the truck it is attached to.");
     }
 
+    if (this.storage.size() + 1 > this.storageSize) {
+      throw new IndexOutOfBoundsException(
+          "Trying to load beyond storage size, Unload objects to free up space");
+    }
+
     this.lowerRamp();
     this.storage.add(object);
   }
 
   /**
-   * Unloads an object from the storage, if any objects are loaded. Lowers the ramp if it is raised.
+   * {@inheritDoc}
    *
    * @todo Set the objects position from the trailer.
    */
-  public void unload() {
+  public T unload() {
     this.lowerRamp();
 
     if (this.hasObjects()) {
       final T lastLoadedObject = this.storage.get(this.storage.size() - 1);
       this.storage.remove(lastLoadedObject);
+
+      return lastLoadedObject;
     }
+
+    return null;
   }
 
   /** Raises the ramp. */
@@ -159,7 +172,25 @@ public class Trailer<T> implements Attachable<Truck>, Positionable {
    * @return True if any objects are loaded, otherwise false
    */
   public boolean hasObjects() {
-    return this.storage.size() > 0;
+    return !this.storage.isEmpty();
+  }
+
+  /**
+   * Returns true if storage is empty, otherwise false.
+   *
+   * @return True if storage is empty, otherwise false
+   */
+  public boolean isEmpty() {
+    return this.storage.isEmpty();
+  }
+
+  /**
+   * Returns true if storage is full, otherwise false.
+   *
+   * @return True if storage is full, otherwise false
+   */
+  public boolean isFull() {
+    return this.storage.size() == this.storageSize;
   }
 
   /**
