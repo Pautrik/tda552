@@ -2,6 +2,11 @@ package lab2;
 
 import java.util.List;
 
+/**
+ * Handles storing for items of type T.
+ *
+ * @param <T> generic
+ */
 public interface Storing<T> {
   /**
    * Adds an object to the storage.

@@ -1,5 +1,6 @@
 package lab2;
 
+/** Handles self-turning. */
 public interface Turnable {
   /** Turns the entity left. */
   public void turnLeft();

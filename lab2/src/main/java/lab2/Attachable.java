@@ -1,5 +1,10 @@
 package lab2;
 
+/**
+ * Generic attachable that can attach to type T.
+ *
+ * @param <T> generic
+ */
 public interface Attachable<T> {
   /**
    * Attaches to the given object.
@@ -17,6 +22,8 @@ public interface Attachable<T> {
   /**
    * Returns true if attached to anything, otherwise false. @return True if attached to anything,
    * otherwise false.
+   *
+   * @return boolean.
    */
   public boolean isAttached();
 }

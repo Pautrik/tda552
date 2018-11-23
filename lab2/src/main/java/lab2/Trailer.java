@@ -30,7 +30,11 @@ public class Trailer<T extends Movable & Positionable>
   /** Size of storage. */
   private int storageSize;
 
-  /** Empty constructor for Trailer<T>. */
+  /**
+   * Empty constructor for Trailer which stores items of type T.
+   *
+   * @param storageSize the number of slots in the storage.
+   */
   public Trailer(final int storageSize) {
     this.storage = new ArrayList<T>(storageSize);
     this.ramp = new Ramp(MIN_ANGLE, MAX_ANGLE);

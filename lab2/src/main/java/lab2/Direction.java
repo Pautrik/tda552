@@ -1,5 +1,6 @@
 package lab2;
 
+/** Direction in a quad-directional grid. */
 public enum Direction {
   UP,
   RIGHT,

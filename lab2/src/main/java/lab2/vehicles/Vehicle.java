@@ -17,6 +17,13 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   private final String modelName;
   private State state;
 
+  /**
+   * Vehicle constructor
+   *
+   * @param color paint job.
+   * @param enginePower power of the spicy engine.
+   * @param modelName name of the Vehicle model.
+   */
   public Vehicle(final Color color, final double enginePower, final String modelName) {
     this.color = color;
     this.enginePower = enginePower;
@@ -24,12 +31,18 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
     this.state = State.PARKED;
   }
 
+  /** State of the car to enable checks for changes in movement or transport etc. */
   public enum State {
     RUNNING,
     PARKED,
     IN_TRANSPORT,
   }
 
+  /**
+   * Returns the current state of the vehicle.
+   *
+   * @return Vehicle state.
+   */
   public State getState() {
     return this.state;
   }
