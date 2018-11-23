@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lab2.Direction;
 import lab2.Movable;
 import lab2.Ramp;
 import lab2.Storing;
@@ -68,6 +69,8 @@ public class CargoBoat extends Boat implements Storing<Car> {
         throw new IllegalArgumentException(
             "Loaded object is not movable and can not be unloaded on its own");
       }
+
+      lastLoadedObject.pushInDirection(Direction.UP);
 
       this.storage.remove(lastLoadedObject);
 

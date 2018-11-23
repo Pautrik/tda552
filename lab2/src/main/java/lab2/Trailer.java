@@ -6,7 +6,7 @@ import java.util.List;
 import lab2.vehicles.Truck;
 
 /** A truck trailer with a generic container. */
-public class Trailer<T> implements Attachable<Truck>, Storing<T>, Positionable {
+public class Trailer<T extends Movable> implements Attachable<Truck>, Storing<T>, Positionable {
   private int x;
   private int y;
 
@@ -66,6 +66,14 @@ public class Trailer<T> implements Attachable<Truck>, Storing<T>, Positionable {
 
     if (this.hasObjects()) {
       final T lastLoadedObject = this.storage.get(this.storage.size() - 1);
+
+      if (!(lastLoadedObject instanceof Movable)) {
+        throw new IllegalArgumentException(
+            "Loaded object is not movable and can not be unloaded on its own");
+      }
+
+      lastLoadedObject.pushInDirection(Direction.UP);
+
       this.storage.remove(lastLoadedObject);
 
       return lastLoadedObject;
