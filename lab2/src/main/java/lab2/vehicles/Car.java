@@ -21,7 +21,7 @@ public abstract class Car extends Vehicle implements Movable, Turnable {
       final Color color,
       final double enginePower,
       final String modelName) {
-    super(numberOfDoors, color, enginePower, modelName);
+    super(color, enginePower, modelName);
     this.numberOfDoors = numberOfDoors;
   }
 

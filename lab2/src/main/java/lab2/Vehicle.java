@@ -8,8 +8,7 @@ public abstract class Vehicle{
     private final String modelName;
     private State state;
 
-    public Vehicle(final int numberOfDoors,
-                   final Color color,
+    public Vehicle(final Color color,
                    final double enginePower,
                    final String modelName) {
         this.color = color;
@@ -21,10 +20,10 @@ public abstract class Vehicle{
     public enum State{
         WORKING,
         BROKEN,
-        PARKED;
+        PARKED
     }
 
-    public State getState() { return this.state; }
+    protected State getState() { return this.state; }
 
     public void setState(State state) { this.state = state; }
 }
