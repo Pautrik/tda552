@@ -6,7 +6,6 @@ public abstract class Vehicle{
     protected Color color;
     protected final double enginePower;
     private final String modelName;
-    protected int numberOfDoors = 4;
     private State state;
 
     public Vehicle(final int numberOfDoors,
@@ -16,7 +15,6 @@ public abstract class Vehicle{
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
-        this.numberOfDoors = numberOfDoors;
         this.state = State.PARKED;
     }
 

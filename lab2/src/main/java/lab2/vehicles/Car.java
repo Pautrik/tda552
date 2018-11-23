@@ -10,6 +10,7 @@ public abstract class Car extends Vehicle implements Movable, Turnable {
   private int x;
   private int y;
   private double currentSpeed;
+  private int numberOfDoors = 4;
   private Direction direction = Direction.UP;
 
   /** Car constructor. */
@@ -19,6 +20,7 @@ public abstract class Car extends Vehicle implements Movable, Turnable {
       final double enginePower,
       final String modelName) {
     super(numberOfDoors, color, enginePower, modelName);
+    this.numberOfDoors = numberOfDoors;
   }
 
   /** The car's current direction. */
