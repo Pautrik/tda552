@@ -50,6 +50,11 @@ public class CargoBoat extends Boat implements Storing<Car> {
           "Trying to load beyond storage size, Unload objects to free up space");
     }
 
+    if (Math.abs(object.getX() - this.getX()) > 1 || (object.getY() - this.getY()) > 1) {
+      throw new IllegalArgumentException(
+          "The loaded object must be in proximity to the trailer before loading");
+    }
+
     this.lowerRamp();
     this.storage.add(object);
   }
