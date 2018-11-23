@@ -3,16 +3,13 @@ package lab2.vehicles;
 import java.awt.Color;
 import lab2.Movable;
 import lab2.Turnable;
+import lab2.Vehicle;
 
 /** A movable car. */
-public abstract class Car implements Movable, Turnable {
-  private Color color;
-  private double currentSpeed;
-  private final double enginePower;
-  private final String modelName;
-  private int numberOfDoors = 4;
+public abstract class Car extends Vehicle implements Movable, Turnable {
   private int x;
   private int y;
+  private double currentSpeed;
   private Direction direction = Direction.UP;
 
   /** Car constructor. */
@@ -21,10 +18,7 @@ public abstract class Car implements Movable, Turnable {
       final Color color,
       final double enginePower,
       final String modelName) {
-    this.color = color;
-    this.enginePower = enginePower;
-    this.modelName = modelName;
-    this.numberOfDoors = numberOfDoors;
+    super(numberOfDoors, color, enginePower, modelName);
   }
 
   /** The car's current direction. */
