@@ -1,29 +1,36 @@
 package lab1;
+<<<<<<< HEAD
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+=======
+>>>>>>> 8de9ef940189a11b7e59a2b8dac1964200ce23eb
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-public class Saab95Test {
+class Saab95Test {
 
   private Saab95 car;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     this.car = new Saab95();
   }
 
   @Test
-  public void setTurboOnShouldActivateTurbo() {
+  void setTurboOnShouldActivateTurbo() {
     this.car.setTurboOn();
     assertTrue(this.car.isTurboOn());
   }
 
   @Test
-  public void setTurboOffShouldDeactivateTurbo() {
+  void setTurboOffShouldDeactivateTurbo() {
     this.car.setTurboOn();
     assertTrue(this.car.isTurboOn(), "guard, turbo needs to be on");
 
@@ -32,7 +39,7 @@ public class Saab95Test {
   }
 
   @Test
-  public void setTurboShouldAffectSpeedFactor() {
+  void setTurboShouldAffectSpeedFactor() {
     assertFalse(this.car.isTurboOn(), "guard, turbo needs to be off");
     assertEquals(1.25, this.car.speedFactor());
 
