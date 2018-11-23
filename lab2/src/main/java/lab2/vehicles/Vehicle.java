@@ -5,6 +5,7 @@ import lab2.Direction;
 import lab2.Movable;
 import lab2.Turnable;
 
+/** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable {
   private int x;
   private int y;
@@ -16,6 +17,11 @@ public abstract class Vehicle implements Movable, Turnable {
   private final String modelName;
   private State state;
 
+  /** Vehicle constructor
+   * @param color paint job.
+   * @param enginePower power of the spicy engine.
+   * @param modelName name of the Vehicle model.
+   */
   public Vehicle(final Color color, final double enginePower, final String modelName) {
     this.color = color;
     this.enginePower = enginePower;
@@ -23,11 +29,19 @@ public abstract class Vehicle implements Movable, Turnable {
     this.state = State.PARKED;
   }
 
+  /**
+   * State of the car to enable checks for changes in movement or transport etc.
+   */
   public enum State {
     RUNNING,
     PARKED
   }
 
+  /**
+   * Returns the current state of the vehicle.
+   *
+   * @return Vehicle state.
+   */
   public State getState() {
     return this.state;
   }

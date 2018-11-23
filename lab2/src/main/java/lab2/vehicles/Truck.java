@@ -9,7 +9,12 @@ public abstract class Truck extends Car {
   /** An attachable, e.g. a trailer. */
   private Attachable attachment;
 
-  /** Empty constructor for Truck. */
+  /** Empty constructor for Truck.
+   * @param numberOfDoors how many ways can you entire the car?
+   * @param color paint job.
+   * @param enginePower power of the spicy engine.
+   * @param modelName name of the Vehicle model.
+   */
   public Truck(
       final int numberOfDoors,
       final Color color,
