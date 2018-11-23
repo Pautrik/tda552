@@ -3,9 +3,10 @@ package lab2.vehicles;
 import java.awt.*;
 import lab2.Direction;
 import lab2.Movable;
+import lab2.Positionable;
 import lab2.Turnable;
 
-public abstract class Vehicle implements Movable, Turnable {
+public abstract class Vehicle implements Movable, Turnable, Positionable {
   private int x;
   private int y;
   private double currentSpeed;
@@ -25,7 +26,8 @@ public abstract class Vehicle implements Movable, Turnable {
 
   public enum State {
     RUNNING,
-    PARKED
+    PARKED,
+    IN_TRANSPORT,
   }
 
   public State getState() {
@@ -64,7 +66,7 @@ public abstract class Vehicle implements Movable, Turnable {
    *
    * @param color The new color of the vehicle.
    */
-  void setColor(final Color color) {
+  public void setColor(final Color color) {
     this.color = color;
   }
 

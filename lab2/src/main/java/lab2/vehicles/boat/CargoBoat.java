@@ -75,6 +75,10 @@ public class CargoBoat extends Boat implements Storing<Car> {
             "Loaded object is not movable and can not be unloaded on its own");
       }
 
+      if (((Vehicle) lastLoadedObject).getState() == Vehicle.State.IN_TRANSPORT) {
+        throw new IllegalArgumentException("Object is already loaded to another Storing");
+      }
+
       lastLoadedObject.pushInDirection(Direction.UP);
 
       this.storage.remove(lastLoadedObject);

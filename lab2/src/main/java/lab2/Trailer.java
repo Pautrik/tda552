@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lab2.vehicles.Truck;
+import lab2.vehicles.Vehicle;
 
 /** A truck trailer with a generic container. */
 public class Trailer<T extends Movable & Positionable>
@@ -76,6 +77,10 @@ public class Trailer<T extends Movable & Positionable>
       if (!(lastLoadedObject instanceof Movable)) {
         throw new IllegalArgumentException(
             "Loaded object is not movable and can not be unloaded on its own");
+      }
+
+      if (((Vehicle) lastLoadedObject).getState() == Vehicle.State.IN_TRANSPORT) {
+        throw new IllegalArgumentException("Object is already loaded to another Storing");
       }
 
       lastLoadedObject.pushInDirection(Direction.UP);
