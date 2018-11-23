@@ -15,14 +15,12 @@ public class Saab95 extends Car {
   }
 
   /** Activates the turbo unit. */
-
-  void setTurboOn() {
+  public void setTurboOn() {
     turboOn = true;
   }
 
-  /** Deactivates the turbo unit. */
-
-  void setTurboOff() {
+  /** Deactivets the turbo unit. */
+  public void setTurboOff() {
     turboOn = false;
   }
 
@@ -46,7 +44,7 @@ public class Saab95 extends Car {
    *
    * @return Turbo is on
    */
-  boolean isTurboOn() {
+  public boolean isTurboOn() {
     return this.turboOn;
   }
 }
