@@ -1,18 +1,18 @@
 package lab2.vehicles;
 
 import java.awt.Color;
+import java.security.PublicKey;
+
 import lab2.Movable;
 import lab2.Turnable;
+import lab2.Vehicle;
 
 /** A movable car. */
-public abstract class Car implements Movable, Turnable {
-  private Color color;
-  private double currentSpeed;
-  private final double enginePower;
-  private final String modelName;
-  private int numberOfDoors = 4;
+public abstract class Car extends Vehicle implements Movable, Turnable {
   private int x;
   private int y;
+  private double currentSpeed;
+  protected int numberOfDoors = 4;
   private Direction direction = Direction.UP;
 
   /** Car constructor. */
@@ -21,9 +21,7 @@ public abstract class Car implements Movable, Turnable {
       final Color color,
       final double enginePower,
       final String modelName) {
-    this.color = color;
-    this.enginePower = enginePower;
-    this.modelName = modelName;
+    super(color, enginePower, modelName);
     this.numberOfDoors = numberOfDoors;
   }
 
@@ -98,15 +96,27 @@ public abstract class Car implements Movable, Turnable {
     this.color = color;
   }
 
-  /** Starts the engine. */
+  /** Starts the engine if Car is in working order. */
   public void startEngine() {
-    currentSpeed = 0.1;
+    if (getState() == State.PARKED )
+        { currentSpeed = 0.1; }
   }
 
   /** Stops the engine. */
   public void stopEngine() {
     currentSpeed = 0;
+    parkCar();
   }
+
+  /** Fixes the Car */
+  public void fixCar() { setState(State.WORKING); }
+
+  /** Parks the Car */
+  public void parkCar() { setState(State.PARKED); }
+
+  /** Breaks the Car */
+  public void breakCar() { setState(State.BROKEN); }
+
 
   /**
    * Increments the car's speed, taking each car's speed factor into account.
