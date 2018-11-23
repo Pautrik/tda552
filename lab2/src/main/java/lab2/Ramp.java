@@ -1,23 +1,23 @@
 package lab2;
 
-/** A platform which can be lowered or raised. */
-public class Platform {
-  /** Lowest angle for the platform. */
+/** A ramp which can be lowered or raised. */
+public class Ramp {
+  /** Lowest angle for the ramp. */
   private final double minAngle;
 
-  /** Highest angle for the platform. */
+  /** Highest angle for the ramp. */
   private final double maxAngle;
 
-  /** The platforms current angle. */
+  /** The ramps current angle. */
   private double angle;
 
   /**
-   * Platform constructor.
+   * Ramp constructor.
    *
-   * @param minAngle The minimum angle of the platform.
-   * @param maxAngle The maximum angle of the platform.
+   * @param minAngle The minimum angle of the ramp.
+   * @param maxAngle The maximum angle of the ramp.
    */
-  public Platform(final double minAngle, final double maxAngle) {
+  public Ramp(final double minAngle, final double maxAngle) {
     this.minAngle = minAngle;
     this.maxAngle = maxAngle;
   }
@@ -25,19 +25,19 @@ public class Platform {
   /**
    * Returns the current angle.
    *
-   * @return Platform angle
+   * @return Ramp angle
    */
   public double getAngle() {
     return this.angle;
   }
 
   /**
-   * Tries to raise platform with the parameter degrees. The new platform angle value will never
-   * exceed MAX_ANGLE.
+   * Tries to raise ramp with the parameter degrees. The new platform angle value will never exceed
+   * MAX_ANGLE.
    *
    * @see minAngle
    * @see maxAngle
-   * @param degrees Degrees to raise the platform. May be negative.
+   * @param degrees Degrees to raise the ramp. May be negative.
    */
   public void raise(final double degrees) {
     final double potentialNewAngle = this.angle + degrees;
@@ -52,18 +52,18 @@ public class Platform {
   }
 
   /**
-   * Tries to lower platform with the parameter degrees The new platform angle value will never be
-   * less than MIN_ANGLE.
+   * Tries to lower ramp with the parameter degrees The new platform angle value will never be less
+   * than MIN_ANGLE.
    *
    * @see minAngle
    * @see maxAngle
-   * @param degrees Degrees to lower the platform. May be negative.
+   * @param degrees Degrees to lower the ramp. May be negative.
    */
   public void lower(final double degrees) {
     raise(-degrees);
   }
 
-  /** Closes the platform. */
+  /** Closes the ramp. */
   public void close() {
     this.angle = this.minAngle;
   }

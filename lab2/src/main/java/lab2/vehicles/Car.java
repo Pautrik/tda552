@@ -1,9 +1,11 @@
-package lab2;
+package lab2.vehicles;
 
 import java.awt.Color;
+import lab2.Movable;
+import lab2.Turnable;
 
 /** A movable car. */
-public abstract class Car implements Movable {
+public abstract class Car implements Movable, Turnable {
   private Color color;
   private double currentSpeed;
   private final double enginePower;
