@@ -1,18 +1,18 @@
 package lab2.vehicles;
 
 import java.awt.Color;
-import java.security.PublicKey;
 
 import lab2.Movable;
 import lab2.Turnable;
 import lab2.Vehicle;
+import lab2.Direction;
 
 /** A movable car. */
 public abstract class Car extends Vehicle implements Movable, Turnable {
   private int x;
   private int y;
   private double currentSpeed;
-  protected int numberOfDoors = 4;
+  private int numberOfDoors = 4;
   private Direction direction = Direction.UP;
 
   /** Car constructor. */
@@ -25,31 +25,6 @@ public abstract class Car extends Vehicle implements Movable, Turnable {
     this.numberOfDoors = numberOfDoors;
   }
 
-  /** The car's current direction. */
-  public enum Direction {
-    UP,
-    RIGHT,
-    DOWN,
-    LEFT;
-
-    /**
-     * Returns the next direction, going in a clockwise manner.
-     *
-     * @return Next direction, going in a clockwise manner.
-     */
-    public Direction getNext() {
-      return values()[(ordinal() + 1) % values().length];
-    }
-
-    /**
-     * Returns the previous direction, going in a counter clockwise manner.
-     *
-     * @return Previous direction, going in a counter clockwise manner.
-     */
-    public Direction getPrevious() {
-      return this.ordinal() > 0 ? values()[this.ordinal() - 1] : values()[values().length - 1];
-    }
-  };
 
   /**
    * Returns the amount of doors.
@@ -92,30 +67,33 @@ public abstract class Car extends Vehicle implements Movable, Turnable {
    *
    * @param color The new color of the car.
    */
-  public void setColor(final Color color) {
+  void setColor(final Color color) {
     this.color = color;
   }
 
   /** Starts the engine if Car is in working order. */
   public void startEngine() {
-    if (getState() == State.PARKED )
-        { currentSpeed = 0.1; }
+    if (getState() == State.PARKED ) {
+        currentSpeed = 0.1;
+    }
+    runCar();
   }
 
   /** Stops the engine. */
   public void stopEngine() {
+      if (getState() == State.RUNNING)
     currentSpeed = 0;
     parkCar();
   }
 
   /** Fixes the Car */
-  public void fixCar() { setState(State.WORKING); }
+  private void runCar() { setState(State.RUNNING); }
 
   /** Parks the Car */
-  public void parkCar() { setState(State.PARKED); }
+  private void parkCar() { setState(State.PARKED); }
 
   /** Breaks the Car */
-  public void breakCar() { setState(State.BROKEN); }
+  private void breakCar() { setState(State.BROKEN); }
 
 
   /**
