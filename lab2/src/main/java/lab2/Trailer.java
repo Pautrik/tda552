@@ -6,7 +6,8 @@ import java.util.List;
 import lab2.vehicles.Truck;
 
 /** A truck trailer with a generic container. */
-public class Trailer<T> implements Attachable<Truck>, Storing<T>, Positionable {
+public class Trailer<T extends Movable & Positionable>
+    implements Attachable<Truck>, Storing<T>, Positionable {
   private int x;
   private int y;
 
@@ -41,12 +42,17 @@ public class Trailer<T> implements Attachable<Truck>, Storing<T>, Positionable {
    * Adds an object to the storage.
    *
    * @todo Check object position before loading
-   * @todo Check if storage is full before adding?
    * @param object The object to add to the storage.
+   * @throws IllegalArgumentException If the loaded object is too large to be loaded
    */
   public void load(final T object) {
-    if (this.isAttached() && this.truck == object) {
-      throw new IllegalArgumentException("Trailer can not load the truck it is attached to.");
+    if (object instanceof Truck) {
+      throw new IllegalArgumentException("Trucks are too large to be loaded onto the trailer");
+    }
+
+    if (Math.abs(object.getX() - this.getX()) > 1 || (object.getY() - this.getY()) > 1) {
+      throw new IllegalArgumentException(
+          "The loaded object must be in proximity to the trailer before loading");
     }
 
     if (this.storage.size() + 1 > this.storageSize) {
@@ -68,6 +74,14 @@ public class Trailer<T> implements Attachable<Truck>, Storing<T>, Positionable {
 
     if (this.hasObjects()) {
       final T lastLoadedObject = this.storage.get(this.storage.size() - 1);
+
+      if (!(lastLoadedObject instanceof Movable)) {
+        throw new IllegalArgumentException(
+            "Loaded object is not movable and can not be unloaded on its own");
+      }
+
+      lastLoadedObject.pushInDirection(Direction.UP);
+
       this.storage.remove(lastLoadedObject);
 
       return lastLoadedObject;

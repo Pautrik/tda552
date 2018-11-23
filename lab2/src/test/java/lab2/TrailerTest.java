@@ -1,9 +1,10 @@
-package lab2.vehicles;
+package lab2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import lab2.Trailer;
+import lab2.vehicles.Car;
+import lab2.vehicles.TruckStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
