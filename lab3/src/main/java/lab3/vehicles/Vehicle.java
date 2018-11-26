@@ -1,6 +1,8 @@
 package lab3.vehicles;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
+
 import lab3.Direction;
 import lab3.Movable;
 import lab3.Turnable;
@@ -27,6 +29,15 @@ public abstract class Vehicle implements Movable, Turnable {
     this.enginePower = enginePower;
     this.modelName = modelName;
     this.state = State.PARKED;
+  }
+
+  /**
+   * Returns the current position of the vehicle in the form of a Point.
+   *
+   * @return Vehicle 2D Point.
+   */
+  public Point2D getPosition() {
+    return new Point(x, y);
   }
 
   /**
