@@ -1,63 +1,38 @@
 
-# Laboration 2 #
+# Laboration 3
 
-Syftet med denna laboration är att öva på olika verktyg för polymorfism och återanvändning av kod: arv vs delegering, superklasser vs interfaces, och principer för subklasser. Tanken är att ni ska fortsätta på den lösning ni gjort i laboration 1. Ni ska lära er jobba med extensibilitet och polymorfism.
+I denna laborationsuppgift är tanken att ni ska fortsätta på den lösning ni gjort i laboration 2.
 
-Se till att noga läsa igenom instruktionerna och att följa de regler och krav som uppgifterna föreskriver. Börja med att kolla igenom hela beskrivningen och se vad som krävs för att få godkänt, samt med att ladda ner de filer som behövs.
+Se till att noga läsa igenom instruktionerna och att ni följer de regler och krav som uppgifterna föreskriver. Börja med att kolla igenom hela beskrivningen och se vad som krävs för att få godkänt, samt att ni laddar ner de filer som krävs. Koden som skrivs och godkänns i denna lab kommer att användas till de senare laborationerna.
 
-Koden ni skriver i denna labb kommer senare att användas i laboration 3.
-
-Ta fram er lösning från laboration 1 och fortsätta därifrån. Notera att om ni inte är klara eller fått godkänt på laboration 1 bör ni göra detta först.
+Börja med ladda ner nya klassfiler: CarController.java, CarView.java, DrawPanel.java samt en zip-fil med bilder. Notera att de nya klasserna har allvarliga brister vad gäller design och implementation. Notera att ni kommer behöva er färdiga lösning från Lab 2.
 ## Uppgift A
 
-Skapa en representation av en Scania-lastbil med modellnamn Scania. Ge den rimliga startvärden för relevanta fält. Lägg den i filen Scania.java i samma mapp.
+CarController, CarView och DrawPanel utgör tillsammans ett grafiskt användargränssnitt till era fordonsklasser från lab 1. Gränssnittet är skrivet av en tredje part som inte haft tillgång till vare sig kod, dokumentation eller designdokument för er lösning.
 
-Scania ska införlivas i er arvs-hierarki från tidigare, men ha ytterligare funktionalitet: den har ett flak som kan höjas (tippas) och sänkas. Införliva detta i er design så att vi kan hålla reda på vilken vinkel flaket har för närvarande, samt funktioner för att höja och sänka det.
+Gör de eventuella ändringar i CarController, CarView och DrawPanel som behövs för att det ska gå att använda tillsammans med er lösning från lab 2.
 
-Följande förhållanden ska gälla:
-
-* Vinkeln på flaket kan inte vara lägre än 0 eller högre än 70.
-* Flaket kan enbart ha en annan vinkel än 0 om lastbilen står stilla.
-
-Lägg allt i Scania.java och skriv Javadoc för klassen och fälten. Gör minst ett JUnit-test i er testklass.
+När ni är färdiga ska ni kunna köra CarController och se Volvo-bilen röra sig (genom att öka värdet på gasen och gasa). Notera att vi förutsätter att ni använder IntelliJ; se kommentarer i koden ifall ni vill använda något annat. Detta påverkar mest bilderna, eftersom ni måste skapa ett nytt package pics i src-mappen och lägga alla bilder där. För er inte använder IntelliJ kan ni lägga bilderna i samma mapp som klass-filerna och ändra koden enligt instruktionerna.
 ## Uppgift B
 
-Skapa en representation av en biltransport - dvs en långtradare som kan transportera bilar på flaket. Ge den ett valfritt modellnamn och filnamn.
+Se till att även bromsknappen är kopplad till bilen, så att den får effekt på er simulation (bromsvärdet får ni från samma snurra som gasen hämtar sitt värde ifrån). Ni måste se till att modellens tillstånd uppdateras, och sen anropar tillbaka till View via Controllern.
 
-Biltransporten ska på lämpligt sätt införlivas i er arvshierarki från tidigare. Likt Scania-lastbilen har den ett “flak” i form av en ramp som går att höja och sänka. Införliva detta i er design på lämpligt sätt.
+Volvon åker just nu ut ur rutan. Se till att när bilen nuddar en vägg så stoppar den helt, inverterar sin riktning och startar igen.
 
-Bilar ska kunna lastas på och av biltransporten. Biltransporten har ett maximalt antal bilar som den kan lasta. Bilar som ska lastas på biltransporten får inte vara för stora (gör ett eget antagande).
+Sätt in Saab95, Scania och deras respektive bilder med 100 pixlars avstånd i Y-led från varandra (alla avbildas ursprungligen med X=0).
 
-Följande förhållanden ska gälla:
+Koppla turbo-knapparna till Saaben och flakknapparna till Scania. Koppla “starta och stoppa alla bilar”-knapparna till bägge.
 
-* Biltransportens ramp har endast två lägen, uppe eller nere.
-* Rampen kan endast vara nere om biltransporten står stilla.
-* Bilar kan endast lastas om rampen är nere, och de befinner sig rimligt nära biltransporten (gör ett eget antagande, de exakta detaljerna är inte viktiga).
-* Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära biltransporten.
-* Bilar kan endast lossas i omvänd ordning från hur de lastades, dvs den sista bilen som lastades måste vara först att lossas (first-in-last-out).
-* Biltransporten ska inte kunna lasta på sig själv.
-* Under det att en bil är lastad på biltransporten ska dess position i världen alltid vara densamma som biltransportens position.
-
-Viktiga saker att ha i åtanke under den här uppgiften:
-
-* Undvik kodduplicering för funktionalitet som är gemensam för flera olika klasser, e.g. lastbil och biltransport.
-* Fundera över behovet av polymorfism för olika ändamål.
-* Fundera över hur ni bäst håller reda på de bilar som lastats - vilken sorts datastruktur är bäst för ändamålet?
-
-Kom ihåg att skriva Javadoc-dokumentation, och JUnit-tester för relevanta aspekter av er kod.
+Även dessa bilar ska förhindras att åka utanför rutan.
 ## Uppgift C
 
-Skapa en representation av en bilfärja - dvs en färja på vilken det går att lasta bilar. Notera att bilfärjan inte är en bil (doh), men att många av de metoder vi hittills använt för olika sorters bilar bör gå att applicera även på färjan. Hur åstadkommer ni bäst detta?
+Rita upp ett UML-diagram över systemet i dess nuvarande skick.
 
-På bilfärjan gäller samma regler som för biltransporten, med undantaget att bilar lossas i samma ordning som de lastades, dvs den första bilen som lastades måste vara först att lossas (first-in-first-out).
+Analysera de beroenden som finns med avseende på cohesion, coupling och dependency inversion principle.
 
-Viktiga saker att ha i åtanke under den här uppgiften:
+Vilka beroenden är nödvändiga? Vilka klasser är beroende av varandra som inte bör vara det? Finns det starkare beroenden än nödvändigt? Kan ni identifiera några brott mot övriga designprinciper vi pratat om i kursen?
 
-* Undvik kodduplicering för funktionalitet som är gemensam för e.g. bilfärjan och biltransporten.
-* Fundera över behovet av polymorfism
+Ni behöver inte göra någon ny design eller implementation; det återkommer vi till i senare labbar.
+## Frivillig BONUS-uppgift
 
-Extra uppgifter för mer utmaning
-
-* Låt bilfärjan ha ett antal olika filer i vilka bilarna kan befinna sig. För varje fil gäller att bilarna i den filen enbart kan lastas av i samma ordning som de lastades på (first-in-first-out), men bilar från olika filer kan lastas av i olika ordning (även omväxlande mellan filerna).
-* Utöka er command line controller till att hantera alla nya element.
-* Använd Javas Reflection API för att skriva ut klassnamn, metodnamn och namn på fält för objekten i er modell.
+Utöka era fordonsmodell (men inte användargränssnittet) med stöd för kollisionshantering. Implementera metoder för att avgöra om två fordon kommer krocka vid nästa move(). Implementera något sätt att undvika sådana kollisioner — till exempel kan ni låta bilarna studsa ifrån varandra eller väja åt sidan. Hur kan man se till att kollisionshanteringen inte ger falskt alarm när man testar för kollision mellan en biltransport och en på biltransporten pålastad bil? För två bilar lastade på samma biltransport? För För två bilar lastade på olika biltransporter, men som i sin tur är lastade på samma bilfärja? För ännu oimplementerade typer av biltransport?
