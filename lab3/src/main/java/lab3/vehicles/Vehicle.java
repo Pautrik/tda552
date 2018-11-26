@@ -1,9 +1,9 @@
-package vehicles;
+package lab3.vehicles;
 
 import java.awt.*;
-import lab2.Direction;
-import lab2.Movable;
-import lab2.Turnable;
+import lab3.Direction;
+import lab3.Movable;
+import lab3.Turnable;
 
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable {

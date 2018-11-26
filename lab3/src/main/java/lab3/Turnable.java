@@ -1,4 +1,5 @@
-package lab2;
+package lab3;
+
 
 /**
  * Handles self-turning.

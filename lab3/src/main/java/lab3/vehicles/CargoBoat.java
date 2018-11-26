@@ -1,13 +1,13 @@
-package vehicles;
+package lab3.vehicles;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lab2.Direction;
-import lab2.Movable;
-import lab2.Ramp;
-import lab2.Storing;
+import lab3.Direction;
+import lab3.Movable;
+import lab3.Ramp;
+import lab3.Storing;
 
 /** A cargo boat with loading capabilities. */
 public class CargoBoat extends Boat implements Storing<Car> {

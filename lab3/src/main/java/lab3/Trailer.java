@@ -1,9 +1,9 @@
-package lab2;
+package lab3;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lab2.vehicles.Truck;
+import lab3.vehicles.Truck;
 
 /** A truck trailer with a generic container. */
 public class Trailer<T extends Movable & Positionable>

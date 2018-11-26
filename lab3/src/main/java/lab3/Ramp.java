@@ -1,4 +1,4 @@
-package lab2;
+package lab3;
 
 /** A ramp which can be lowered or raised. */
 public class Ramp {

@@ -1,4 +1,4 @@
-package lab2;
+package lab3;
 
 /** Generic movable. */
 public interface Movable {
