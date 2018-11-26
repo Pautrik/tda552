@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel{
     }
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, String imageName) {
+    public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
@@ -34,7 +34,7 @@ public class DrawPanel extends JPanel{
             // Remember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
             // Linux users need to modify \ to / in path string
-            vehicleImage = ImageIO.read(new File("pics/"+imageName));
+            vehicleImage = ImageIO.read(new File("lab3/pics/Volvo240.jpg"));
         } catch (IOException ex)
         {
             ex.printStackTrace();

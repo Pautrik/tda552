@@ -8,11 +8,11 @@ Se till att noga läsa igenom instruktionerna och att ni följer de regler och k
 Börja med ladda ner nya klassfiler: CarController.java, CarView.java, DrawPanel.java samt en zip-fil med bilder. Notera att de nya klasserna har allvarliga brister vad gäller design och implementation. Notera att ni kommer behöva er färdiga lösning från Lab 2.
 ## Uppgift A
 
-CarController, CarView och DrawPanel utgör tillsammans ett grafiskt användargränssnitt till era fordonsklasser från lab 1. Gränssnittet är skrivet av en tredje part som inte haft tillgång till vare sig kod, dokumentation eller designdokument för er lösning.
+**CarController**, **CarView** och **DrawPanel** utgör tillsammans ett grafiskt användargränssnitt till era fordonsklasser från lab 1. Gränssnittet är skrivet av en tredje part som inte haft tillgång till vare sig kod, dokumentation eller designdokument för er lösning.
 
-Gör de eventuella ändringar i CarController, CarView och DrawPanel som behövs för att det ska gå att använda tillsammans med er lösning från lab 2.
+Gör de eventuella ändringar i **CarController**, **CarView** och **DrawPanel** som behövs för att det ska gå att använda tillsammans med er lösning från lab 2.
 
-När ni är färdiga ska ni kunna köra CarController och se Volvo-bilen röra sig (genom att öka värdet på gasen och gasa). Notera att vi förutsätter att ni använder IntelliJ; se kommentarer i koden ifall ni vill använda något annat. Detta påverkar mest bilderna, eftersom ni måste skapa ett nytt package pics i src-mappen och lägga alla bilder där. För er inte använder IntelliJ kan ni lägga bilderna i samma mapp som klass-filerna och ändra koden enligt instruktionerna.
+När ni är färdiga ska ni kunna köra **CarController** och se Volvo-bilen röra sig (genom att öka värdet på gasen och gasa). Notera att vi förutsätter att ni använder IntelliJ; se kommentarer i koden ifall ni vill använda något annat. Detta påverkar mest bilderna, eftersom ni måste skapa ett nytt package pics i src-mappen och lägga alla bilder där. För er inte använder IntelliJ kan ni lägga bilderna i samma mapp som klass-filerna och ändra koden enligt instruktionerna.
 ## Uppgift B
 
 Se till att även bromsknappen är kopplad till bilen, så att den får effekt på er simulation (bromsvärdet får ni från samma snurra som gasen hämtar sitt värde ifrån). Ni måste se till att modellens tillstånd uppdateras, och sen anropar tillbaka till View via Controllern.
