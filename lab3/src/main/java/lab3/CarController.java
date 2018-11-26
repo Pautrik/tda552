@@ -13,7 +13,7 @@ import lab3.vehicles.*;
  */
 
 public class CarController {
-    // member fields:
+    // member fields:S
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
@@ -22,9 +22,9 @@ public class CarController {
     private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
-    CarView frame;
+    private CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    private ArrayList<Car> cars = new ArrayList<>();
 
     //methods:
 
