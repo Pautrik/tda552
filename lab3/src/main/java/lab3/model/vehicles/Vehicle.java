@@ -3,12 +3,10 @@ package lab3.model.vehicles;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-import lab3.model.Direction;
-import lab3.model.Movable;
-import lab3.model.Turnable;
+import lab3.model.*;
 
 /** A generic vehicle with an engine */
-public abstract class Vehicle implements Movable, Turnable {
+public abstract class Vehicle implements Movable, Turnable, Positionable {
   private int x;
   private int y;
   private double currentSpeed;
@@ -36,6 +34,7 @@ public abstract class Vehicle implements Movable, Turnable {
    *
    * @return Vehicle 2D Point.
    */
+  @Override
   public Point2D getPosition() {
     return new Point(x, y);
   }
