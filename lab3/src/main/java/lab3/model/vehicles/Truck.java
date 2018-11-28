@@ -1,6 +1,6 @@
-package lab3.vehicles;
+package lab3.model.vehicles;
 
-import lab3.Attachable;
+import lab3.model.Attachable;
 import java.awt.Color;
 
 /** A truck. */

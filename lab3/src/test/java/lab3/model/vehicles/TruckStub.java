@@ -1,4 +1,4 @@
-package lab2.vehicles;
+package lab3.model.vehicles;
 
 import java.awt.Color;
 

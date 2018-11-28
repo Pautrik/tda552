@@ -1,4 +1,4 @@
-package lab3;
+package lab3.view;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,7 +17,7 @@ public class DrawPanel extends JPanel{
     private Point vehiclePoint = new Point();
 
     // TODO: Make this general for all cars
-    void moveit(int x, int y){
+    public void moveit(int x, int y){
         vehiclePoint.x = x;
         vehiclePoint.y = y;
     }
@@ -28,7 +28,7 @@ public class DrawPanel extends JPanel{
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.blue);
         // Print an error message in case file is not found with a try/catch block
-        try { vehicleImage = ImageIO.read(new File("./src/main/java/lab3/pics/Volvo240.jpg")); }
+        try { vehicleImage = ImageIO.read(new File("./src/main/java/lab3/res/pics/Volvo240.jpg")); }
         catch (IOException ex) { ex.printStackTrace(); }
     }
 

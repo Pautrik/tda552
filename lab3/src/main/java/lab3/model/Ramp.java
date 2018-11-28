@@ -1,4 +1,4 @@
-package lab3;
+package lab3.model;
 
 /** A ramp which can be lowered or raised. */
 public class Ramp {

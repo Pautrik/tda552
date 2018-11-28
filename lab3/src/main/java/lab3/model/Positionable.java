@@ -1,4 +1,4 @@
-package lab3;
+package lab3.model;
 
 /**
  * Generic positionable in x-/y-plane

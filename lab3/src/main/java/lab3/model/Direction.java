@@ -1,4 +1,4 @@
-package lab3;
+package lab3.model;
 
 /**
  * Direction in a quad-directional grid.

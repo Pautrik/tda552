@@ -1,11 +1,11 @@
-package lab3.vehicles;
+package lab3.model.vehicles;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-import lab3.Direction;
-import lab3.Movable;
-import lab3.Turnable;
+import lab3.model.Direction;
+import lab3.model.Movable;
+import lab3.model.Turnable;
 
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable {

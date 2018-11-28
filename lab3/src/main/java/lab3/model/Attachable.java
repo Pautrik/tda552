@@ -1,4 +1,4 @@
-package lab3;
+package lab3.model;
 
 /**
  * Generic attachable that can attach to type T.

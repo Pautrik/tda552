@@ -1,10 +1,14 @@
-package lab3;
+package lab3.controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import lab3.vehicles.*;
+
+import lab3.view.CarView;
+import lab3.model.vehicles.*;
+import lab3.model.*;
+import lab3.view.*;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -58,41 +62,41 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Car car : cars) {
             car.gas(gas);
         }
     }
 
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Car car : cars) {
             car.brake(brake);
         }
     }
 
-    void turboOn() {
+    public void turboOn() {
 
     }
 
-    void turboOff() {
+    public void turboOff() {
 
     }
 
-    void liftBed() {
+    public void liftBed() {
 
     }
 
-    void lowerBed() {
+    public void lowerBed() {
 
     }
 
-    void stopAll() {
+    public void stopAll() {
 
     }
 
-    void startAll() {
+    public void startAll() {
 
     }
 }
