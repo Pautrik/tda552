@@ -1,8 +1,6 @@
 package lab3.model;
 
-/**
- * Direction in a quad-directional grid.
- */
+/** Direction in a quad-directional grid. */
 public enum Direction {
   UP,
   RIGHT,

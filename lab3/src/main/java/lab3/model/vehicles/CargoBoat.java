@@ -27,7 +27,8 @@ public class CargoBoat extends Boat implements Storing<Car> {
   /** Size of storage. */
   private int storageSize;
 
-  /** Cargo Boat constructor.
+  /**
+   * Cargo Boat constructor.
    *
    * @param storageSize how many items can you fit in the cargo-hold?
    * @param color paint job.

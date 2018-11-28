@@ -2,6 +2,7 @@ package lab3.model;
 
 /**
  * Generic attachable that can attach to type T.
+ *
  * @param <T> generic
  */
 public interface Attachable<T> {
@@ -21,6 +22,7 @@ public interface Attachable<T> {
   /**
    * Returns true if attached to anything, otherwise false. @return True if attached to anything,
    * otherwise false.
+   *
    * @return boolean.
    */
   public boolean isAttached();

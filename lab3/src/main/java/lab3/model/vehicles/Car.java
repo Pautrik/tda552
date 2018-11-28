@@ -6,7 +6,8 @@ import java.awt.Color;
 public abstract class Car extends Vehicle {
   private int numberOfDoors = 4;
 
-  /** Car constructor.
+  /**
+   * Car constructor.
    *
    * @param numberOfDoors how many ways can you entire the car?
    * @param color paint job.

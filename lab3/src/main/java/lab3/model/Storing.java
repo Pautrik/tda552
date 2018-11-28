@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Handles storing for items of type T.
+ *
  * @param <T> generic
  */
 public interface Storing<T> {

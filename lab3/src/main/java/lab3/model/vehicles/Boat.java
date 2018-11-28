@@ -5,7 +5,9 @@ import java.awt.Color;
 /** A boat. */
 public abstract class Boat extends Vehicle {
 
-  /** Boat constructor.
+  /**
+   * Boat constructor.
+   *
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Boat model.

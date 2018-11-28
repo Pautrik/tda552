@@ -1,7 +1,7 @@
 package lab3.model.vehicles;
 
-import lab3.model.Attachable;
 import java.awt.Color;
+import lab3.model.Attachable;
 
 /** A truck. */
 public abstract class Truck extends Car {
@@ -9,7 +9,9 @@ public abstract class Truck extends Car {
   /** An attachable, e.g. a trailer. */
   private Attachable attachment;
 
-  /** Empty constructor for Truck.
+  /**
+   * Empty constructor for Truck.
+   *
    * @param numberOfDoors how many ways can you entire the car?
    * @param color paint job.
    * @param enginePower power of the spicy engine.
