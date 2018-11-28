@@ -247,7 +247,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * Pushes the vehicle 1 unit in the given direction. @param direction The direction in which to
    * push the vehicle
    */
-  public void pushInDirection(Direction direction) {
+  public void pushInDirection(final Direction direction) {
     switch (this.direction) {
       case UP:
         this.y += 1;

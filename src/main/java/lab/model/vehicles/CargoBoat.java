@@ -25,7 +25,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
   private final List<Car> storage;
 
   /** Size of storage. */
-  private int storageSize;
+  private final int storageSize;
 
   /**
    * Cargo Boat constructor.

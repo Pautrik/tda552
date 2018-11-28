@@ -29,7 +29,7 @@ public class Trailer<T extends Movable & Positionable>
   private final List<T> storage;
 
   /** Size of storage. */
-  private int storageSize;
+  private final int storageSize;
 
   /**
    * Empty constructor for Trailer which stores items of type T.
