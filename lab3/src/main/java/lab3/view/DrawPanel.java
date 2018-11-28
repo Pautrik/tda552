@@ -26,7 +26,7 @@ public class DrawPanel extends JPanel{
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
-        this.setBackground(Color.blue);
+        this.setBackground(Color.gray);
         // Print an error message in case file is not found with a try/catch block
         try { vehicleImage = ImageIO.read(new File("./src/main/java/lab3/res/pics/Volvo240.jpg")); }
         catch (IOException ex) { ex.printStackTrace(); }
