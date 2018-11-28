@@ -1,6 +1,5 @@
 package lab3.model.vehicles;
 
-
 import java.awt.Color;
 
 public class CarStub extends Car {
