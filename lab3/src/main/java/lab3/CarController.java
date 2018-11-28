@@ -71,4 +71,28 @@ public class CarController {
             car.brake(brake);
         }
     }
+
+    void turboOn() {
+
+    }
+
+    void turboOff() {
+
+    }
+
+    void liftBed() {
+
+    }
+
+    void lowerBed() {
+
+    }
+
+    void stopAll() {
+
+    }
+
+    void startAll() {
+
+    }
 }
