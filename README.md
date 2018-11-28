@@ -1,5 +1,130 @@
+TDA552
+======
 
-# Laboration 3
+Laborations for TDA552 (Objektorienterad Programmering och Design).
+
+Laboration 1
+============
+
+Syftet med denna laboration är att ni ska lära er att använda koncept som arv, gränssnitt, overriding (överskuggning), overloading (överlagring) och dynamisk bindning, samt att komma igång med Javadoc och JUnit.
+
+Se till att noga läsa igenom instruktionerna och att följa de regler och krav som uppgifterna föreskriver. Börja med att kolla igenom hela beskrivningen och se vad som krävs för att få godkänt, samt med att ladda ner de filer som behövs.
+
+I första uppgiften bekantar vi oss med den givna Java-koden, samt skapar ny kod. Därefter bygger varje uppgift på den tidigare lösningen. Koden som skrivs och godkänns i denna labb kommer senare att användas i laboration 2.
+
+## Uppgift A - Arv och gränssnitt
+
+Börja med att ladda ner följande Java-filerna och kika lite i det: Volvo240.java och Saab95.java. Just nu verkar klasserna ha ganska mycket gemensamt, eftersom båda representerar bilar.
+
+Skapa en arvshierarki där Volvo240 och Saab95 ingår som eliminerar all kod-duplicering och i görligaste mån följer open-closed-principen. Gör dessa ändringar utan att ändra på klassernas funktionalitet.
+I originalfilerna är alla metoder och variabler public, vilket exponerar allt till användaren. Ändra synligheten på de metoder och variabler som användaren inte behöver se eller känna till.
+Se till att alla filer kompilerar och fortsätt till nästa uppgift.
+
+## Uppgift B
+
+I denna uppgift fortsätter vi bygga på föregående genom att vi nu också implementerar ett interface kallat Movable.
+
+Skapa en fil Movable.java och ge interfacet följande metoder:
+void move();
+void turnLeft();
+void turnRight();
+Se till att era bilar implementerar interfacet Movable, med någon lämplig intern representation av deras riktning och position. Metoden move ska fungera så att beroende på riktning ökas (eller minskas) bilens x- eller y-koordinat med dess currentSpeed.
+
+## Uppgift C
+
+Dokumentation och testning är viktigt när man designar program.
+
+Använd Javadoc för att kommentera samtliga klasser och interfaces. Ni bör ha Javadoc för alla filer; det ska finnas Javadoc för själva klassen och alla des publika metoder. Vid behov ska man dokumentera instansvariabler och hjälp metoder. Det finns funktionalitet i IntelliJ fär att generera (tom) Javadoc
+kommentar.
+Det finns mycket information om Javadoc på nätet om ni behöver ta fram det. När ni är klara bör ni kunna få ut lämpliga API-dokument för ert program som HTML-filer.
+
+## Uppgift D
+
+Använda JUnit för att skriva tester med 100% coverage för era bilklasser.
+Även JUnit har mycket information på nätet som ni kan leta upp. Tänk på att era tester inte behöver testa “allt”; det viktiga är att ni bekantar er med JUnit och förstår hur det fungerar.
+
+Därför behöver ni INTE skriva kodkontrakt för era metoder. Det räcker med att ni skriver testmetoder som testar metodernas funktionalitet med hjälp av assert/equals osv. Därefter testar ni så att alla JUnit-tester går igenom med “Run with coverage”.
+
+## Uppgift E
+
+Bilklassernas metoder har för närvarande inget sätt att kontrollera hur mycket farten kan öka eller sänkas. Skriv om metoder (och dokumentation) så att:
+
+gas() och break() bara accepterar värden i intervallet [0, 1],
+currentSpeed alltid ligger i intervallet [0, enginePower],
+Anrop till gas() inte kan resultera i att farten sänks, och
+Anrop till break() inte kan resultera i att farten höjs.
+
+## Extra uppgifter för mer utmaning
+
+Lägg till ytterligare bilar till er arvs-hierarki.
+Lägg till en enkel command line controller genom vilken ni kan skapa bilar; gasa och bromsa bilar; avgöra var bilarna befinner sig; etc.
+
+Laboration 2
+============
+
+Syftet med denna laboration är att öva på olika verktyg för polymorfism och återanvändning av kod: arv vs delegering, superklasser vs interfaces, och principer för subklasser. Tanken är att ni ska fortsätta på den lösning ni gjort i laboration 1. Ni ska lära er jobba med extensibilitet och polymorfism.
+
+Se till att noga läsa igenom instruktionerna och att följa de regler och krav som uppgifterna föreskriver. Börja med att kolla igenom hela beskrivningen och se vad som krävs för att få godkänt, samt med att ladda ner de filer som behövs.
+
+Koden ni skriver i denna labb kommer senare att användas i laboration 3.
+
+Ta fram er lösning från laboration 1 och fortsätta därifrån. Notera att om ni inte är klara eller fått godkänt på laboration 1 bör ni göra detta först.
+## Uppgift A
+
+Skapa en representation av en Scania-lastbil med modellnamn Scania. Ge den rimliga startvärden för relevanta fält. Lägg den i filen Scania.java i samma mapp.
+
+Scania ska införlivas i er arvs-hierarki från tidigare, men ha ytterligare funktionalitet: den har ett flak som kan höjas (tippas) och sänkas. Införliva detta i er design så att vi kan hålla reda på vilken vinkel flaket har för närvarande, samt funktioner för att höja och sänka det.
+
+Följande förhållanden ska gälla:
+
+* Vinkeln på flaket kan inte vara lägre än 0 eller högre än 70.
+* Flaket kan enbart ha en annan vinkel än 0 om lastbilen står stilla.
+
+Lägg allt i Scania.java och skriv Javadoc för klassen och fälten. Gör minst ett JUnit-test i er testklass.
+## Uppgift B
+
+Skapa en representation av en biltransport - dvs en långtradare som kan transportera bilar på flaket. Ge den ett valfritt modellnamn och filnamn.
+
+Biltransporten ska på lämpligt sätt införlivas i er arvshierarki från tidigare. Likt Scania-lastbilen har den ett “flak” i form av en ramp som går att höja och sänka. Införliva detta i er design på lämpligt sätt.
+
+Bilar ska kunna lastas på och av biltransporten. Biltransporten har ett maximalt antal bilar som den kan lasta. Bilar som ska lastas på biltransporten får inte vara för stora (gör ett eget antagande).
+
+Följande förhållanden ska gälla:
+
+* Biltransportens ramp har endast två lägen, uppe eller nere.
+* Rampen kan endast vara nere om biltransporten står stilla.
+* Bilar kan endast lastas om rampen är nere, och de befinner sig rimligt nära biltransporten (gör ett eget antagande, de exakta detaljerna är inte viktiga).
+* Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära biltransporten.
+* Bilar kan endast lossas i omvänd ordning från hur de lastades, dvs den sista bilen som lastades måste vara först att lossas (first-in-last-out).
+* Biltransporten ska inte kunna lasta på sig själv.
+* Under det att en bil är lastad på biltransporten ska dess position i världen alltid vara densamma som biltransportens position.
+
+Viktiga saker att ha i åtanke under den här uppgiften:
+
+* Undvik kodduplicering för funktionalitet som är gemensam för flera olika klasser, e.g. lastbil och biltransport.
+* Fundera över behovet av polymorfism för olika ändamål.
+* Fundera över hur ni bäst håller reda på de bilar som lastats - vilken sorts datastruktur är bäst för ändamålet?
+
+Kom ihåg att skriva Javadoc-dokumentation, och JUnit-tester för relevanta aspekter av er kod.
+## Uppgift C
+
+Skapa en representation av en bilfärja - dvs en färja på vilken det går att lasta bilar. Notera att bilfärjan inte är en bil (doh), men att många av de metoder vi hittills använt för olika sorters bilar bör gå att applicera även på färjan. Hur åstadkommer ni bäst detta?
+
+På bilfärjan gäller samma regler som för biltransporten, med undantaget att bilar lossas i samma ordning som de lastades, dvs den första bilen som lastades måste vara först att lossas (first-in-first-out).
+
+Viktiga saker att ha i åtanke under den här uppgiften:
+
+* Undvik kodduplicering för funktionalitet som är gemensam för e.g. bilfärjan och biltransporten.
+* Fundera över behovet av polymorfism
+
+Extra uppgifter för mer utmaning
+
+* Låt bilfärjan ha ett antal olika filer i vilka bilarna kan befinna sig. För varje fil gäller att bilarna i den filen enbart kan lastas av i samma ordning som de lastades på (first-in-first-out), men bilar från olika filer kan lastas av i olika ordning (även omväxlande mellan filerna).
+* Utöka er command line controller till att hantera alla nya element.
+* Använd Javas Reflection API för att skriva ut klassnamn, metodnamn och namn på fält för objekten i er modell.
+
+Laboration 3
+============
 
 I denna laborationsuppgift är tanken att ni ska fortsätta på den lösning ni gjort i laboration 2.
 
