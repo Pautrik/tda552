@@ -1,2 +1,13 @@
 language: java
 jdk: oraclejdk8
+
+install: true
+
+env:
+  matrix:
+    - ALL_GRADLE_VERSIONS=4.10.2
+
+jobs:
+  include:
+    - stage: unit tests
+      script: ./gradlew test
