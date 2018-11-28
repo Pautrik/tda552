@@ -224,4 +224,14 @@ public class Trailer<T extends Movable & Positionable>
   public boolean isAttached() {
     return this.truck instanceof Truck;
   }
+
+  /**
+   * Returns the current position of the vehicle in the form of a Point.
+   *
+   * @return Vehicle 2D Point.
+   */
+  @Override
+  public Point2D getPosition() {
+    return new Point(x, y);
+  }
 }

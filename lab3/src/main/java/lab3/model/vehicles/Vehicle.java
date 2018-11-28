@@ -2,7 +2,6 @@ package lab3.model.vehicles;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-
 import lab3.model.*;
 
 /** A generic vehicle with an engine */
@@ -17,7 +16,9 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   private final String modelName;
   private State state;
 
-  /** Vehicle constructor
+  /**
+   * Vehicle constructor
+   *
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Vehicle model.
@@ -32,16 +33,14 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   /**
    * Returns the current position of the vehicle in the form of a Point.
    *
-   * @return Vehicle 2D Point.
+   * @return Current position in the form of a Point
    */
   @Override
   public Point2D getPosition() {
     return new Point(x, y);
   }
 
-  /**
-   * State of the car to enable checks for changes in movement or transport etc.
-   */
+  /** State of the car to enable checks for changes in movement or transport etc. */
   public enum State {
     RUNNING,
     PARKED

@@ -1,5 +1,7 @@
 package lab3.model;
 
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +31,9 @@ public class Trailer<T extends Movable & Positionable>
   /** Size of storage. */
   private int storageSize;
 
-  /** Empty constructor for Trailer which stores items of type T.
+  /**
+   * Empty constructor for Trailer which stores items of type T.
+   *
    * @param storageSize the number of slots in the storage.
    */
   public Trailer(final int storageSize) {
@@ -50,7 +54,8 @@ public class Trailer<T extends Movable & Positionable>
       throw new IllegalArgumentException("Trucks are too large to be loaded onto the trailer");
     }
 
-    if (Math.abs(object.getX() - this.getX()) > 1 || (object.getY() - this.getY()) > 1) {
+    if (Math.abs(object.getPosition().getX() - this.x) > 1
+        || (object.getPosition().getY() - this.getY()) > 1) {
       throw new IllegalArgumentException(
           "The loaded object must be in proximity to the trailer before loading");
     }
@@ -216,5 +221,15 @@ public class Trailer<T extends Movable & Positionable>
    */
   public boolean isAttached() {
     return this.truck instanceof Truck;
+  }
+
+  /**
+   * Returns the current position of the vehicle in the form of a Point.
+   *
+   * @return Current position in the form of a Point
+   */
+  @Override
+  public Point2D getPosition() {
+    return new Point(x, y);
   }
 }
