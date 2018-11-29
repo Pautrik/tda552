@@ -54,3 +54,9 @@ jacocoTestReport {
         html.destination "${buildDir}/reports/jacoco/html"
     }
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'lab.controller.CarController'
+    }
+}
