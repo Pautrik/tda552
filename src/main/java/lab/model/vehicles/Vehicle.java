@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import lab.model.*;
 
 /** A generic vehicle with an engine */
-public abstract class Vehicle implements Movable, Turnable, Positionable {
+public abstract class Vehicle implements Movable, Turnable, Positionable, Transportable {
   private int x;
   private int y;
   private double currentSpeed;
@@ -15,6 +15,8 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   protected final double enginePower;
   private final String modelName;
   private State state;
+
+  private Positionable transportedBy;
 
   /**
    * Vehicle constructor
@@ -43,7 +45,8 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   /** State of the car to enable checks for changes in movement or transport etc. */
   public enum State {
     RUNNING,
-    PARKED
+    PARKED,
+    BEING_TRANSPORTED
   }
 
   /**
@@ -87,21 +90,29 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    *
    * @param color The new color of the vehicle.
    */
-  void setColor(final Color color) {
+  public void setColor(final Color color) {
     this.color = color;
   }
 
-  /** Starts the engine if Vehicle is in working order. */
+  /** Starts the engine if vehicle is in working order and not being transported. */
   public void startEngine() {
-    if (getState() == State.PARKED) {
+    if (this.state == State.BEING_TRANSPORTED) {
+      throw new IllegalStateException("Vehicle can not be started while being transported.");
+    }
+
+    if (this.state == State.PARKED) {
       currentSpeed = 0.1;
     }
 
     this.state = State.RUNNING;
   }
 
-  /** Stops the engine. */
+  /** Stops the engine if the car is running. */
   public void stopEngine() {
+    if (this.state != State.RUNNING) {
+      return;
+    }
+
     currentSpeed = 0;
     this.state = State.PARKED;
   }
@@ -149,6 +160,9 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * @return Current X position.
    */
   public int getX() {
+    if (this.state == State.BEING_TRANSPORTED) {
+      return (int) this.transportedBy.getPosition().getX();
+    }
     return x;
   }
 
@@ -158,11 +172,18 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * @return Current Y position.
    */
   public int getY() {
+    if (this.state == State.BEING_TRANSPORTED) {
+      return (int) this.transportedBy.getPosition().getY();
+    }
     return y;
   }
 
-  /** Moves the vehicle in the current direction. */
+  /** Moves the vehicle in the current direction, if state allows moving. */
   public void move() {
+    if (this.state != State.RUNNING) {
+      return;
+    }
+
     switch (this.direction) {
       case UP:
         this.y += this.getCurrentSpeed();
@@ -198,7 +219,8 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   };
 
   /**
-   * Accelerates the vehicle.
+   * Accelerates the vehicle. Does not do anything if state disallows applying gas (i.e. in case it
+   * is not running.
    *
    * @param amount Amount of acceleration being applied, must be greater or equal to 0 and less or
    *     equal to 1.
@@ -207,6 +229,10 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * @see break
    */
   public void gas(final double amount) throws IllegalArgumentException {
+    if (this.state != State.RUNNING) {
+      return;
+    }
+
     if (amount < 0) {
       throw new IllegalArgumentException("Can not gas using a negative amount, use brake instead");
     }
@@ -220,7 +246,8 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   }
 
   /**
-   * Decelerates the vehicle.
+   * Decelerates the vehicle. Does not do anything if state disallows braking (i.e. in case it is
+   * not running.
    *
    * @param amount Amount of deceleration being applied, must be greater or equal to 0 and less or
    *     equal to 1.
@@ -231,6 +258,10 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    *     function?
    */
   public void brake(final double amount) throws IllegalArgumentException {
+    if (this.state != State.RUNNING) {
+      return;
+    }
+
     if (amount < 0) {
       throw new IllegalArgumentException("Can not brake using a negative amount, use gas instead");
     }
@@ -246,8 +277,14 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   /**
    * Pushes the vehicle 1 unit in the given direction. @param direction The direction in which to
    * push the vehicle
+   *
+   * @throws IllegalStateException If states dissallows pushing, e.g. it is being transported.
    */
-  public void pushInDirection(final Direction direction) {
+  public void pushInDirection(final Direction direction) throws IllegalStateException {
+    if (this.state == State.BEING_TRANSPORTED) {
+      throw new IllegalStateException("Vehicle can not be pushed while being transported.");
+    }
+
     switch (this.direction) {
       case UP:
         this.y += 1;
@@ -262,5 +299,40 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
         this.x -= 1;
         break;
     }
+  }
+
+  /**
+   * Sets the transporter. The position of the vehicle should reflect that of the transporter.
+   *
+   * @see resetTransport
+   */
+  public void setTransporter(Positionable transporter) {
+    this.transportedBy = transporter;
+    this.state = State.BEING_TRANSPORTED;
+  }
+
+  /**
+   * Unsets the transporter.
+   *
+   * @see setTransporter
+   * @todo Should the push behavior instead be called by the transporter?
+   */
+  public void resetTransporter() {
+    this.state = State.PARKED;
+    this.x = (int) this.transportedBy.getPosition().getX();
+    this.y = (int) this.transportedBy.getPosition().getY();
+
+    this.transportedBy = null;
+
+    this.pushInDirection(Direction.UP);
+  }
+
+  /**
+   * Returns true if the object is being transported, otherwise false.
+   *
+   * @return True if the object is being transported, otherwise false
+   */
+  public boolean isBeingTransported() {
+    return this.state == State.BEING_TRANSPORTED;
   }
 }

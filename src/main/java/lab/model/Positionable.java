@@ -9,5 +9,5 @@ public interface Positionable {
    *
    * @return x,y-position of the Positionable
    */
-  Point2D getPosition();
+  public Point2D getPosition();
 }

@@ -62,6 +62,7 @@ public class VehicleTest {
 
   @Test
   public void moveUpShouldUpMoveVehicleUp() {
+    this.vehicle.startEngine();
     this.vehicle.gas(1);
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
@@ -73,6 +74,7 @@ public class VehicleTest {
 
   @Test
   public void moveRightShouldMoveVehicleRight() {
+    this.vehicle.startEngine();
     this.vehicle.gas(1);
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
@@ -90,6 +92,7 @@ public class VehicleTest {
 
   @Test
   public void moveLeftShouldMoveVehicleLeft() {
+    this.vehicle.startEngine();
     this.vehicle.gas(1);
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
@@ -107,6 +110,7 @@ public class VehicleTest {
 
   @Test
   public void moveDownShouldMoveVehicleDown() {
+    this.vehicle.startEngine();
     this.vehicle.gas(1);
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
@@ -130,6 +134,7 @@ public class VehicleTest {
 
   @Test
   public void negativeGasShouldThrowException() {
+    this.vehicle.startEngine();
     assertThrows(
         IllegalArgumentException.class,
         () -> {
@@ -139,6 +144,7 @@ public class VehicleTest {
 
   @Test
   public void exceedingGasShouldThrowException() {
+    this.vehicle.startEngine();
     assertThrows(
         IllegalArgumentException.class,
         () -> {
@@ -157,6 +163,7 @@ public class VehicleTest {
 
   @Test
   public void negativeBrakeShouldThrowException() {
+    this.vehicle.startEngine();
     assertThrows(
         IllegalArgumentException.class,
         () -> {
@@ -166,6 +173,7 @@ public class VehicleTest {
 
   @Test
   public void exceedingBrakeShouldThrowException() {
+    this.vehicle.startEngine();
     assertThrows(
         IllegalArgumentException.class,
         () -> {
@@ -176,5 +184,40 @@ public class VehicleTest {
   @Test
   public void enginePowerShouldEqualFive() {
     assertEquals(10.0, this.vehicle.getEnginePower());
+  }
+
+  @Test
+  public void positionShouldMatchTransporterIfBeingTransporter() {
+    assertEquals(0, this.vehicle.getY(), "guard, vehicle is not yet under transport");
+    assertEquals(0, this.vehicle.getX(), "guard, vehicle is not yet under transport");
+
+    TransporterStub transporter = new TransporterStub();
+    this.vehicle.setTransporter(transporter);
+
+    assertEquals(10, this.vehicle.getX());
+    assertEquals(10, this.vehicle.getX());
+  }
+
+  @Test
+  public void positionShouldBeResetWhenTransporterIsReset() {
+    TransporterStub transporter = new TransporterStub();
+    this.vehicle.setTransporter(transporter);
+
+    assertEquals(10, this.vehicle.getX(), "guard, vehicle is still being transported");
+    assertEquals(10, this.vehicle.getY(), "guard, vehicle is still being transported");
+
+    this.vehicle.resetTransporter();
+
+    assertTrue(
+        10 != this.vehicle.getY() || 10 != this.vehicle.getX(),
+        "vehicle must not be unloaded at same position as transporter");
+
+    assertTrue(
+        9 <= this.vehicle.getY() || 9 <= this.vehicle.getX(),
+        "vehicle must be unloaded within -+1 unit of the transporter");
+
+    assertTrue(
+        11 >= this.vehicle.getX() || 11 >= this.vehicle.getY(),
+        "vehicle must be unloaded within -+1 unit of the transporter");
   }
 }

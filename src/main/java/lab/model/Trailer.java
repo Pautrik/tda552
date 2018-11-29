@@ -8,7 +8,7 @@ import java.util.List;
 import lab.model.vehicles.Truck;
 
 /** A truck trailer with a generic container. */
-public class Trailer<T extends Movable & Positionable>
+public class Trailer<T extends Movable & Positionable & Transportable>
     implements Attachable<Truck>, Storing<T>, Positionable {
   private int x;
   private int y;
@@ -67,6 +67,8 @@ public class Trailer<T extends Movable & Positionable>
 
     this.lowerRamp();
     this.storage.add(object);
+
+    object.setTransporter(this);
   }
 
   /**
@@ -87,7 +89,7 @@ public class Trailer<T extends Movable & Positionable>
 
       lastLoadedObject.pushInDirection(Direction.UP);
 
-      this.storage.remove(lastLoadedObject);
+      lastLoadedObject.resetTransporter();
 
       return lastLoadedObject;
     }

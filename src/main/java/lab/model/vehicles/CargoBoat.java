@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lab.model.Direction;
 import lab.model.Movable;
 import lab.model.Ramp;
 import lab.model.Storing;
@@ -45,32 +44,37 @@ public class CargoBoat extends Boat implements Storing<Car> {
   }
 
   /**
-   * Adds an object to the storage.
+   * Adds an car to the storage.
    *
-   * @todo Check object position before loading
+   * @todo Check car position before loading
    * @todo Check if storage is full before adding?
-   * @param object The object to add to the storage.
+   * @param car The car to add to the storage.
    */
-  public void load(final Car object) {
+  @Override
+  public void load(final Car car) {
     if (this.storage.size() + 1 > this.storageSize) {
       throw new IndexOutOfBoundsException(
-          "Trying to load beyond storage size, Unload objects to free up space");
+          "Trying to load beyond storage size, Unload cars to free up space");
     }
 
-    if (Math.abs(object.getX() - this.getX()) > 1 || (object.getY() - this.getY()) > 1) {
+    if (Math.abs(car.getX() - this.getX()) > 1 || (car.getY() - this.getY()) > 1) {
       throw new IllegalArgumentException(
-          "The loaded object must be in proximity to the trailer before loading");
+          "The loaded car must be in proximity to the trailer before loading");
     }
 
     this.lowerRamp();
-    this.storage.add(object);
+    this.storage.add(car);
+
+    car.setTransporter(this);
   }
 
   /**
-   * {@inheritDoc}
+   * Unloads an car from the storage, if any cars are loaded. Lowers the ramp if it is raised.
+   * Returns any car that is unloaded, otherwise null.
    *
-   * @todo Set the objects position from the trailer.
+   * @return The unloaded car if any, otherwise null
    */
+  @Override
   public Car unload() {
     this.lowerRamp();
 
@@ -82,7 +86,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
             "Loaded object is not movable and can not be unloaded on its own");
       }
 
-      lastLoadedObject.pushInDirection(Direction.UP);
+      lastLoadedObject.resetTransporter();
 
       this.storage.remove(lastLoadedObject);
 
