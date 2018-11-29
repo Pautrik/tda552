@@ -17,7 +17,7 @@ public class ViewEntity implements Positionable {
     return position;
   }
 
-  void setPosition(Point position) {
+  public void setPosition(Point position) {
     this.position = position;
   }
 

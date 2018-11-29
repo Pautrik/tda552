@@ -14,11 +14,8 @@ public class CarView extends JFrame {
   private static final int X = 800;
   private static final int Y = 800;
 
-  // The controller member
-  CarController carC;
-
+  private CarController carController;
   public DrawPanel drawPanel;
-
   private JPanel controlPanel = new JPanel();
 
   private JPanel gasPanel = new JPanel();
@@ -37,9 +34,9 @@ public class CarView extends JFrame {
   private JButton stopButton = new JButton("Stop all cars");
 
   // Constructor
-  public CarView(String framename, CarController cc) {
-    this.carC = cc;
-    this.drawPanel = new DrawPanel(X, Y - 240, carC.world.getViewEntities());
+  public CarView(String framename, CarController carController) {
+    this.carController = carController;
+    this.drawPanel = new DrawPanel(X, Y - 240, carController.world.getViewEntities());
     initComponents(framename);
   }
 
@@ -59,6 +56,7 @@ public class CarView extends JFrame {
             0, // min
             100, // max
             1); // step
+
     gasSpinner = new JSpinner(spinnerModel);
     gasSpinner.addChangeListener(e -> gasAmount = (int) ((JSpinner) e.getSource()).getValue());
 
@@ -92,14 +90,14 @@ public class CarView extends JFrame {
 
     // This actionListener is for the gas button only
     // TODO: Create more for each component as necessary
-    gasButton.addActionListener(e -> carC.gas(gasAmount));
-    brakeButton.addActionListener(e -> carC.brake(gasAmount));
-    turboOnButton.addActionListener(e -> carC.turboOn());
-    turboOffButton.addActionListener(e -> carC.turboOff());
-    liftBedButton.addActionListener(e -> carC.liftBed());
-    lowerBedButton.addActionListener(e -> carC.lowerBed());
-    startButton.addActionListener(e -> carC.startAll());
-    stopButton.addActionListener(e -> carC.stopAll());
+    gasButton.addActionListener(e -> carController.gas(gasAmount));
+    brakeButton.addActionListener(e -> carController.brake(gasAmount));
+    turboOnButton.addActionListener(e -> carController.turboOn());
+    turboOffButton.addActionListener(e -> carController.turboOff());
+    liftBedButton.addActionListener(e -> carController.liftBed());
+    lowerBedButton.addActionListener(e -> carController.lowerBed());
+    startButton.addActionListener(e -> carController.startAll());
+    stopButton.addActionListener(e -> carController.stopAll());
 
     // Make the frame pack all it's components by respecting the sizes if possible.
     this.pack();
