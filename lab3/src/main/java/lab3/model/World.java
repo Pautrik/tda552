@@ -23,6 +23,10 @@ public class World {
         setViewEntities(vehicles);
     }
 
+    public ArrayList<ViewEntity> getViewEntities() {
+        return viewEntities;
+    }
+
     public ArrayList<Vehicle> getVehicles() {
         return vehicles;
     }

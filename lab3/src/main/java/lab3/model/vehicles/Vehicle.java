@@ -6,11 +6,10 @@ import lab3.model.*;
 
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable, Positionable {
-  private int x;
-  private int y;
   private double currentSpeed;
   private Direction direction = Direction.UP;
 
+  private Point point;
   protected Color color;
   protected final double enginePower;
   private final String modelName;
@@ -26,6 +25,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
     this.enginePower = enginePower;
     this.modelName = modelName;
     this.state = State.PARKED;
+    this.point = new Point();
   }
 
   /**
@@ -35,7 +35,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    */
   @Override
   public Point getPosition() {
-    return new Point(x, y);
+    return point;
   }
 
 
@@ -150,7 +150,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * @return Current X position.
    */
   public int getX() {
-    return x;
+    return point.x;
   }
 
   /**
@@ -159,23 +159,23 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * @return Current Y position.
    */
   public int getY() {
-    return y;
+    return point.y;
   }
 
   /** Moves the vehicle in the current direction. */
   public void move() {
     switch (this.direction) {
       case UP:
-        this.y += this.getCurrentSpeed();
+        this.point.y += this.getCurrentSpeed();
         break;
       case RIGHT:
-        this.x += this.getCurrentSpeed();
+        this.point.x += this.getCurrentSpeed();
         break;
       case DOWN:
-        this.y -= this.getCurrentSpeed();
+        this.point.y -= this.getCurrentSpeed();
         break;
       case LEFT:
-        this.x -= this.getCurrentSpeed();
+        this.point.x -= this.getCurrentSpeed();
         break;
     }
   };
@@ -260,16 +260,16 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
   public void pushInDirection(Direction direction) {
     switch (this.direction) {
       case UP:
-        this.y += 1;
+        this.point.y += 1;
         break;
       case RIGHT:
-        this.x += 1;
+        this.point.x += 1;
         break;
       case DOWN:
-        this.y -= 1;
+        this.point.y -= 1;
         break;
       case LEFT:
-        this.x -= 1;
+        this.point.x -= 1;
         break;
     }
   }

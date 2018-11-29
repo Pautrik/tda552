@@ -28,7 +28,7 @@ public class CarController {
     private CarView frame;
 
     // Model of the world containing all cars and the space they exist in.
-    private World world;
+    public World world;
 
     public CarController() {
         this.world = new World();
@@ -46,6 +46,7 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             world.moveVehicles();
+            frame.drawPanel.repaint();
         }
     }
 
