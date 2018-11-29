@@ -306,7 +306,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    *
    * @see resetTransport
    */
-  public void setTransporter(Positionable transporter) {
+  public void setTransporter(final Positionable transporter) {
     this.transportedBy = transporter;
     this.state = State.BEING_TRANSPORTED;
   }
