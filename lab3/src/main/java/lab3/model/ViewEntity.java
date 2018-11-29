@@ -1,19 +1,20 @@
 package lab3.model;
 
-import java.awt.geom.Point2D;
+
+import java.awt.*;
 
 public class ViewEntity implements Positionable{
 
     private String name;
-    private Point2D position;
+    private Point position;
 
-    public ViewEntity(String name, Point2D position) {
+    public ViewEntity(String name, Point position) {
         this.position = position;
         this.name = name;
     }
 
     @Override
-    public Point2D getPosition() {
+    public Point getPosition() {
         return position;
     }
 

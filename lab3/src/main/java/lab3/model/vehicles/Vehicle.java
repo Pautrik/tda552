@@ -1,7 +1,6 @@
 package lab3.model.vehicles;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 import lab3.model.*;
 
@@ -35,7 +34,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
    * @return Vehicle 2D Point.
    */
   @Override
-  public Point2D getPosition() {
+  public Point getPosition() {
     return new Point(x, y);
   }
 

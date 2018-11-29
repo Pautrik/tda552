@@ -1,6 +1,6 @@
 package lab3.model;
 
-import java.awt.geom.Point2D;
+import java.awt.*;
 
 /**
  * Generic positionable in x-/y-plane
@@ -9,5 +9,5 @@ public interface Positionable {
   /** Returns the 2D coordinate.
    * @return x,y-position of the Positionable
    */
-  Point2D getPosition();
+  Point getPosition();
 }

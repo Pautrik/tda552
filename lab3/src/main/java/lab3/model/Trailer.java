@@ -1,5 +1,7 @@
 package lab3.model;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -50,7 +52,8 @@ public class Trailer<T extends Movable & Positionable>
       throw new IllegalArgumentException("Trucks are too large to be loaded onto the trailer");
     }
 
-    if (Math.abs(object.getX() - this.getX()) > 1 || (object.getY() - this.getY()) > 1) {
+    if (Math.abs(object.getPosition().getX() - this.getX()) > 1
+                 || (object.getPosition().getY() - this.getY()) > 1) {
       throw new IllegalArgumentException(
           "The loaded object must be in proximity to the trailer before loading");
     }
@@ -217,4 +220,9 @@ public class Trailer<T extends Movable & Positionable>
   public boolean isAttached() {
     return this.truck instanceof Truck;
   }
+
+    @Override
+    public Point getPosition() {
+        return new Point(getX(), getY());
+    }
 }
