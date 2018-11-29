@@ -2,7 +2,6 @@ package lab.model.vehicles;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.geom.Point2D;
 
 public class TransporterStub extends Truck {
 
@@ -15,7 +14,7 @@ public class TransporterStub extends Truck {
     return 1;
   }
 
-  public Point2D getPosition() {
+  public Point getPosition() {
     return new Point(10, 10);
   }
 }

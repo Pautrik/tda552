@@ -1,16 +1,14 @@
 package lab.model.vehicles;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import lab.model.*;
 
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable, Positionable, Transportable {
-  private int x;
-  private int y;
   private double currentSpeed;
   private Direction direction = Direction.UP;
 
+  private Point point;
   protected Color color;
   protected final double enginePower;
   private final String modelName;
@@ -30,6 +28,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
     this.enginePower = enginePower;
     this.modelName = modelName;
     this.state = State.PARKED;
+    this.point = new Point();
   }
 
   /**
@@ -38,15 +37,15 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    * @return Current position in the form of a Point
    */
   @Override
-  public Point2D getPosition() {
-    return new Point(x, y);
+  public Point getPosition() {
+    return point;
   }
 
   /** State of the car to enable checks for changes in movement or transport etc. */
   public enum State {
     RUNNING,
     PARKED,
-    BEING_TRANSPORTED
+    BEING_TRANSPORTED;
   }
 
   /**
@@ -163,7 +162,8 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
     if (this.state == State.BEING_TRANSPORTED) {
       return (int) this.transportedBy.getPosition().getX();
     }
-    return x;
+
+    return point.x;
   }
 
   /**
@@ -175,7 +175,7 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
     if (this.state == State.BEING_TRANSPORTED) {
       return (int) this.transportedBy.getPosition().getY();
     }
-    return y;
+    return point.y;
   }
 
   /** Moves the vehicle in the current direction, if state allows moving. */
@@ -186,16 +186,16 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
 
     switch (this.direction) {
       case UP:
-        this.y += this.getCurrentSpeed();
+        this.point.y += this.getCurrentSpeed();
         break;
       case RIGHT:
-        this.x += this.getCurrentSpeed();
+        this.point.x += this.getCurrentSpeed();
         break;
       case DOWN:
-        this.y -= this.getCurrentSpeed();
+        this.point.y -= this.getCurrentSpeed();
         break;
       case LEFT:
-        this.x -= this.getCurrentSpeed();
+        this.point.x -= this.getCurrentSpeed();
         break;
     }
   };
@@ -287,16 +287,16 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
 
     switch (this.direction) {
       case UP:
-        this.y += 1;
+        this.point.y += 1;
         break;
       case RIGHT:
-        this.x += 1;
+        this.point.x += 1;
         break;
       case DOWN:
-        this.y -= 1;
+        this.point.y -= 1;
         break;
       case LEFT:
-        this.x -= 1;
+        this.point.x -= 1;
         break;
     }
   }
@@ -319,8 +319,8 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    */
   public void resetTransporter() {
     this.state = State.PARKED;
-    this.x = (int) this.transportedBy.getPosition().getX();
-    this.y = (int) this.transportedBy.getPosition().getY();
+    this.point.x = (int) this.transportedBy.getPosition().getX();
+    this.point.y = (int) this.transportedBy.getPosition().getY();
 
     this.transportedBy = null;
 
@@ -334,5 +334,14 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    */
   public boolean isBeingTransported() {
     return this.state == State.BEING_TRANSPORTED;
+  }
+
+  /**
+   * Returns the model name.
+   *
+   * @return name of vehicle.
+   */
+  public String getModelName() {
+    return modelName;
   }
 }

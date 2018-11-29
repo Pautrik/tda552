@@ -1,7 +1,6 @@
 package lab.model;
 
-import java.awt.Point;
-import java.awt.geom.Point2D;
+import java.awt.*;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,8 +9,8 @@ import lab.model.vehicles.Truck;
 /** A truck trailer with a generic container. */
 public class Trailer<T extends Movable & Positionable & Transportable>
     implements Attachable<Truck>, Storing<T>, Positionable {
-  private int x;
-  private int y;
+  /** The trailers position. */
+  private Point point;
 
   /** Lowest angle for the trailer's ramp. */
   private static final double MIN_ANGLE = 0;
@@ -40,6 +39,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
     this.storage = new LinkedList<T>();
     this.ramp = new Ramp(MIN_ANGLE, MAX_ANGLE);
     this.storageSize = storageSize;
+    this.point = new Point();
   }
 
   /**
@@ -55,7 +55,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
       throw new IllegalArgumentException("Trucks are too large to be loaded onto the trailer");
     }
 
-    if (Math.abs(object.getPosition().getX() - this.x) > 1
+    if (Math.abs(object.getPosition().getX() - this.getX()) > 1
         || (object.getPosition().getY() - this.getY()) > 1) {
       throw new IllegalArgumentException(
           "The loaded object must be in proximity to the trailer before loading");
@@ -135,9 +135,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
   @Override
   public void detach() {
     if (this.truck instanceof Truck) {
-      this.x = this.truck.getX();
-      this.y = this.truck.getY();
-
+      this.point = new Point(this.truck.getX(), this.truck.getY());
       this.truck = null;
     }
   }
@@ -158,7 +156,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
       return this.truck.getX();
     }
 
-    return x;
+    return point.x;
   }
 
   /**
@@ -171,7 +169,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
       return this.truck.getY();
     }
 
-    return y;
+    return point.y;
   }
 
   /**
@@ -230,11 +228,11 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    * @return Current position in the form of a Point
    */
   @Override
-  public Point2D getPosition() {
+  public Point getPosition() {
     if (this.truck instanceof Truck) {
       return this.truck.getPosition();
     }
 
-    return new Point(x, y);
+    return this.point;
   }
 }
