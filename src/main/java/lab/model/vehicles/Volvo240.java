@@ -4,6 +4,7 @@ import java.awt.Color;
 
 /** The Volvo 240. */
 public class Volvo240 extends Car {
+  public static final String IMAGE_PATH = "./src/main/java/lab/res/pics/Volvo240.jpg";
 
   /** Trim factor. */
   private static final double TRIM_FACTOR = 1.25;
@@ -22,5 +23,15 @@ public class Volvo240 extends Car {
   @Override
   protected double speedFactor() {
     return getEnginePower() * 0.01 * TRIM_FACTOR;
+  }
+
+  /**
+   * Returns the path to the image.
+   *
+   * @return The path to the image
+   */
+  @Override
+  protected String getImageFilePath() {
+    return "./src/main/java/lab/res/pics/Volvo240.jpg";
   }
 }

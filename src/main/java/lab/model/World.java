@@ -44,8 +44,7 @@ public class World {
     ArrayList<ViewEntity> newEntities = new ArrayList<>();
     for (Vehicle vehicle : vehicles) {
       String name = vehicle.getModelName();
-      Point position = vehicle.getPosition();
-      newEntities.add(new ViewEntity(name, position));
+      newEntities.add(new ViewEntity(name, vehicle));
     }
     viewEntities = newEntities;
   }

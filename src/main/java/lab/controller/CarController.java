@@ -73,7 +73,15 @@ public class CarController {
 
   public void lowerBed() {}
 
-  public void stopAll() {}
+  public void stopAll() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      vehicle.stopEngine();
+    }
+  }
 
-  public void startAll() {}
+  public void startAll() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      vehicle.startEngine();
+    }
+  }
 }

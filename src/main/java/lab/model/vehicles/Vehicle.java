@@ -1,12 +1,17 @@
 package lab.model.vehicles;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import lab.model.*;
 
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable, Positionable, Transportable {
   private double currentSpeed;
   private Direction direction = Direction.UP;
+  private static final String IMAGE_PATH = "";
 
   private Point point;
   protected Color color;
@@ -343,5 +348,28 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    */
   public String getModelName() {
     return modelName;
+  }
+
+  /**
+   * Returns the file image representing the vehicle.
+   *
+   * @return File The file representing the vehicle
+   */
+  public BufferedImage getImage() {
+    try {
+      return ImageIO.read(new File(this.getImageFilePath()));
+    } catch (IOException exception) {
+      exception.printStackTrace();
+      return null;
+    }
+  }
+
+  /**
+   * Returns the path to the image.
+   *
+   * @return The path to the image
+   */
+  protected String getImageFilePath() {
+    return "";
   }
 }
