@@ -13,13 +13,17 @@ public abstract class Car extends Vehicle {
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Vehicle model.
+   * @param x start position
+   * @param y start position
    */
   public Car(
       final int numberOfDoors,
       final Color color,
       final double enginePower,
-      final String modelName) {
-    super(color, enginePower, modelName);
+      final String modelName,
+      final int x,
+      final int y) {
+    super(color, enginePower, modelName, x, y);
     this.numberOfDoors = numberOfDoors;
   }
 

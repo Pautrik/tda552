@@ -3,6 +3,7 @@ package lab.view;
 import java.awt.*;
 import javax.swing.*;
 import lab.controller.CarController;
+import lab.model.World;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator. It initializes with
@@ -11,12 +12,10 @@ import lab.controller.CarController;
  * Write more actionListeners and wire the rest of the buttons
  */
 public class CarView extends JFrame {
-  private static final int X = 800;
-  private static final int Y = 800;
-
   private CarController carController;
   public DrawPanel drawPanel;
   private JPanel controlPanel = new JPanel();
+  private static final int WIDTH = World.WIDTH + 100;
 
   private JPanel gasPanel = new JPanel();
   private JSpinner gasSpinner = new JSpinner();
@@ -36,7 +35,8 @@ public class CarView extends JFrame {
   // Constructor
   public CarView(String framename, CarController carController) {
     this.carController = carController;
-    this.drawPanel = new DrawPanel(X, Y - 240, carController.world.getViewEntities());
+    this.drawPanel =
+        new DrawPanel(WIDTH + 100, World.HEIGHT, carController.world.getViewEntities());
     initComponents(framename);
   }
 
@@ -45,7 +45,7 @@ public class CarView extends JFrame {
   private void initComponents(String title) {
 
     this.setTitle(title);
-    this.setPreferredSize(new Dimension(X, Y));
+    this.setPreferredSize(new Dimension(WIDTH, World.HEIGHT + 240));
     this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
     this.add(drawPanel);
@@ -74,18 +74,18 @@ public class CarView extends JFrame {
     controlPanel.add(brakeButton, 3);
     controlPanel.add(turboOffButton, 4);
     controlPanel.add(lowerBedButton, 5);
-    controlPanel.setPreferredSize(new Dimension((X / 2) + 4, 200));
+    controlPanel.setPreferredSize(new Dimension((WIDTH / 2) + 4, 200));
     this.add(controlPanel);
     controlPanel.setBackground(Color.CYAN);
 
     startButton.setBackground(Color.blue);
     startButton.setForeground(Color.green);
-    startButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
+    startButton.setPreferredSize(new Dimension(WIDTH / 5 - 15, 200));
     this.add(startButton);
 
     stopButton.setBackground(Color.red);
     stopButton.setForeground(Color.black);
-    stopButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
+    stopButton.setPreferredSize(new Dimension(WIDTH / 5 - 15, 200));
     this.add(stopButton);
 
     // This actionListener is for the gas button only

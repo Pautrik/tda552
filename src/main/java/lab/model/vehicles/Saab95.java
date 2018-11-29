@@ -7,8 +7,8 @@ public class Saab95 extends Car {
   private boolean turboOn;
 
   /** Empty constructor for Saab 95. */
-  public Saab95() {
-    super(2, Color.red, 125, "Saab95");
+  public Saab95(final int x, final int y) {
+    super(2, Color.red, 125, "Saab95", x, y);
     turboOn = false;
     stopEngine();
   }

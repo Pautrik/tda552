@@ -16,13 +16,17 @@ public abstract class Truck extends Car {
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Vehicle model.
+   * @param x start position
+   * @param y start position
    */
   public Truck(
       final int numberOfDoors,
       final Color color,
       final double enginePower,
-      final String modelName) {
-    super(numberOfDoors, color, enginePower, modelName);
+      final String modelName,
+      final int x,
+      final int y) {
+    super(numberOfDoors, color, enginePower, modelName, x, y);
   }
 
   /**

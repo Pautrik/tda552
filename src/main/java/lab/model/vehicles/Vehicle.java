@@ -10,7 +10,7 @@ import lab.model.*;
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable, Positionable, Transportable {
   private double currentSpeed;
-  private Direction direction = Direction.UP;
+  private Direction direction = Direction.RIGHT;
   private static final String IMAGE_PATH = "";
 
   private Point point;
@@ -27,13 +27,20 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Vehicle model.
+   * @param x start position
+   * @param y start position
    */
-  public Vehicle(final Color color, final double enginePower, final String modelName) {
+  public Vehicle(
+      final Color color,
+      final double enginePower,
+      final String modelName,
+      final int x,
+      final int y) {
     this.color = color;
     this.enginePower = enginePower;
     this.modelName = modelName;
     this.state = State.PARKED;
-    this.point = new Point();
+    this.point = new Point(x, y);
   }
 
   /**
