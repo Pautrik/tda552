@@ -1,7 +1,5 @@
 *.swp
 .gradle
+.idea/
 build/
 out/
-lab1/.idea/
-lab2/.idea/
-lab3/.idea/
