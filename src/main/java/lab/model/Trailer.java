@@ -2,8 +2,8 @@ package lab.model;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import lab.model.vehicles.Truck;
 
@@ -26,7 +26,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
   private Truck truck;
 
   /** The storage. */
-  private final List<T> storage;
+  private final LinkedList<T> storage;
 
   /** Size of storage. */
   private final int storageSize;
@@ -37,7 +37,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    * @param storageSize the number of slots in the storage.
    */
   public Trailer(final int storageSize) {
-    this.storage = new ArrayList<T>(storageSize);
+    this.storage = new LinkedList<T>();
     this.ramp = new Ramp(MIN_ANGLE, MAX_ANGLE);
     this.storageSize = storageSize;
   }
@@ -49,6 +49,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    * @param object The object to add to the storage.
    * @throws IllegalArgumentException If the loaded object is too large to be loaded
    */
+  @Override
   public void load(final T object) {
     if (object instanceof Truck) {
       throw new IllegalArgumentException("Trucks are too large to be loaded onto the trailer");
@@ -62,7 +63,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
 
     if (this.storage.size() + 1 > this.storageSize) {
       throw new IndexOutOfBoundsException(
-          "Trying to load beyond storage size, Unload objects to free up space");
+          "Trying to load beyond storage size, unload objects to free up space");
     }
 
     this.lowerRamp();
@@ -76,19 +77,12 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    *
    * @todo Set the objects position from the trailer.
    */
+  @Override
   public T unload() {
     this.lowerRamp();
 
     if (this.hasObjects()) {
-      final T lastLoadedObject = this.storage.get(this.storage.size() - 1);
-
-      if (!(lastLoadedObject instanceof Movable)) {
-        throw new IllegalArgumentException(
-            "Loaded object is not movable and can not be unloaded on its own");
-      }
-
-      lastLoadedObject.pushInDirection(Direction.UP);
-
+      final T lastLoadedObject = this.storage.removeLast();
       lastLoadedObject.resetTransporter();
 
       return lastLoadedObject;
@@ -185,6 +179,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    *
    * @return The currently loaded objects as an immutable list
    */
+  @Override
   public List<T> getObjectsAsUnmodifiableList() {
     return Collections.unmodifiableList(this.storage);
   }
@@ -194,6 +189,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    *
    * @return True if any objects are loaded, otherwise false
    */
+  @Override
   public boolean hasObjects() {
     return !this.storage.isEmpty();
   }
@@ -203,6 +199,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    *
    * @return True if storage is empty, otherwise false
    */
+  @Override
   public boolean isEmpty() {
     return this.storage.isEmpty();
   }
@@ -212,6 +209,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    *
    * @return True if storage is full, otherwise false
    */
+  @Override
   public boolean isFull() {
     return this.storage.size() == this.storageSize;
   }
@@ -221,6 +219,7 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    *
    * @return True if an attachment is attached, false if not
    */
+  @Override
   public boolean isAttached() {
     return this.truck instanceof Truck;
   }
@@ -232,6 +231,10 @@ public class Trailer<T extends Movable & Positionable & Transportable>
    */
   @Override
   public Point2D getPosition() {
+    if (this.truck instanceof Truck) {
+      return this.truck.getPosition();
+    }
+
     return new Point(x, y);
   }
 }

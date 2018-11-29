@@ -1,10 +1,9 @@
 package lab.model.vehicles;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-import lab.model.Movable;
 import lab.model.Ramp;
 import lab.model.Storing;
 
@@ -21,7 +20,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
   private final Ramp ramp;
 
   /** The storage. */
-  private final List<Car> storage;
+  private final LinkedList<Car> storage;
 
   /** Size of storage. */
   private final int storageSize;
@@ -38,7 +37,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
       final int storageSize, final Color color, final double enginePower, final String modelName) {
     super(color, enginePower, modelName);
 
-    this.storage = new ArrayList<Car>(storageSize);
+    this.storage = new LinkedList<Car>();
     this.ramp = new Ramp(MIN_ANGLE, MAX_ANGLE);
     this.storageSize = storageSize;
   }
@@ -54,7 +53,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
   public void load(final Car car) {
     if (this.storage.size() + 1 > this.storageSize) {
       throw new IndexOutOfBoundsException(
-          "Trying to load beyond storage size, Unload cars to free up space");
+          "Trying to load beyond storage size, unload cars to free up space");
     }
 
     if (Math.abs(car.getX() - this.getX()) > 1 || (car.getY() - this.getY()) > 1) {
@@ -63,7 +62,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
     }
 
     this.lowerRamp();
-    this.storage.add(car);
+    this.storage.addLast(car);
 
     car.setTransporter(this);
   }
@@ -79,16 +78,8 @@ public class CargoBoat extends Boat implements Storing<Car> {
     this.lowerRamp();
 
     if (this.hasObjects()) {
-      final Car lastLoadedObject = this.storage.get(this.storage.size() - 1);
-
-      if (!(lastLoadedObject instanceof Movable)) {
-        throw new IllegalArgumentException(
-            "Loaded object is not movable and can not be unloaded on its own");
-      }
-
+      final Car lastLoadedObject = this.storage.removeFirst();
       lastLoadedObject.resetTransporter();
-
-      this.storage.remove(lastLoadedObject);
 
       return lastLoadedObject;
     }
@@ -101,6 +92,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
    *
    * @return True if any objects are loaded, otherwise false
    */
+  @Override
   public boolean hasObjects() {
     return !this.storage.isEmpty();
   }
@@ -110,6 +102,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
    *
    * @return True if storage is empty, otherwise false
    */
+  @Override
   public boolean isEmpty() {
     return this.storage.isEmpty();
   }
@@ -119,10 +112,17 @@ public class CargoBoat extends Boat implements Storing<Car> {
    *
    * @return True if storage is full, otherwise false
    */
+  @Override
   public boolean isFull() {
     return this.storage.size() == this.storageSize;
   }
 
+  /**
+   * Returns the vehicle's speed factor.
+   *
+   * @return Speed factor.
+   */
+  @Override
   public double speedFactor() {
     return 1;
   }
@@ -132,6 +132,7 @@ public class CargoBoat extends Boat implements Storing<Car> {
    *
    * @return The currently loaded objects as an immutable list
    */
+  @Override
   public List<Car> getObjectsAsUnmodifiableList() {
     return Collections.unmodifiableList(this.storage);
   }
@@ -143,6 +144,6 @@ public class CargoBoat extends Boat implements Storing<Car> {
 
   /** Lowers the ramp. */
   public void lowerRamp() {
-    this.ramp.raise(-MAX_ANGLE);
+    this.ramp.lower(MAX_ANGLE);
   }
 }

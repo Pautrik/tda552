@@ -1,9 +1,11 @@
 package lab.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import lab.model.vehicles.Car;
+import lab.model.vehicles.CarStub;
 import lab.model.vehicles.TruckStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +13,12 @@ import org.junit.jupiter.api.Test;
 public class TrailerTest {
 
   private TruckStub truck;
-  private Trailer trailer;
+  private Trailer<Car> trailer;
 
   @BeforeEach
   public void setUp() {
     this.truck = new TruckStub();
-    this.trailer = new Trailer<Car>(1);
+    this.trailer = new Trailer<Car>(2);
     this.trailer.attachTo(this.truck);
   }
 
@@ -51,5 +53,33 @@ public class TrailerTest {
 
     assertTrue(this.truck.getCurrentSpeed() > 0, "guard, truck should be moving");
     assertEquals(0, this.trailer.getRampAngle());
+  }
+
+  @Test
+  public void unloadShouldStartWithLastCar() {
+    Car firstCar = new CarStub();
+    Car lastCar = new CarStub();
+
+    this.trailer.load(firstCar);
+    this.trailer.load(lastCar);
+
+    assertTrue(lastCar == this.trailer.unload());
+    assertTrue(firstCar == this.trailer.unload());
+  }
+
+  @Test
+  public void testLoadingBeyondCapacityShouldThrowException() {
+    Car firstCar = new CarStub();
+    Car secondCar = new CarStub();
+    Car thirdCar = new CarStub();
+
+    this.trailer.load(firstCar);
+    this.trailer.load(secondCar);
+
+    assertThrows(
+        IndexOutOfBoundsException.class,
+        () -> {
+          this.trailer.load(thirdCar);
+        });
   }
 }
