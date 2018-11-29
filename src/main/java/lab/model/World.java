@@ -20,7 +20,11 @@ public class World {
 
     vehicles.add(new Volvo240(0, 0));
     vehicles.add(new Saab95(0, SPACING_BETWEEN_VEHICLES));
-    vehicles.add(new Scania(0, SPACING_BETWEEN_VEHICLES * 2));
+
+    Truck scania = new Scania(0, SPACING_BETWEEN_VEHICLES * 2);
+    Trailer<Car> trailer = new Trailer<>(1);
+    trailer.attachTo(scania);
+    vehicles.add(scania);
 
     setViewEntities(vehicles);
   }

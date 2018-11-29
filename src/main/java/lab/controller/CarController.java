@@ -88,9 +88,23 @@ public class CarController {
     }
   }
 
-  public void liftBed() {}
+  public void raiseRamp() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      if (vehicle instanceof Truck) {
+        Attachable trailer = ((Truck) vehicle).getAttachment();
+        ((Trailer) trailer).raiseRamp();
+      }
+    }
+  }
 
-  public void lowerBed() {}
+  public void lowerRamp() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      if (vehicle instanceof Truck) {
+        Attachable trailer = ((Truck) vehicle).getAttachment();
+        ((Trailer) trailer).lowerRamp();
+      }
+    }
+  }
 
   public void stopAll() {
     for (Vehicle vehicle : world.getVehicles()) {
