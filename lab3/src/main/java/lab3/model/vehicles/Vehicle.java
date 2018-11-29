@@ -38,14 +38,15 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
     return new Point(x, y);
   }
 
+
+
   /**
    * State of the car to enable checks for changes in movement or transport etc.
    */
   public enum State {
     RUNNING,
-    PARKED
+    PARKED;
   }
-
   /**
    * Returns the current state of the vehicle.
    *
@@ -217,6 +218,15 @@ public abstract class Vehicle implements Movable, Turnable, Positionable {
     }
 
     incrementSpeed(amount);
+  }
+
+  /**
+   * Returns the model name.
+   *
+   * @return name of vehicle.
+   */
+  public String getModelName() {
+    return modelName;
   }
 
   /**

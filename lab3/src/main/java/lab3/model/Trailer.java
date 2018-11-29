@@ -218,7 +218,7 @@ public class Trailer<T extends Movable & Positionable>
    * @return True if an attachment is attached, false if not
    */
   public boolean isAttached() {
-    return this.truck instanceof Truck;
+    return this.truck != null;
   }
 
     @Override

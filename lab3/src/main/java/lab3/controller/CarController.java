@@ -3,7 +3,6 @@ package lab3.controller;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import lab3.view.CarView;
 import lab3.model.vehicles.*;
@@ -38,7 +37,7 @@ public class CarController {
     }
 
     public static void main(String[] args) {
-        CarController cc = new CarController();
+        new CarController();
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -46,14 +45,7 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : world.getVehicles()) {
-                vehicle.move();
-                int x = (int) Math.round(vehicle.getPosition().getX());
-                int y = (int) Math.round(vehicle.getPosition().getY());
-                frame.drawPanel.moveit(x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
+            world.moveVehicles();
         }
     }
 
