@@ -45,6 +45,13 @@ public class CarController {
    */
   private class TimerListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
+      for (Vehicle vehicle : world.getVehicles()) {
+        if (!world.getBoundary().contains(vehicle.getPosition())) {
+          vehicle.turnLeft();
+          vehicle.turnLeft();
+        }
+      }
+
       world.moveVehicles();
       frame.drawPanel.repaint();
     }
@@ -65,15 +72,49 @@ public class CarController {
     }
   }
 
-  public void turboOn() {}
+  public void turboOn() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      if (vehicle instanceof Saab95) {
+        ((Saab95) vehicle).setTurboOn();
+      }
+    }
+  }
 
-  public void turboOff() {}
+  public void turboOff() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      if (vehicle instanceof Saab95) {
+        ((Saab95) vehicle).setTurboOff();
+      }
+    }
+  }
 
-  public void liftBed() {}
+  public void raiseRamp() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      if (vehicle instanceof Truck) {
+        Attachable trailer = ((Truck) vehicle).getAttachment();
+        ((Trailer) trailer).raiseRamp();
+      }
+    }
+  }
 
-  public void lowerBed() {}
+  public void lowerRamp() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      if (vehicle instanceof Truck) {
+        Attachable trailer = ((Truck) vehicle).getAttachment();
+        ((Trailer) trailer).lowerRamp();
+      }
+    }
+  }
 
-  public void stopAll() {}
+  public void stopAll() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      vehicle.stopEngine();
+    }
+  }
 
-  public void startAll() {}
+  public void startAll() {
+    for (Vehicle vehicle : world.getVehicles()) {
+      vehicle.startEngine();
+    }
+  }
 }

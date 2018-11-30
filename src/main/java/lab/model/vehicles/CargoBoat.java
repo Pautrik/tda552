@@ -32,10 +32,17 @@ public class CargoBoat extends Boat implements Storing<Car> {
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Boat model.
+   * @param x start position
+   * @param y start position
    */
   public CargoBoat(
-      final int storageSize, final Color color, final double enginePower, final String modelName) {
-    super(color, enginePower, modelName);
+      final int storageSize,
+      final Color color,
+      final double enginePower,
+      final String modelName,
+      final int x,
+      final int y) {
+    super(color, enginePower, modelName, x, y);
 
     this.storage = new LinkedList<Car>();
     this.ramp = new Ramp(MIN_ANGLE, MAX_ANGLE);

@@ -4,12 +4,11 @@ import java.awt.Color;
 
 /** The Saab 95. */
 public class Saab95 extends Car {
-
   private boolean turboOn;
 
   /** Empty constructor for Saab 95. */
-  public Saab95() {
-    super(2, Color.red, 125, "Saab95");
+  public Saab95(final int x, final int y) {
+    super(2, Color.red, 125, "Saab95", x, y);
     turboOn = false;
     stopEngine();
   }
@@ -46,5 +45,15 @@ public class Saab95 extends Car {
    */
   public boolean isTurboOn() {
     return this.turboOn;
+  }
+
+  /**
+   * Returns the path to the image.
+   *
+   * @return The path to the image
+   */
+  @Override
+  protected String getImageFilePath() {
+    return "./src/main/java/lab/res/pics/Saab95.jpg";
   }
 }

@@ -13,7 +13,7 @@ public class Saab95Test {
 
   @BeforeEach
   public void setUp() {
-    this.car = new Saab95();
+    this.car = new Saab95(0, 0);
   }
 
   @Test

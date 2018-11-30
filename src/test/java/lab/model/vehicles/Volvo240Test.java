@@ -11,7 +11,7 @@ public class Volvo240Test {
 
   @BeforeEach
   public void setUp() {
-    this.car = new Volvo240();
+    this.car = new Volvo240(0, 0);
   }
 
   @Test

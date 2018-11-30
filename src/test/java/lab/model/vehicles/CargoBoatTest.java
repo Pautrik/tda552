@@ -13,7 +13,7 @@ public class CargoBoatTest {
 
   @BeforeEach
   public void setUp() {
-    this.cargoBoat = new CargoBoat(2, Color.RED, 100, "Boaty McBoatface");
+    this.cargoBoat = new CargoBoat(2, Color.RED, 100, "Boaty McBoatface", 0, 0);
   }
 
   @Test

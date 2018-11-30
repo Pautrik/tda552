@@ -1,12 +1,17 @@
 package lab.model.vehicles;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import lab.model.*;
 
 /** A generic vehicle with an engine */
 public abstract class Vehicle implements Movable, Turnable, Positionable, Transportable {
   private double currentSpeed;
-  private Direction direction = Direction.UP;
+  private Direction direction = Direction.RIGHT;
+  private static final String IMAGE_PATH = "";
 
   private Point point;
   protected Color color;
@@ -22,13 +27,20 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    * @param color paint job.
    * @param enginePower power of the spicy engine.
    * @param modelName name of the Vehicle model.
+   * @param x start position
+   * @param y start position
    */
-  public Vehicle(final Color color, final double enginePower, final String modelName) {
+  public Vehicle(
+      final Color color,
+      final double enginePower,
+      final String modelName,
+      final int x,
+      final int y) {
     this.color = color;
     this.enginePower = enginePower;
     this.modelName = modelName;
     this.state = State.PARKED;
-    this.point = new Point();
+    this.point = new Point(x, y);
   }
 
   /**
@@ -343,5 +355,28 @@ public abstract class Vehicle implements Movable, Turnable, Positionable, Transp
    */
   public String getModelName() {
     return modelName;
+  }
+
+  /**
+   * Returns the file image representing the vehicle.
+   *
+   * @return File The file representing the vehicle
+   */
+  public BufferedImage getImage() {
+    try {
+      return ImageIO.read(new File(this.getImageFilePath()));
+    } catch (IOException exception) {
+      exception.printStackTrace();
+      return null;
+    }
+  }
+
+  /**
+   * Returns the path to the image.
+   *
+   * @return The path to the image
+   */
+  protected String getImageFilePath() {
+    return "";
   }
 }

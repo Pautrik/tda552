@@ -66,6 +66,7 @@ public class VehicleTest {
     this.vehicle.gas(1);
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
+    this.vehicle.turnLeft();
     this.vehicle.move();
 
     assertEquals(1, this.vehicle.getY());
@@ -79,7 +80,6 @@ public class VehicleTest {
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
     // Wrap direction
-    this.vehicle.turnRight();
     this.vehicle.turnRight();
     this.vehicle.turnRight();
     this.vehicle.turnRight();
@@ -99,9 +99,6 @@ public class VehicleTest {
     // Wrap direction
     this.vehicle.turnLeft();
     this.vehicle.turnLeft();
-    this.vehicle.turnLeft();
-    this.vehicle.turnLeft();
-    this.vehicle.turnLeft();
     this.vehicle.move();
 
     assertEquals(0, this.vehicle.getY(), "direction is left, y should not be affected");
@@ -114,7 +111,6 @@ public class VehicleTest {
     this.vehicle.gas(1);
     assertTrue(1 <= this.vehicle.getCurrentSpeed(), "guard, vehicle should not be at standstill");
 
-    this.vehicle.turnRight();
     this.vehicle.turnRight();
 
     this.vehicle.move();
