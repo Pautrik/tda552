@@ -33,18 +33,80 @@ public class World {
     return viewEntities;
   }
 
-  public ArrayList<Vehicle> getVehicles() {
-    return vehicles;
-  }
 
   public void moveVehicles() {
-    for (Vehicle vehicle : this.getVehicles()) {
+    for (Vehicle vehicle : vehicles) {
       vehicle.move();
     }
   }
 
-  public Rectangle getBoundary() {
-    return boundary;
+  public void gas(int amount) {
+    double gas = ((double) amount) / 100;
+    for (Vehicle vehicle : vehicles) {
+      vehicle.gas(gas);
+    }
+  }
+
+  public void brake(int amount) {
+    double brake = ((double) amount) / 100;
+    for (Vehicle vehicle : vehicles) {
+      vehicle.brake(brake);
+    }
+  }
+
+  public void turboOn() {
+    for (Vehicle vehicle : vehicles) {
+      if (vehicle instanceof Saab95) {
+        ((Saab95) vehicle).setTurboOn();
+      }
+    }
+  }
+
+  public void turboOff() {
+    for (Vehicle vehicle : vehicles) {
+      if (vehicle instanceof Saab95) {
+        ((Saab95) vehicle).setTurboOff();
+      }
+    }
+  }
+
+  public void raiseRamp() {
+    for (Vehicle vehicle : vehicles) {
+      if (vehicle instanceof Truck) {
+        Attachable trailer = ((Truck) vehicle).getAttachment();
+        ((Trailer) trailer).raiseRamp();
+      }
+    }
+  }
+
+  public void lowerRamp() {
+    for (Vehicle vehicle : vehicles) {
+      if (vehicle instanceof Truck) {
+        Attachable trailer = ((Truck) vehicle).getAttachment();
+        ((Trailer) trailer).lowerRamp();
+      }
+    }
+  }
+
+  public void stopAll() {
+    for (Vehicle vehicle : vehicles) {
+      vehicle.stopEngine();
+    }
+  }
+
+  public void startAll() {
+    for (Vehicle vehicle : vehicles) {
+      vehicle.startEngine();
+    }
+  }
+
+  public void keepVehiclesInsideBoundary() {
+    for (Vehicle vehicle : vehicles) {
+      if (!boundary.contains(vehicle.getPosition())) {
+        vehicle.turnLeft();
+        vehicle.turnLeft();
+      }
+    }
   }
 
   private void setViewEntities(ArrayList<Vehicle> vehicles) {

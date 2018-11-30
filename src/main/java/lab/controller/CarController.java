@@ -45,13 +45,7 @@ public class CarController {
    */
   private class TimerListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      for (Vehicle vehicle : world.getVehicles()) {
-        if (!world.getBoundary().contains(vehicle.getPosition())) {
-          vehicle.turnLeft();
-          vehicle.turnLeft();
-        }
-      }
-
+      world.keepVehiclesInsideBoundary();
       world.moveVehicles();
       frame.drawPanel.repaint();
     }
@@ -59,62 +53,34 @@ public class CarController {
 
   // Calls the gas method for each car once
   public void gas(int amount) {
-    double gas = ((double) amount) / 100;
-    for (Vehicle vehicle : world.getVehicles()) {
-      vehicle.gas(gas);
-    }
+    world.gas(amount);
   }
 
   public void brake(int amount) {
-    double brake = ((double) amount) / 100;
-    for (Vehicle vehicle : world.getVehicles()) {
-      vehicle.brake(brake);
-    }
+    world.brake(amount);
   }
 
   public void turboOn() {
-    for (Vehicle vehicle : world.getVehicles()) {
-      if (vehicle instanceof Saab95) {
-        ((Saab95) vehicle).setTurboOn();
-      }
-    }
+    world.turboOn();
   }
 
   public void turboOff() {
-    for (Vehicle vehicle : world.getVehicles()) {
-      if (vehicle instanceof Saab95) {
-        ((Saab95) vehicle).setTurboOff();
-      }
-    }
+    world.turboOff();
   }
 
   public void raiseRamp() {
-    for (Vehicle vehicle : world.getVehicles()) {
-      if (vehicle instanceof Truck) {
-        Attachable trailer = ((Truck) vehicle).getAttachment();
-        ((Trailer) trailer).raiseRamp();
-      }
-    }
+    world.raiseRamp();
   }
 
   public void lowerRamp() {
-    for (Vehicle vehicle : world.getVehicles()) {
-      if (vehicle instanceof Truck) {
-        Attachable trailer = ((Truck) vehicle).getAttachment();
-        ((Trailer) trailer).lowerRamp();
-      }
-    }
+    world.lowerRamp();
   }
 
   public void stopAll() {
-    for (Vehicle vehicle : world.getVehicles()) {
-      vehicle.stopEngine();
-    }
+    world.stopAll();
   }
 
   public void startAll() {
-    for (Vehicle vehicle : world.getVehicles()) {
-      vehicle.startEngine();
-    }
+    world.startAll();
   }
 }
