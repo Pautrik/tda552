@@ -33,7 +33,6 @@ public class World {
     return viewEntities;
   }
 
-
   public void moveVehicles() {
     for (Vehicle vehicle : vehicles) {
       vehicle.move();
