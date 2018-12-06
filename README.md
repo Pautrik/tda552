@@ -196,7 +196,7 @@ Finns det några delar av planen som går att utföra parallellt, av olika utvec
 Byt kod samt refaktoriseringsplan med en annan grupp. Verkställ den andra gruppens refaktoriseringsplan; förvissa er om att programmets funktionalitet förblir oförändrad. Inspektera resultatet av den andra gruppens verkställande av er refaktoriseringsplan. Blev det som ni tänkt er?
 Frivillig BONUS-uppgift
 
-    Ordna en dialogruta som startar i början av programmet, som frågar vilka av de 3 bilarna ni vill inkludera i simulationen. Fråga även användaren om simulationens hastighet: Snabb (20 ms delay), Normal (50 ms), Långsam (100 ms).
-    Skriv ut “: ” i något lämpligt hörn av panelen, eller kanske på en helt ny JLabel ni kan lägga under alla knappar.
-    Kan du få piltangenterna på tangentbordet att ändra bilarnas riktning, och se till att kollisioner hanteras med kollisionshanteringen från bonusuppgiften i laboration 3? (Very Hard mode)
+Ordna en dialogruta som startar i början av programmet, som frågar vilka av de 3 bilarna ni vill inkludera i simulationen. Fråga även användaren om simulationens hastighet: Snabb (20 ms delay), Normal (50 ms), Långsam (100 ms).
+Skriv ut “: ” i något lämpligt hörn av panelen, eller kanske på en helt ny JLabel ni kan lägga under alla knappar.
+Kan du få piltangenterna på tangentbordet att ändra bilarnas riktning, och se till att kollisioner hanteras med kollisionshanteringen från bonusuppgiften i laboration 3? (Very Hard mode)
 
