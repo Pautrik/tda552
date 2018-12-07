@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import lab.model.*;
-import lab.model.vehicles.*;
-import lab.view.*;
 import lab.view.CarView;
 
 /*
@@ -13,9 +11,8 @@ import lab.view.CarView;
  * It's responsibilities is to listen to the View and responds in a appropriate manner by
  * modifying the model state and the updating the view.
  */
-
 public class CarController {
-  // member fields:S
+  // member fields:
 
   // The delay (ms) corresponds to 20 updates a sec (hz)
   private final int delay = 50;
@@ -27,18 +24,27 @@ public class CarController {
   private CarView frame;
 
   // Model of the world containing all cars and the space they exist in.
-  public World world;
+  private World world;
 
   public CarController() {
     this.world = new World();
-    this.frame = new CarView("CarSim 1.0", this);
+    this.frame = new CarView("CarSim 1.0", world.getViewEntities());//, this);
     this.timer.start();
+
+    /* --- Action listeners --- */
+    frame.gasButton.addActionListener(e -> gas(frame.gasAmount));
+    frame.brakeButton.addActionListener(e -> brake(frame.gasAmount));
+    frame.turboOnButton.addActionListener(e -> turboOn());
+    frame.turboOffButton.addActionListener(e -> turboOff());
+    frame.liftBedButton.addActionListener(e -> raiseRamp());
+    frame.lowerBedButton.addActionListener(e -> lowerRamp());
+    frame.startButton.addActionListener(e -> startAll());
+    frame.stopButton.addActionListener(e -> stopAll());
   }
 
   public static void main(String[] args) {
     new CarController();
   }
-
   /**
    * Each step the TimerListener moves all the cars in the list and tells the view to update its
    * images. Change this method to your needs.
@@ -52,35 +58,35 @@ public class CarController {
   }
 
   // Calls the gas method for each car once
-  public void gas(int amount) {
+  private void gas(int amount) {
     world.gas(amount);
   }
 
-  public void brake(int amount) {
+  private void brake(int amount) {
     world.brake(amount);
   }
 
-  public void turboOn() {
+  private void turboOn() {
     world.turboOn();
   }
 
-  public void turboOff() {
+  private void turboOff() {
     world.turboOff();
   }
 
-  public void raiseRamp() {
+  private void raiseRamp() {
     world.raiseRamp();
   }
 
-  public void lowerRamp() {
+  private void lowerRamp() {
     world.lowerRamp();
   }
 
-  public void stopAll() {
+  private void stopAll() {
     world.stopAll();
   }
 
-  public void startAll() {
+  private void startAll() {
     world.startAll();
   }
 }

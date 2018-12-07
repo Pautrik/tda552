@@ -5,15 +5,46 @@ import java.util.ArrayList;
 import lab.model.vehicles.*;
 import lab.model.vehicles.Vehicle;
 
-public class World {
+public class World implements Observable {
   public static final int WIDTH = 800 - 100; // Shrink world because of images being 100px wide
   public static final int HEIGHT = 400;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
-  private ArrayList<ViewEntity> viewEntities = new ArrayList<>();
 
   private Rectangle boundary;
+
+  /* --- Observer stuff --- */
+  // List of observers
+  private ArrayList<WorldObserver> observers = new ArrayList<>();
+
+  public void addObserver(WorldObserver observer) {
+    observers.add(observer);
+  }
+
+  public void notifyObservers() {
+    for (WorldObserver observer : observers)
+      observer.actOnWorldChange();
+  }
+  /* --- END --- */
+
+  private void setViewEntities(ArrayList<Vehicle> vehicles) {
+    ArrayList<ViewEntity> newEntities = new ArrayList<>();
+
+    for (Vehicle vehicle : vehicles) {
+      String name = vehicle.getModelName();
+      newEntities.add(new ViewEntity(name, vehicle));
+    }
+
+    this.viewEntities = newEntities;
+  }
+
+  public ArrayList<ViewEntity> getViewEntities() {
+    return viewEntities;
+  }
+
+  /* --- Observer stuff --- */
+  private ArrayList<ViewEntity> viewEntities = new ArrayList<>();
 
   public World() {
     boundary = new Rectangle(WIDTH, HEIGHT);
@@ -27,10 +58,6 @@ public class World {
     vehicles.add(scania);
 
     setViewEntities(vehicles);
-  }
-
-  public ArrayList<ViewEntity> getViewEntities() {
-    return viewEntities;
   }
 
   public void moveVehicles() {
@@ -108,12 +135,4 @@ public class World {
     }
   }
 
-  private void setViewEntities(ArrayList<Vehicle> vehicles) {
-    ArrayList<ViewEntity> newEntities = new ArrayList<>();
-    for (Vehicle vehicle : vehicles) {
-      String name = vehicle.getModelName();
-      newEntities.add(new ViewEntity(name, vehicle));
-    }
-    viewEntities = newEntities;
-  }
 }

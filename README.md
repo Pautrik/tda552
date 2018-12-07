@@ -166,37 +166,3 @@ Ni behöver inte göra någon ny design eller implementation; det återkommer vi
 ### Frivillig BONUS-uppgift
 
 Utöka era fordonsmodell (men inte användargränssnittet) med stöd för kollisionshantering. Implementera metoder för att avgöra om två fordon kommer krocka vid nästa move(). Implementera något sätt att undvika sådana kollisioner — till exempel kan ni låta bilarna studsa ifrån varandra eller väja åt sidan. Hur kan man se till att kollisionshanteringen inte ger falskt alarm när man testar för kollision mellan en biltransport och en på biltransporten pålastad bil? För två bilar lastade på samma biltransport? För För två bilar lastade på olika biltransporter, men som i sin tur är lastade på samma bilfärja? För ännu oimplementerade typer av biltransport?
-
-
-## Laboration 4
-
-I denna laborationsuppgift ska ni fortsätta på den lösning ni gjort i laboration 3. Målet är att göra ert program mer modulärt. Koden som skrivs och godkänns i denna lab kommer att användas till nästa laboration.
-
-### Uppgift A
-
-Utgå från ert UML-diagram från laboration 3 uppgift C.
-
-Analysera era klasser med avseende på separation of concern (SoC) och single responsibility-principle (SRP). Vad har era klasser för ansvarsområde(n)? Vad har de för anledningar att ändras? På vilka klasser skulle ni behöva tillämpa dekomposition för att bättre följa SoC och SRP?
-
-
-### Uppgift B
-
-Rita ett UML-diagram över en ny design som åtgärdar de brister ni identifierat med avseende både på beroenden och ansvarsfördelning, dvs. både från uppgift A och från laboration 3 uppgift C.
-
-Motivera, i termer av de principer vi gått igenom, varför era förbättringar verkligen är förbättringar.
-
-### Uppgift C
-
-Skriv en refaktoriseringsplan. Planen bör bestå av en sekvens refaktoriseringssteg som tar er från det nuvarande programmet till ett som implementerar er nya design. Planen behöver inte vara enormt detaljerad.
-
-Finns det några delar av planen som går att utföra parallellt, av olika utvecklare som arbetar oberoende av varandra? Om inte, finns det något sätt att omformulera planen så att en sådan arbetsdelning är möjlig?
-
-### Uppgift D
-
-Byt kod samt refaktoriseringsplan med en annan grupp. Verkställ den andra gruppens refaktoriseringsplan; förvissa er om att programmets funktionalitet förblir oförändrad. Inspektera resultatet av den andra gruppens verkställande av er refaktoriseringsplan. Blev det som ni tänkt er?
-Frivillig BONUS-uppgift
-
-Ordna en dialogruta som startar i början av programmet, som frågar vilka av de 3 bilarna ni vill inkludera i simulationen. Fråga även användaren om simulationens hastighet: Snabb (20 ms delay), Normal (50 ms), Långsam (100 ms).
-Skriv ut “: ” i något lämpligt hörn av panelen, eller kanske på en helt ny JLabel ni kan lägga under alla knappar.
-Kan du få piltangenterna på tangentbordet att ändra bilarnas riktning, och se till att kollisioner hanteras med kollisionshanteringen från bonusuppgiften i laboration 3? (Very Hard mode)
-

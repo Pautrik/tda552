@@ -1,49 +1,55 @@
 package lab.view;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
-import lab.controller.CarController;
+import lab.model.ViewEntity;
 import lab.model.World;
+import lab.model.WorldObserver;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator. It initializes with
  * being center on the screen and attaching it's controller in it's state. It communicates with the
- * Controller by calling methods of it when an action fires of in each of it's components. TODO:
- * Write more actionListeners and wire the rest of the buttons
+ * Controller by calling methods of it when an action fires of in each of it's components.
  */
-public class CarView extends JFrame {
-  private CarController carController;
+public class CarView extends JFrame implements WorldObserver {
   public DrawPanel drawPanel;
   private JPanel controlPanel = new JPanel();
   private static final int WIDTH = World.WIDTH + 100;
 
   private JPanel gasPanel = new JPanel();
   private JSpinner gasSpinner = new JSpinner();
-  private int gasAmount = 0;
+  public int gasAmount = 0;
   private JLabel gasLabel = new JLabel("Amount of gas");
 
-  private JButton gasButton = new JButton("Gas");
-  private JButton brakeButton = new JButton("Brake");
-  private JButton turboOnButton = new JButton("Saab Turbo on");
-  private JButton turboOffButton = new JButton("Saab Turbo off");
-  private JButton liftBedButton = new JButton("Scania Lift Bed");
-  private JButton lowerBedButton = new JButton("Lower Lift Bed");
+  public JButton gasButton = new JButton("Gas");
+  public JButton brakeButton = new JButton("Brake");
+  public JButton turboOnButton = new JButton("Saab Turbo on");
+  public JButton turboOffButton = new JButton("Saab Turbo off");
+  public JButton liftBedButton = new JButton("Scania Lift Bed");
+  public JButton lowerBedButton = new JButton("Lower Lift Bed");
 
-  private JButton startButton = new JButton("Start all cars");
-  private JButton stopButton = new JButton("Stop all cars");
+  public JButton startButton = new JButton("Start all cars");
+  public JButton stopButton = new JButton("Stop all cars");
+
+  /* --- Observer stuff --- */
+  @Override
+  public void actOnWorldChange() {
+    drawPanel.repaint();
+  }
+  /* --- END --- */
 
   // Constructor
-  public CarView(String framename, CarController carController) {
-    this.carController = carController;
+  public CarView(String frameName, ArrayList<ViewEntity> viewEntities) {
+    //this.carController = carController;
     this.drawPanel =
-        new DrawPanel(WIDTH + 100, World.HEIGHT, carController.world.getViewEntities());
-    initComponents(framename);
+        new DrawPanel(WIDTH + 100, World.HEIGHT, viewEntities);
+    initComponents(frameName);
   }
 
   // Sets everything in place and fits everything
   // TODO: Take a good look and make sure you understand how these methods and components work
   private void initComponents(String title) {
-
     this.setTitle(title);
     this.setPreferredSize(new Dimension(WIDTH, World.HEIGHT + 240));
     this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -87,17 +93,6 @@ public class CarView extends JFrame {
     stopButton.setForeground(Color.black);
     stopButton.setPreferredSize(new Dimension(WIDTH / 5 - 15, 200));
     this.add(stopButton);
-
-    // This actionListener is for the gas button only
-    // TODO: Create more for each component as necessary
-    gasButton.addActionListener(e -> carController.gas(gasAmount));
-    brakeButton.addActionListener(e -> carController.brake(gasAmount));
-    turboOnButton.addActionListener(e -> carController.turboOn());
-    turboOffButton.addActionListener(e -> carController.turboOff());
-    liftBedButton.addActionListener(e -> carController.raiseRamp());
-    lowerBedButton.addActionListener(e -> carController.lowerRamp());
-    startButton.addActionListener(e -> carController.startAll());
-    stopButton.addActionListener(e -> carController.stopAll());
 
     // Make the frame pack all it's components by respecting the sizes if possible.
     this.pack();
