@@ -2,7 +2,12 @@ package lab.view;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.*;
+
+import lab.model.VehicleFactory;
 import lab.model.ViewEntity;
 import lab.model.World;
 import lab.model.WorldObserver;
@@ -73,6 +78,17 @@ public class CarView extends JFrame implements WorldObserver {
     gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
     this.add(gasPanel);
+
+    List<String> vehicleList = Arrays.stream(VehicleFactory.VehicleType.values())
+                         .map(Enum::name)
+                         .collect(Collectors.toList());
+    String[] vehicleStringArr = new String[vehicleList.size()];
+    vehicleList.toArray(vehicleStringArr);
+
+    JComboBox<String> vehicleListBox = new JComboBox<>(vehicleStringArr);
+    vehicleListBox.setSelectedIndex(0);
+
+    this.add(vehicleListBox);
 
     controlPanel.setLayout(new GridLayout(2, 4));
 
