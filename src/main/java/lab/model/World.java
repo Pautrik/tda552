@@ -8,6 +8,7 @@ import lab.model.vehicles.Vehicle;
 public class World implements Observable {
   public static final int WIDTH = 800 - 100; // Shrink world because of images being 100px wide
   public static final int HEIGHT = 400;
+  private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
