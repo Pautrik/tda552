@@ -7,32 +7,16 @@ import lab.model.vehicles.Vehicle;
 
 public class World implements Observable {
   public static final int WIDTH = 800 - 100; // Shrink world because of images being 100px wide
-  public static final int HEIGHT = 400;
+  public static final int HEIGHT = 600;
   private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
-  private Rectangle boundary;
-
-  /* --- Observer stuff --- */
-  // List of observers
-  private ArrayList<WorldObserver> observers = new ArrayList<>();
-
-  public void addObserver(WorldObserver observer) {
-    observers.add(observer);
-  }
-
-  public void notifyObservers() {
-    for (WorldObserver observer : observers)
-      observer.actOnWorldChange();
-  }
-  /* --- END --- */
-
-  private void setViewEntities(ArrayList<Vehicle> vehicles) {
+  private void setViewEntities() {
     ArrayList<ViewEntity> newEntities = new ArrayList<>();
 
-    for (Vehicle vehicle : vehicles) {
+    for (Vehicle vehicle : this.vehicles) {
       String name = vehicle.getModelName();
       newEntities.add(new ViewEntity(name, vehicle));
     }
@@ -43,6 +27,32 @@ public class World implements Observable {
   public ArrayList<ViewEntity> getViewEntities() {
     return viewEntities;
   }
+
+  public void addVehicle(Vehicle vehicle){
+    this.vehicles.add(vehicle);
+    setViewEntities();
+  }
+
+  public void removeVehicle(Vehicle vehicle){
+    this.vehicles.remove(vehicle);
+    setViewEntities();
+  }
+
+  private Rectangle boundary;
+  /* --- Observer stuff --- */
+  // List of observers
+
+  private ArrayList<WorldObserver> observers = new ArrayList<>();
+
+  public void addObserver(WorldObserver observer) {
+    observers.add(observer);
+  }
+  public void notifyObservers() {
+    for (WorldObserver observer : observers)
+      observer.actOnWorldChange();
+  }
+
+  /* --- END --- */
 
   /* --- Observer stuff --- */
   private ArrayList<ViewEntity> viewEntities = new ArrayList<>();
@@ -58,7 +68,7 @@ public class World implements Observable {
     trailer.attachTo(scania);
     vehicles.add(scania);
 
-    setViewEntities(vehicles);
+    setViewEntities();
   }
 
   public void moveVehicles() {
