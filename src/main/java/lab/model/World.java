@@ -11,7 +11,7 @@ public class World implements Observable {
   private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
-  private VehicleFactory factory;
+  private VehicleFactory factory = new VehicleFactory();
 
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
