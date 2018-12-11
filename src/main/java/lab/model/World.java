@@ -47,8 +47,10 @@ public class World implements Observable {
   }
 
   public void removeLatestVehicle() {
-    this.vehicles.remove(vehicles.size() - 1);
-    setViewEntities();
+    if(vehicles.size() > 0) {
+      this.vehicles.remove(vehicles.size() - 1);
+      setViewEntities();
+    }
   }
 
   private Rectangle boundary;
