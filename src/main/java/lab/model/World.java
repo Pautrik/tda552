@@ -28,25 +28,25 @@ public class World implements Observable {
     return viewEntities;
   }
 
-//  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
-//    Vehicle vehicle = factory.makeVehicle(input, x, y);
-//    this.vehicles.add(vehicle);
-//    setViewEntities();
-//  }
+  //  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
+  //    Vehicle vehicle = factory.makeVehicle(input, x, y);
+  //    this.vehicles.add(vehicle);
+  //    setViewEntities();
+  //  }
 
-  public void addVehicle(String input, int x, int y){
+  public void addVehicle(String input, int x, int y) {
     Vehicle vehicle = factory.makeVehicle(input, x, y);
     this.vehicles.add(vehicle);
     setViewEntities();
   }
 
-  public void addVehicle(String input){
+  public void addVehicle(String input) {
     Vehicle vehicle = factory.makeVehicle(input);
     this.vehicles.add(vehicle);
     setViewEntities();
   }
 
-  public void removeLatestVehicle(){
+  public void removeLatestVehicle() {
     this.vehicles.remove(vehicles.size() - 1);
     setViewEntities();
   }
@@ -60,9 +60,9 @@ public class World implements Observable {
   public void addObserver(WorldObserver observer) {
     observers.add(observer);
   }
+
   public void notifyObservers() {
-    for (WorldObserver observer : observers)
-      observer.actOnWorldChange();
+    for (WorldObserver observer : observers) observer.actOnWorldChange();
   }
 
   /* --- END --- */
@@ -158,5 +158,4 @@ public class World implements Observable {
       }
     }
   }
-
 }
