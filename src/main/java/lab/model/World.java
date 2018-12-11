@@ -11,6 +11,8 @@ public class World implements Observable {
   private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
+  private VehicleFactory factory;
+
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
   private void setViewEntities() {
@@ -28,13 +30,26 @@ public class World implements Observable {
     return viewEntities;
   }
 
-  public void addVehicle(Vehicle vehicle){
+//  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
+//    Vehicle vehicle = factory.makeVehicle(input, x, y);
+//    this.vehicles.add(vehicle);
+//    setViewEntities();
+//  }
+
+  public void addVehicle(String input, int x, int y){
+    Vehicle vehicle = factory.makeVehicle(input, x, y);
     this.vehicles.add(vehicle);
     setViewEntities();
   }
 
-  public void removeVehicle(Vehicle vehicle){
-    this.vehicles.remove(vehicle);
+  public void addVehicle(String input){
+    Vehicle vehicle = factory.makeVehicle(input);
+    this.vehicles.add(vehicle);
+    setViewEntities();
+  }
+
+  public void removeLatestVehicle(){
+    this.vehicles.remove(vehicles.size() - 1);
     setViewEntities();
   }
 

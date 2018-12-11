@@ -20,6 +20,8 @@ public class CarController {
   // each step between delays.
   private Timer timer = new Timer(delay, new TimerListener());
 
+  private String selectedNewVehicle;
+
   // The frame that represents this instance View of the MVC pattern
   private CarView frame;
 
@@ -40,6 +42,9 @@ public class CarController {
     frame.lowerBedButton.addActionListener(e -> lowerRamp());
     frame.startButton.addActionListener(e -> startAll());
     frame.stopButton.addActionListener(e -> stopAll());
+    frame.addVehicle.addActionListener(e -> addVehicle());
+    frame.removeVehicle.addActionListener(e -> world.removeLatestVehicle());
+    frame.vehicleListBox.addActionListener(e -> selectedNewVehicle = (String)((JComboBox) e.getSource()).getSelectedItem());
   }
 
   public static void main(String[] args) {
@@ -55,6 +60,11 @@ public class CarController {
       world.moveVehicles();
       frame.drawPanel.repaint();
     }
+  }
+
+
+  private void addVehicle(){
+    world.addVehicle(this.selectedNewVehicle);
   }
 
   // Calls the gas method for each car once
