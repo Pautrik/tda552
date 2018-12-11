@@ -16,14 +16,12 @@ public class World implements Observable {
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
   private void setViewEntities() {
-    ArrayList<ViewEntity> newEntities = new ArrayList<>();
+    this.viewEntities.clear();
 
     for (Vehicle vehicle : this.vehicles) {
       String name = vehicle.getModelName();
-      newEntities.add(new ViewEntity(name, vehicle));
+      this.viewEntities.add(new ViewEntity(name, vehicle));
     }
-
-    this.viewEntities = newEntities;
   }
 
   public ArrayList<ViewEntity> getViewEntities() {
