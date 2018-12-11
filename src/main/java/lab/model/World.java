@@ -45,11 +45,11 @@ public class World implements Observable {
     return instance;
   }
 
-  //  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
-  //    Vehicle vehicle = factory.makeVehicle(input, x, y);
-  //    this.vehicles.add(vehicle);
-  //    setViewEntities();
-  //  }
+  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
+    Vehicle vehicle = factory.makeVehicle(input, x, y);
+    this.vehicles.add(vehicle);
+    setViewEntities();
+  }
 
   public void addVehicle(String input, int x, int y) {
     Vehicle vehicle = factory.makeVehicle(input, x, y);
@@ -92,13 +92,9 @@ public class World implements Observable {
   private World() {
     boundary = new Rectangle(WIDTH, HEIGHT);
 
-    vehicles.add(new Volvo240(0, 0));
-    vehicles.add(new Saab95(0, SPACING_BETWEEN_VEHICLES));
-
-    Truck scania = new Scania(0, SPACING_BETWEEN_VEHICLES * 2);
-    Trailer<Car> trailer = new Trailer<>(1);
-    trailer.attachTo(scania);
-    vehicles.add(scania);
+    addVehicle(VehicleFactory.VehicleType.VOLVO, 0, 0);
+    addVehicle(VehicleFactory.VehicleType.SAAB, 0, SPACING_BETWEEN_VEHICLES);
+    addVehicle(VehicleFactory.VehicleType.SCANIA, 0, SPACING_BETWEEN_VEHICLES * 2);
 
     setViewEntities();
   }

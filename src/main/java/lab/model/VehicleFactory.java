@@ -22,7 +22,10 @@ public class VehicleFactory {
     SCANIA {
       @Override
       public Vehicle create(int x, int y) {
-        return new Scania(x, y);
+        Scania truck = new Scania(x, y);
+        Trailer<Car> trailer = new Trailer<>(1);
+        trailer.attachTo(truck);
+        return truck;
       }
     };
 
@@ -47,10 +50,8 @@ public class VehicleFactory {
   }
 
   public Vehicle makeVehicle(String type) {
-    Point vehiclePlacementPoint =
-        this.vehiclePlacementStrategy.getVehiclePlacement(World.WIDTH, World.HEIGHT);
+    Point vehiclePlacementPoint = this.vehiclePlacementStrategy.getVehiclePlacement(World.WIDTH, World.HEIGHT);
 
-    return makeVehicle(
-        type, (int) vehiclePlacementPoint.getX(), (int) vehiclePlacementPoint.getY());
+    return makeVehicle(type, (int) vehiclePlacementPoint.getX(), (int) vehiclePlacementPoint.getY());
   }
 }
