@@ -20,7 +20,7 @@ public class CarController {
   // each step between delays.
   private Timer timer = new Timer(delay, new TimerListener());
 
-  private String selectedNewVehicle;
+  private String selectedNewVehicle = "";
 
   // The frame that represents this instance View of the MVC pattern
   private CarView frame;

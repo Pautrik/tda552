@@ -35,12 +35,19 @@ public class VehicleFactory {
   }
 
   public Vehicle makeVehicle(String type, int x, int y) {
-    return makeVehicle(VehicleType.valueOf(type.toUpperCase()), x, y);
+    VehicleType selectedConstant;
+    try {
+      selectedConstant = VehicleType.valueOf(type.toUpperCase());
+    } catch (IllegalArgumentException e) {
+      selectedConstant = VehicleType.values()[0];
+    }
+
+    return makeVehicle(selectedConstant, x, y);
   }
 
   public Vehicle makeVehicle(String type) {
     int x = ThreadLocalRandom.current().nextInt(World.WIDTH);
     int y = ThreadLocalRandom.current().nextInt(World.HEIGHT);
-    return makeVehicle(VehicleType.valueOf(type.toUpperCase()), x, y);
+    return makeVehicle(type, x, y);
   }
 }
