@@ -47,7 +47,7 @@ public class World implements Observable {
   }
 
   public void removeLatestVehicle() {
-    if(vehicles.size() > 0) {
+    if (vehicles.size() > 0) {
       this.vehicles.remove(vehicles.size() - 1);
       setViewEntities();
     }
