@@ -30,7 +30,7 @@ public class CarController {
 
   public CarController() {
     this.world = new World();
-    this.frame = new CarView("CarSim 1.0", world.getViewEntities()); // , this);
+    this.frame = new CarView("CarSim 1.0", world.getViewEntities());
     this.timer.start();
 
     /* --- Action listeners --- */

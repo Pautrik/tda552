@@ -12,7 +12,6 @@ public class World implements Observable {
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
   private VehicleFactory factory = new VehicleFactory();
-
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
   private void setViewEntities() {
