@@ -11,6 +11,9 @@ public class World implements Observable {
   private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
 
+  /** Holds the instance in the Singleton pattern */
+  private static World instance;
+
   private VehicleFactory factory = new VehicleFactory();
 
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
@@ -26,6 +29,20 @@ public class World implements Observable {
 
   public ArrayList<ViewEntity> getViewEntities() {
     return viewEntities;
+  }
+
+  /**
+   * Creates the world, if there is none, and returns the instance. Implements the singleton
+   * pattern.
+   *
+   * @return World The World instance, being a singleton
+   */
+  public static final World getInstance() {
+    if (instance == null) {
+      instance = new World();
+    }
+
+    return instance;
   }
 
   //  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
@@ -72,7 +89,7 @@ public class World implements Observable {
   /* --- Observer stuff --- */
   private ArrayList<ViewEntity> viewEntities = new ArrayList<>();
 
-  public World() {
+  private World() {
     boundary = new Rectangle(WIDTH, HEIGHT);
 
     vehicles.add(new Volvo240(0, 0));
