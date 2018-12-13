@@ -2,7 +2,12 @@ package lab.view;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.*;
+
+import lab.model.VehicleFactory;
 import lab.model.ViewEntity;
 import lab.model.World;
 import lab.model.WorldObserver;
@@ -28,6 +33,10 @@ public class CarView extends JFrame implements WorldObserver {
   public JButton turboOffButton = new JButton("Saab Turbo off");
   public JButton liftBedButton = new JButton("Scania Lift Bed");
   public JButton lowerBedButton = new JButton("Lower Lift Bed");
+  public JButton addVehicle = new JButton("Add Vehicle");
+  public JButton removeVehicle = new JButton("Remove Vehicle");
+
+  public JComboBox<String> vehicleListBox;
 
   public JButton startButton = new JButton("Start all cars");
   public JButton stopButton = new JButton("Stop all cars");
@@ -72,7 +81,13 @@ public class CarView extends JFrame implements WorldObserver {
 
     this.add(gasPanel);
 
-    controlPanel.setLayout(new GridLayout(2, 4));
+    String[] modelNames = vehicleTypeNames();
+    vehicleListBox = new JComboBox<>(modelNames);
+    vehicleListBox.setSelectedIndex(0);
+
+    controlPanel.add(vehicleListBox);
+
+    controlPanel.setLayout(new GridLayout(3, 4));
 
     controlPanel.add(gasButton, 0);
     controlPanel.add(turboOnButton, 1);
@@ -80,6 +95,8 @@ public class CarView extends JFrame implements WorldObserver {
     controlPanel.add(brakeButton, 3);
     controlPanel.add(turboOffButton, 4);
     controlPanel.add(lowerBedButton, 5);
+    controlPanel.add(removeVehicle, 6);
+    controlPanel.add(addVehicle, 7);
     controlPanel.setPreferredSize(new Dimension((WIDTH / 2) + 4, 200));
     this.add(controlPanel);
     controlPanel.setBackground(Color.CYAN);
@@ -106,5 +123,14 @@ public class CarView extends JFrame implements WorldObserver {
     this.setVisible(true);
     // Make sure the frame exits when "x" is pressed
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+  private String[] vehicleTypeNames() {
+    List<String> vehicleList = Arrays.stream(VehicleFactory.VehicleType.values())
+        .map(Enum::name)
+        .collect(Collectors.toList());
+    String[] vehicleStringArr = new String[vehicleList.size()];
+    vehicleList.toArray(vehicleStringArr);
+    return vehicleStringArr;
   }
 }
