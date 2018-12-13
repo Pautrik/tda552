@@ -32,8 +32,8 @@ public class CarView extends JFrame implements WorldObserver {
   public JButton turboOffButton = new JButton("Saab Turbo off");
   public JButton liftBedButton = new JButton("Scania Lift Bed");
   public JButton lowerBedButton = new JButton("Lower Lift Bed");
-  public JButton addVehicle = new JButton("Add Vehicle");
-  public JButton removeVehicle = new JButton("Remove Vehicle");
+  public JButton addVehicleButton = new JButton("Add Vehicle");
+  public JButton removeVehicleButton = new JButton("Remove Vehicle");
 
   public JComboBox<String> vehicleListBox;
 
@@ -93,8 +93,8 @@ public class CarView extends JFrame implements WorldObserver {
     controlPanel.add(brakeButton, 3);
     controlPanel.add(turboOffButton, 4);
     controlPanel.add(lowerBedButton, 5);
-    controlPanel.add(removeVehicle, 6);
-    controlPanel.add(addVehicle, 7);
+    controlPanel.add(removeVehicleButton, 6);
+    controlPanel.add(addVehicleButton, 7);
     controlPanel.setPreferredSize(new Dimension((WIDTH / 2) + 4, 200));
     this.add(controlPanel);
     controlPanel.setBackground(Color.CYAN);

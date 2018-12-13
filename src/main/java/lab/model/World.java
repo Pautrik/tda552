@@ -10,6 +10,7 @@ public class World implements Observable {
   public static final int HEIGHT = 600;
   private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
+  public static final int MAXIMUM_AMOUNT_OF_VEHICLES = 10;
 
   private VehicleFactory factory = new VehicleFactory();
 
@@ -27,12 +28,6 @@ public class World implements Observable {
   public ArrayList<ViewEntity> getViewEntities() {
     return viewEntities;
   }
-
-  //  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
-  //    Vehicle vehicle = factory.makeVehicle(input, x, y);
-  //    this.vehicles.add(vehicle);
-  //    setViewEntities();
-  //  }
 
   public void addVehicle(String input, int x, int y) {
     Vehicle vehicle = factory.makeVehicle(input, x, y);
