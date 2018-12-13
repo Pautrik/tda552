@@ -35,7 +35,7 @@ public class World implements Observable {
    * Creates the world, if there is none, and returns the instance. Implements the singleton
    * pattern.
    *
-   * @return World The World instance, being a singleton
+   * @return The World instance, being a singleton
    */
   public static final World getInstance() {
     if (instance == null) {
