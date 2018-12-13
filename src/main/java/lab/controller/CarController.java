@@ -20,7 +20,7 @@ public class CarController {
   // each step between delays.
   private Timer timer = new Timer(delay, new TimerListener());
 
-  private String selectedNewVehicle;
+  private String selectedNewVehicle = "";
 
   // The frame that represents this instance View of the MVC pattern
   private CarView frame;
@@ -30,7 +30,7 @@ public class CarController {
 
   public CarController() {
     this.world = new World();
-    this.frame = new CarView("CarSim 1.0", world.getViewEntities());//, this);
+    this.frame = new CarView("CarSim 1.0", world.getViewEntities()); // , this);
     this.timer.start();
 
     /* --- Action listeners --- */
@@ -44,7 +44,8 @@ public class CarController {
     frame.stopButton.addActionListener(e -> stopAll());
     frame.addVehicle.addActionListener(e -> addVehicle());
     frame.removeVehicle.addActionListener(e -> world.removeLatestVehicle());
-    frame.vehicleListBox.addActionListener(e -> selectedNewVehicle = (String)((JComboBox) e.getSource()).getSelectedItem());
+    frame.vehicleListBox.addActionListener(
+        e -> selectedNewVehicle = (String) ((JComboBox) e.getSource()).getSelectedItem());
   }
 
   public static void main(String[] args) {
@@ -62,8 +63,7 @@ public class CarController {
     }
   }
 
-
-  private void addVehicle(){
+  private void addVehicle() {
     world.addVehicle(this.selectedNewVehicle);
   }
 

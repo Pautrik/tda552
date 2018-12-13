@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.*;
-
 import lab.model.VehicleFactory;
 import lab.model.ViewEntity;
 import lab.model.World;
@@ -50,9 +49,8 @@ public class CarView extends JFrame implements WorldObserver {
 
   // Constructor
   public CarView(String frameName, ArrayList<ViewEntity> viewEntities) {
-    //this.carController = carController;
-    this.drawPanel =
-        new DrawPanel(WIDTH + 100, World.HEIGHT, viewEntities);
+    // this.carController = carController;
+    this.drawPanel = new DrawPanel(WIDTH + 100, World.HEIGHT, viewEntities);
     initComponents(frameName);
   }
 
@@ -126,9 +124,10 @@ public class CarView extends JFrame implements WorldObserver {
   }
 
   private String[] vehicleTypeNames() {
-    List<String> vehicleList = Arrays.stream(VehicleFactory.VehicleType.values())
-        .map(Enum::name)
-        .collect(Collectors.toList());
+    List<String> vehicleList =
+        Arrays.stream(VehicleFactory.VehicleType.values())
+            .map(Enum::name)
+            .collect(Collectors.toList());
     String[] vehicleStringArr = new String[vehicleList.size()];
     vehicleList.toArray(vehicleStringArr);
     return vehicleStringArr;

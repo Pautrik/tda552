@@ -16,41 +16,41 @@ public class World implements Observable {
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
   private void setViewEntities() {
-    ArrayList<ViewEntity> newEntities = new ArrayList<>();
+    this.viewEntities.clear();
 
     for (Vehicle vehicle : this.vehicles) {
       String name = vehicle.getModelName();
-      newEntities.add(new ViewEntity(name, vehicle));
+      this.viewEntities.add(new ViewEntity(name, vehicle));
     }
-
-    this.viewEntities = newEntities;
   }
 
   public ArrayList<ViewEntity> getViewEntities() {
     return viewEntities;
   }
 
-//  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
-//    Vehicle vehicle = factory.makeVehicle(input, x, y);
-//    this.vehicles.add(vehicle);
-//    setViewEntities();
-//  }
+  //  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
+  //    Vehicle vehicle = factory.makeVehicle(input, x, y);
+  //    this.vehicles.add(vehicle);
+  //    setViewEntities();
+  //  }
 
-  public void addVehicle(String input, int x, int y){
+  public void addVehicle(String input, int x, int y) {
     Vehicle vehicle = factory.makeVehicle(input, x, y);
     this.vehicles.add(vehicle);
     setViewEntities();
   }
 
-  public void addVehicle(String input){
+  public void addVehicle(String input) {
     Vehicle vehicle = factory.makeVehicle(input);
     this.vehicles.add(vehicle);
     setViewEntities();
   }
 
-  public void removeLatestVehicle(){
-    this.vehicles.remove(vehicles.size() - 1);
-    setViewEntities();
+  public void removeLatestVehicle() {
+    if(vehicles.size() > 0) {
+      this.vehicles.remove(vehicles.size() - 1);
+      setViewEntities();
+    }
   }
 
   private Rectangle boundary;
@@ -62,9 +62,9 @@ public class World implements Observable {
   public void addObserver(WorldObserver observer) {
     observers.add(observer);
   }
+
   public void notifyObservers() {
-    for (WorldObserver observer : observers)
-      observer.actOnWorldChange();
+    for (WorldObserver observer : observers) observer.actOnWorldChange();
   }
 
   /* --- END --- */
@@ -160,5 +160,4 @@ public class World implements Observable {
       }
     }
   }
-
 }
