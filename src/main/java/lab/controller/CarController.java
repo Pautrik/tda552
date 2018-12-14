@@ -28,7 +28,7 @@ public class CarController {
   private World world;
 
   public CarController() {
-    this.world = new World();
+    this.world = World.getInstance();
     this.frame = new CarView("CarSim 1.0", world.getViewEntities()); // , this);
     this.timer.start();
 
