@@ -12,10 +12,9 @@ import lab.view.CarView;
  * modifying the model state and the updating the view.
  */
 public class CarController {
-  // member fields:
-
   // The delay (ms) corresponds to 20 updates a sec (hz)
   private final int delay = 50;
+
   // The timer is started with an listener (see below) that executes the statements
   // each step between delays.
   private Timer timer = new Timer(delay, new TimerListener());
@@ -42,8 +41,8 @@ public class CarController {
     frame.lowerBedButton.addActionListener(e -> lowerRamp());
     frame.startButton.addActionListener(e -> startAll());
     frame.stopButton.addActionListener(e -> stopAll());
-    frame.addVehicle.addActionListener(e -> addVehicle());
-    frame.removeVehicle.addActionListener(e -> world.removeLatestVehicle());
+    frame.addVehicleButton.addActionListener(e -> addVehicle());
+    frame.removeVehicleButton.addActionListener(e -> removeLatestVehicle());
     frame.vehicleListBox.addActionListener(
         e -> selectedNewVehicle = (String) ((JComboBox) e.getSource()).getSelectedItem());
   }
@@ -51,6 +50,7 @@ public class CarController {
   public static void main(String[] args) {
     new CarController();
   }
+
   /**
    * Each step the TimerListener moves all the cars in the list and tells the view to update its
    * images. Change this method to your needs.
@@ -65,6 +65,24 @@ public class CarController {
 
   private void addVehicle() {
     world.addVehicle(this.selectedNewVehicle);
+
+    if (world.getViewEntities().size() == world.MAXIMUM_AMOUNT_OF_VEHICLES) {
+      frame.addVehicleButton.setEnabled(false);
+    } else {
+      frame.addVehicleButton.setEnabled(true);
+      frame.removeVehicleButton.setEnabled(true);
+    }
+  }
+
+  private void removeLatestVehicle() {
+    world.removeLatestVehicle();
+
+    if (world.getViewEntities().size() == 0) {
+      frame.removeVehicleButton.setEnabled(false);
+    } else {
+      frame.removeVehicleButton.setEnabled(true);
+      frame.addVehicleButton.setEnabled(true);
+    }
   }
 
   // Calls the gas method for each car once

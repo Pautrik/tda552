@@ -10,6 +10,7 @@ public class World implements Observable {
   public static final int HEIGHT = 600;
   private static final int MAX_NUMBER_OF_VEHICLES = 10;
   private static final int SPACING_BETWEEN_VEHICLES = 100;
+  public static final int MAXIMUM_AMOUNT_OF_VEHICLES = 10;
 
   /** Holds the instance in the Singleton pattern */
   private static World instance;
