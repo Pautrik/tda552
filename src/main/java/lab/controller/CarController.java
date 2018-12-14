@@ -29,7 +29,7 @@ public class CarController {
   private World world;
 
   public CarController() {
-    this.world = new World();
+    this.world = World.getInstance();
     this.frame = new CarView("CarSim 1.0", world.getViewEntities());
     this.timer.start();
 
@@ -51,6 +51,7 @@ public class CarController {
   public static void main(String[] args) {
     new CarController();
   }
+
   /**
    * Each step the TimerListener moves all the cars in the list and tells the view to update its
    * images. Change this method to your needs.
