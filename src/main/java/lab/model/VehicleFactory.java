@@ -50,8 +50,10 @@ public class VehicleFactory {
   }
 
   public Vehicle makeVehicle(String type) {
-    Point vehiclePlacementPoint = this.vehiclePlacementStrategy.getVehiclePlacement(World.WIDTH, World.HEIGHT);
+    Point vehiclePlacementPoint =
+        this.vehiclePlacementStrategy.getVehiclePlacement(World.WIDTH, World.HEIGHT);
 
-    return makeVehicle(type, (int) vehiclePlacementPoint.getX(), (int) vehiclePlacementPoint.getY());
+    return makeVehicle(
+        type, (int) vehiclePlacementPoint.getX(), (int) vehiclePlacementPoint.getY());
   }
 }

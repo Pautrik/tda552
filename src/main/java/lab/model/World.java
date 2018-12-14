@@ -45,7 +45,7 @@ public class World implements Observable {
     return instance;
   }
 
-  public void addVehicle(VehicleFactory.VehicleType input, int x, int y){
+  public void addVehicle(VehicleFactory.VehicleType input, int x, int y) {
     Vehicle vehicle = factory.makeVehicle(input, x, y);
     this.vehicles.add(vehicle);
     setViewEntities();
