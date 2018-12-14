@@ -16,7 +16,6 @@ public class World implements Observable {
   private static World instance;
 
   private VehicleFactory factory = new VehicleFactory();
-
   private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
   private void setViewEntities() {

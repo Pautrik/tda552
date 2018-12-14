@@ -1,6 +1,6 @@
 package lab.model;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.awt.Point;
 import lab.model.vehicles.*;
 import lab.model.vehicles.Vehicle;
 
@@ -29,6 +29,8 @@ public class VehicleFactory {
     public abstract Vehicle create(int x, int y);
   }
 
+  private VehiclePlacementStrategy vehiclePlacementStrategy = new RandomVehiclePlacementStrategy();
+
   public Vehicle makeVehicle(VehicleType type, int x, int y) {
     return type.create(x, y);
   }
@@ -45,8 +47,10 @@ public class VehicleFactory {
   }
 
   public Vehicle makeVehicle(String type) {
-    int x = ThreadLocalRandom.current().nextInt(World.WIDTH);
-    int y = ThreadLocalRandom.current().nextInt(World.HEIGHT);
-    return makeVehicle(type, x, y);
+    Point vehiclePlacementPoint =
+        this.vehiclePlacementStrategy.getVehiclePlacement(World.WIDTH, World.HEIGHT);
+
+    return makeVehicle(
+        type, (int) vehiclePlacementPoint.getX(), (int) vehiclePlacementPoint.getY());
   }
 }
